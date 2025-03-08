@@ -35,6 +35,7 @@ public class ventAdministracion extends javax.swing.JFrame {
         initComponents();
         bAnterior.setEnabled(false);
         bSiguiente.setEnabled(false);
+        setLocationRelativeTo(null);
         cargarEventosUsuarios();
     }
 

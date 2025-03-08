@@ -25,7 +25,7 @@ public class logotipo extends JWindow {
         content.setLayout(new BorderLayout());
         content.setBackground(Color.WHITE);
 
-        JLabel labelBienvenida = new JLabel("BIENVENIDO A LA APP", SwingConstants.CENTER);
+        JLabel labelBienvenida = new JLabel("BIENVENIDO A EVENTOS PAUYO", SwingConstants.CENTER);
         labelBienvenida.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 18));
         labelBienvenida.setForeground(Color.BLACK);
 

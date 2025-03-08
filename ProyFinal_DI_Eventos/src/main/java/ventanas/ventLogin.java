@@ -23,6 +23,7 @@ public class ventLogin extends javax.swing.JFrame {
      */
     public ventLogin() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

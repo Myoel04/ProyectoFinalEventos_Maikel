@@ -40,6 +40,7 @@ public class ventVistaUsuario extends javax.swing.JFrame {
         eventosCargados = new ArrayList<>();
         filtrarEventos();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setTitle("Mis Eventos");
     }
 
     private void filtrarEventos() {

@@ -25,7 +25,7 @@ public class ventActuUsuarios extends javax.swing.JFrame {
         this.idUsuario = idUsuario;
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+setLocationRelativeTo(null);
         // campos 
         tNombre.setText(nombreUsuario);
         tEmail.setText(emailUsuario);
@@ -53,6 +53,7 @@ public class ventActuUsuarios extends javax.swing.JFrame {
         lRol = new javax.swing.JLabel();
         cbRol = new javax.swing.JComboBox<>();
         bGuardarCambios = new javax.swing.JButton();
+        bCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,10 +71,17 @@ public class ventActuUsuarios extends javax.swing.JFrame {
 
         cbRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Usuario" }));
 
-        bGuardarCambios.setText("GuardarCambios");
+        bGuardarCambios.setText("Guardar Cambios");
         bGuardarCambios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bGuardarCambiosActionPerformed(evt);
+            }
+        });
+
+        bCancelar.setText("Cancelar");
+        bCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelarActionPerformed(evt);
             }
         });
 
@@ -83,11 +91,6 @@ public class ventActuUsuarios extends javax.swing.JFrame {
             pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pFormularioLayout.createSequentialGroup()
                 .addGroup(pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bGuardarCambios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pFormularioLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(lRol, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pFormularioLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,8 +107,18 @@ public class ventActuUsuarios extends javax.swing.JFrame {
                                     .addComponent(tContrasena)
                                     .addComponent(tEmail)
                                     .addComponent(tNombre)
-                                    .addComponent(cbRol, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(cbRol, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pFormularioLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lRol, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(51, 51, 51))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pFormularioLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(bGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
         pFormularioLayout.setVerticalGroup(
             pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,7 +142,9 @@ public class ventActuUsuarios extends javax.swing.JFrame {
                     .addComponent(lRol)
                     .addComponent(cbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(bGuardarCambios)
+                .addGroup(pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bGuardarCambios)
+                    .addComponent(bCancelar))
                 .addGap(44, 44, 44))
         );
 
@@ -199,6 +214,12 @@ public class ventActuUsuarios extends javax.swing.JFrame {
 
     }//GEN-LAST:event_bGuardarCambiosActionPerformed
 
+    private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
+        // TODO add your handling code here:
+
+dispose();
+    }//GEN-LAST:event_bCancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -236,6 +257,7 @@ public class ventActuUsuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bCancelar;
     private javax.swing.JButton bGuardarCambios;
     private javax.swing.JComboBox<String> cbRol;
     private javax.swing.JLabel lContrasena;

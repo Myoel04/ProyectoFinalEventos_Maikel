@@ -24,7 +24,7 @@ public class ventActuEventos extends javax.swing.JFrame {
         this.idEvento = idEvento;
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+        setLocationRelativeTo(null);
         // Prefill fields
         tTituloEvento.setText(titulo != null ? titulo : "");
         taDescripcion.setText(descripcion != null ? descripcion : "");
@@ -59,6 +59,7 @@ public class ventActuEventos extends javax.swing.JFrame {
         lTipo = new javax.swing.JLabel();
         cbTipoEvento = new javax.swing.JComboBox<>();
         bGuardarCambios = new javax.swing.JButton();
+        bCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +97,13 @@ public class ventActuEventos extends javax.swing.JFrame {
             }
         });
 
+        bCancelar.setText("Cancelar");
+        bCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pCrearEventoLayout = new javax.swing.GroupLayout(pCrearEvento);
         pCrearEvento.setLayout(pCrearEventoLayout);
         pCrearEventoLayout.setHorizontalGroup(
@@ -118,17 +126,21 @@ public class ventActuEventos extends javax.swing.JFrame {
                                     .addComponent(lCapacidad)
                                     .addComponent(lTipo))
                                 .addGap(18, 18, 18)
-                                .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bGuardarCambios)
-                                    .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(dcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-                                        .addComponent(tUbicacion)
-                                        .addComponent(tCapacidad)
-                                        .addComponent(cbTipoEvento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(dcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                                    .addComponent(tUbicacion)
+                                    .addComponent(tCapacidad)
+                                    .addComponent(cbTipoEvento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(pCrearEventoLayout.createSequentialGroup()
                         .addGap(83, 83, 83)
-                        .addComponent(lCrear)))
+                        .addComponent(lCrear))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCrearEventoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(bGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         pCrearEventoLayout.setVerticalGroup(
@@ -160,9 +172,11 @@ public class ventActuEventos extends javax.swing.JFrame {
                 .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lTipo)
                     .addComponent(cbTipoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(bGuardarCambios)
-                .addGap(29, 29, 29))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bGuardarCambios)
+                    .addComponent(bCancelar))
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -247,6 +261,12 @@ public class ventActuEventos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_bGuardarCambiosActionPerformed
 
+    private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+
+    }//GEN-LAST:event_bCancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -284,6 +304,7 @@ public class ventActuEventos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bCancelar;
     private javax.swing.JButton bGuardarCambios;
     private javax.swing.JComboBox<String> cbTipoEvento;
     private com.toedter.calendar.JDateChooser dcFecha;
