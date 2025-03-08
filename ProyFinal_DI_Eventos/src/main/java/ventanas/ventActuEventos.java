@@ -24,6 +24,8 @@ public class ventActuEventos extends javax.swing.JFrame {
         this.idEvento = idEvento;
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        pack();
+        setResizable(false);
         setLocationRelativeTo(null);
         // Prefill fields
         tTituloEvento.setText(titulo != null ? titulo : "");

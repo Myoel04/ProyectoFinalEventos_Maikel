@@ -23,6 +23,8 @@ public class ventCrearUsuario extends javax.swing.JFrame {
     public ventCrearUsuario() {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        pack();
+        setResizable(false);
         setLocationRelativeTo(null);
     }
 

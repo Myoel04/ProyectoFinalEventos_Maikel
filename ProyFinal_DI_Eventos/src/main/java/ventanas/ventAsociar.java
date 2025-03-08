@@ -34,6 +34,8 @@ public class ventAsociar extends javax.swing.JFrame {
         cargarUsuarios();
         cargarEventos();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        pack();
+        setResizable(false);
         setLocationRelativeTo(null);
     }
 

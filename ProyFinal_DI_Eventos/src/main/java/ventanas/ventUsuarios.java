@@ -34,6 +34,8 @@ metodos m = new metodos();
         m.cargarUsuariosEnTabla(tUsuarios);
         filtrarUsuarios();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        pack();
+        setResizable(false);
         setLocationRelativeTo(null);
     }
 

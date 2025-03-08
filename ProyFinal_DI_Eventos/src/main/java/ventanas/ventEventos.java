@@ -43,6 +43,8 @@ public class ventEventos extends javax.swing.JFrame {
         eventosCargados = new ArrayList<>(); // Inicialización inicial
         filtrarEventos(); // Carga inicial con paginación
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        pack();
+        setResizable(false);
         setLocationRelativeTo(null);
     }
 

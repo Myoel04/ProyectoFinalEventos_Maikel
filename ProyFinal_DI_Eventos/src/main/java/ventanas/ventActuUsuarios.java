@@ -25,6 +25,8 @@ public class ventActuUsuarios extends javax.swing.JFrame {
         this.idUsuario = idUsuario;
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        pack();
+        setResizable(false);
 setLocationRelativeTo(null);
         // campos 
         tNombre.setText(nombreUsuario);

@@ -37,9 +37,11 @@ public class logotipo extends JWindow {
         content.add(labelBienvenida, BorderLayout.NORTH);
         content.add(logoLabel, BorderLayout.CENTER);
 
+
         setContentPane(content);
         setSize(400, 300);
         setLocationRelativeTo(null);
+        
         setVisible(true);
     }
 

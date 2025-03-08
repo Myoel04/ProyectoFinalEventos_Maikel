@@ -39,6 +39,8 @@ public class ventVistaUsuario extends javax.swing.JFrame {
         bSiguiente.setEnabled(false);
         eventosCargados = new ArrayList<>();
         filtrarEventos();
+        pack();
+        setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Mis Eventos");
     }

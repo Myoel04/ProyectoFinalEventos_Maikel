@@ -23,6 +23,8 @@ public class ventCrearEvento extends javax.swing.JFrame {
     public ventCrearEvento() {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        pack();
+        setResizable(false);
         setLocationRelativeTo(null);
     }
 
