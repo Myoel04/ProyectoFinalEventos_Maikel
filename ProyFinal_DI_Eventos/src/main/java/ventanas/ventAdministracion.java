@@ -113,6 +113,7 @@ public class ventAdministracion extends javax.swing.JFrame {
         jmCrearEvento = new javax.swing.JMenuItem();
         jmCrearUsuario = new javax.swing.JMenuItem();
         jmAsociar = new javax.swing.JMenuItem();
+        menuInformes = new javax.swing.JMenuItem();
         mVer = new javax.swing.JMenu();
         jmiVerUsuarios = new javax.swing.JMenuItem();
         jmiEventos = new javax.swing.JMenuItem();
@@ -361,6 +362,14 @@ public class ventAdministracion extends javax.swing.JFrame {
         });
         jmEvento.add(jmAsociar);
 
+        menuInformes.setText("Informes");
+        menuInformes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuInformesActionPerformed(evt);
+            }
+        });
+        jmEvento.add(menuInformes);
+
         jMenuBar1.add(jmEvento);
 
         mVer.setText("Ver");
@@ -519,6 +528,15 @@ public class ventAdministracion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bEliminarAsociacionActionPerformed
 
+    private void menuInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInformesActionPerformed
+        // TODO add your handling code here:
+        
+        
+        ventInformes vi = new ventInformes();
+        vi.setVisible(true);
+        
+    }//GEN-LAST:event_menuInformesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -577,6 +595,7 @@ public class ventAdministracion extends javax.swing.JFrame {
     private javax.swing.JLabel lTipoEvento;
     private javax.swing.JLabel lTitulo;
     private javax.swing.JMenu mVer;
+    private javax.swing.JMenuItem menuInformes;
     private javax.swing.JPanel pBotones;
     private javax.swing.JPanel pFiltros;
     private javax.swing.JPanel pGenerarAdm;
