@@ -81,10 +81,11 @@
                           <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="bInforme2" min="-2" pref="388" max="-2" attributes="0"/>
-                              <Component id="bInforme3" min="-2" pref="388" max="-2" attributes="0"/>
-                              <Component id="bInforme1" min="-2" pref="388" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="bInforme2" pref="388" max="32767" attributes="0"/>
+                              <Component id="bInforme3" pref="388" max="32767" attributes="0"/>
+                              <Component id="bInforme1" pref="388" max="32767" attributes="0"/>
+                              <Component id="bInforme4" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
                       </Group>
@@ -99,11 +100,13 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="bInforme1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="bInforme2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                  <Component id="bInforme3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="75" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="bInforme3" min="-2" pref="26" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="bInforme4" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="34" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -118,11 +121,20 @@
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bInforme3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Todos los Usuarios"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bInforme3ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bInforme2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Usuarios por cada evento"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bInforme2ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
@@ -131,6 +143,14 @@
             </Property>
             <Property name="text" type="java.lang.String" value="INFORMES"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="bInforme4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Todos los Eventos"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bInforme4ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -142,7 +162,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
                   <Component id="chPDF" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="215" max="32767" attributes="0"/>
                   <Component id="chHTML" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
               </Group>

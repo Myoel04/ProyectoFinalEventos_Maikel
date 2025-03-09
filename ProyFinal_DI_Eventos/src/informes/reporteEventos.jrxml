@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteEventos" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8da4a88a-a287-4e8c-8c9a-f90847dac8aa">
+	<property name="ireport.zoom" value="1.7715610000000246"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="PieChartDataset" uuid="8971d84d-6764-4ba0-ae75-4a7d47c19dbc"/>
+	<queryString>
+		<![CDATA[SELECT * FROM eventos]]>
+	</queryString>
+	<field name="idEvento" class="java.lang.Object"/>
+	<field name="tituloEvento" class="java.lang.Object"/>
+	<field name="descripcion" class="java.lang.Object"/>
+	<field name="ubicacion" class="java.lang.Object"/>
+	<field name="fecha" class="java.lang.Object"/>
+	<field name="capacidadMax" class="java.lang.Object"/>
+	<field name="tipoEvento" class="java.lang.Object"/>
+	<background>
+		<band height="802" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="96" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="336" y="65" width="217" height="29" uuid="4d99dd56-10b4-4198-9748-a6200bc4dd43"/>
+				<textElement textAlignment="Right">
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Gestión de Eventos]]></text>
+			</staticText>
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="0" width="597" height="65" forecolor="#006699" backcolor="#006699" uuid="493af6f3-b955-40e4-8a20-c90a39a675c0"/>
+				<staticText>
+					<reportElement style="Title" x="125" y="0" width="346" height="65" uuid="ed459574-8905-4cca-ba8e-56791eb9e737"/>
+					<textElement textAlignment="Center">
+						<font size="54" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Eventos]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="42">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="3" width="555" height="36" forecolor="#B89F7D" backcolor="#70A9C6" uuid="4e9e3b6b-3017-4fb8-87b1-23b8953fdfe6"/>
+			</frame>
+			<staticText>
+				<reportElement x="5" y="13" width="100" height="20" uuid="fa6f4bff-bc1a-40af-b73d-cc2cf8be012c"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Titulo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="13" width="100" height="20" uuid="b960a75f-a4ce-465b-b69b-c3657f107101"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ubicación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="13" width="89" height="20" uuid="878d99da-eb02-403d-a95d-e0d180b8774d"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="14" width="100" height="20" uuid="a71e2d10-02bb-47f1-bf4d-777149772d72"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Aforo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="457" y="14" width="96" height="20" uuid="ce8dfdf6-0583-4495-9c56-c6b29ea401b0"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo Evento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="5" y="6" width="111" height="20" uuid="0326c03d-ef9d-4be7-8e6c-3c9976cb4628"/>
+				<textFieldExpression><![CDATA[""+$F{tituloEvento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="6" width="100" height="20" uuid="61762e3e-cf4c-4a3e-a361-59e5879154bf"/>
+				<textFieldExpression><![CDATA[""+$F{ubicacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="247" y="6" width="89" height="20" uuid="fa8ded6b-a44c-4870-92de-93c4c61d2186"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[""+$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="351" y="6" width="100" height="20" uuid="235096fa-95f3-4872-8b8d-23fb5bc83ad0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[""+$F{capacidadMax}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="481" y="6" width="96" height="20" uuid="00f2178a-6d19-480a-aa01-a1ae6f5a8dc6"/>
+				<textFieldExpression><![CDATA[""+$F{tipoEvento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="555" height="13" forecolor="#D0B48E" backcolor="#006699" uuid="c9197ce1-e6e4-42f1-ac38-2e58fec72325"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="12" forecolor="#FFFFFF" uuid="c5a04935-8e92-4f3a-a1e6-9f547f5474c8"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="12" forecolor="#FFFFFF" uuid="bb2ada79-2ae9-4f2a-8c8d-54450b3d7c65"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="0" width="197" height="13" forecolor="#FFFFFF" uuid="0cbef6f8-8508-4150-8ad7-226238f5df36"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

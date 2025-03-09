@@ -53,6 +53,7 @@ public class ventInformes extends javax.swing.JFrame {
         bInforme3 = new javax.swing.JButton();
         bInforme2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        bInforme4 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         chPDF = new javax.swing.JCheckBox();
         chHTML = new javax.swing.JCheckBox();
@@ -69,10 +70,29 @@ public class ventInformes extends javax.swing.JFrame {
             }
         });
 
+        bInforme3.setText("Todos los Usuarios");
+        bInforme3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bInforme3ActionPerformed(evt);
+            }
+        });
+
         bInforme2.setText("Usuarios por cada evento");
+        bInforme2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bInforme2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 18)); // NOI18N
         jLabel1.setText("INFORMES");
+
+        bInforme4.setText("Todos los Eventos");
+        bInforme4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bInforme4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pBotonesGenerarLayout = new javax.swing.GroupLayout(pBotonesGenerar);
         pBotonesGenerar.setLayout(pBotonesGenerarLayout);
@@ -85,10 +105,11 @@ public class ventInformes extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(206, 206, 206))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pBotonesGenerarLayout.createSequentialGroup()
-                        .addGroup(pBotonesGenerarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bInforme2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bInforme3, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bInforme1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pBotonesGenerarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bInforme2, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                            .addComponent(bInforme3, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                            .addComponent(bInforme1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                            .addComponent(bInforme4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(87, 87, 87))))
         );
         pBotonesGenerarLayout.setVerticalGroup(
@@ -98,11 +119,13 @@ public class ventInformes extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(32, 32, 32)
                 .addComponent(bInforme1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bInforme2)
-                .addGap(7, 7, 7)
-                .addComponent(bInforme3)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bInforme3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bInforme4)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         chPDF.setText("PDF");
@@ -126,7 +149,7 @@ public class ventInformes extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(127, 127, 127)
                 .addComponent(chPDF)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
                 .addComponent(chHTML)
                 .addGap(121, 121, 121))
         );
@@ -250,6 +273,166 @@ public class ventInformes extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bInforme1ActionPerformed
 
+    private void bInforme2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInforme2ActionPerformed
+        // TODO add your handling code here:
+        
+        if (!chPDF.isSelected() && !chHTML.isSelected()) {
+        JOptionPane.showMessageDialog(this, "Debe seleccionar al menos una opción de exportación (PDF o HTML).", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try {
+        // Rutas relativas
+        String reportSource = "src/informes/reporteUsuarioEvento.jrxml";
+        String reportCompilado = "src/informes/reporteUsuarioEvento.jasper";
+        Map<String, Object> params = new HashMap<>();
+        params.put("titulo", "Usuarios por cada evento - Gestión de eventos");
+
+        // Poner la hora en el archivo
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String timestamp = formatter.format(new Date());
+
+        // Compilar y cargar el reporte
+        File file = new File(reportCompilado);
+        if (!file.exists()) {
+            JasperCompileManager.compileReportToFile(reportSource, reportCompilado);
+        }
+        JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(reportCompilado);
+
+        // Establecer la conexión a SQLite
+        try (Connection conexion = DriverManager.getConnection("jdbc:sqlite:src/basedatos/eventos.db")) {
+            JasperPrint miInforme = JasperFillManager.fillReport(reporte, params, conexion);
+
+            // Mostrar vista previa con JasperViewer
+            JasperViewer.viewReport(miInforme, false); // false para no cerrar al salir
+
+            // Exportar PDF si está seleccionado
+            if (chPDF.isSelected()) {
+                String reportDestinoPDF = "src/informes/pdf_" + timestamp + ".pdf";
+                JasperExportManager.exportReportToPdfFile(miInforme, reportDestinoPDF);
+                JOptionPane.showMessageDialog(this, "Reporte exportado a PDF.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            // Exportar HTML si está seleccionado
+            if (chHTML.isSelected()) {
+                String reportDestinoHTML = "src/informes/html_" + timestamp + ".html";
+                JasperExportManager.exportReportToHtmlFile(miInforme, reportDestinoHTML);
+                JOptionPane.showMessageDialog(this, "Reporte exportado a HTML.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al generar el informe: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_bInforme2ActionPerformed
+
+    private void bInforme3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInforme3ActionPerformed
+        // TODO add your handling code here:
+        
+          
+        if (!chPDF.isSelected() && !chHTML.isSelected()) {
+        JOptionPane.showMessageDialog(this, "Debe seleccionar al menos una opción de exportación (PDF o HTML).", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try {
+        // Rutas relativas
+        String reportSource = "src/informes/reporteUsuarios.jrxml";
+        String reportCompilado = "src/informes/reporteUsuarios.jasper";
+        Map<String, Object> params = new HashMap<>();
+        params.put("titulo", "Usuarios del Sistema");
+
+        // Poner la hora en el archivo
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String timestamp = formatter.format(new Date());
+
+        // Compilar y cargar el reporte
+        File file = new File(reportCompilado);
+        if (!file.exists()) {
+            JasperCompileManager.compileReportToFile(reportSource, reportCompilado);
+        }
+        JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(reportCompilado);
+
+        // Establecer la conexión a SQLite
+        try (Connection conexion = DriverManager.getConnection("jdbc:sqlite:src/basedatos/eventos.db")) {
+            JasperPrint miInforme = JasperFillManager.fillReport(reporte, params, conexion);
+
+            // Mostrar vista previa con JasperViewer
+            JasperViewer.viewReport(miInforme, false); // false para no cerrar al salir
+
+            // Exportar PDF si está seleccionado
+            if (chPDF.isSelected()) {
+                String reportDestinoPDF = "src/informes/pdf_" + timestamp + ".pdf";
+                JasperExportManager.exportReportToPdfFile(miInforme, reportDestinoPDF);
+                JOptionPane.showMessageDialog(this, "Reporte exportado a PDF.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            // Exportar HTML si está seleccionado
+            if (chHTML.isSelected()) {
+                String reportDestinoHTML = "src/informes/html_" + timestamp + ".html";
+                JasperExportManager.exportReportToHtmlFile(miInforme, reportDestinoHTML);
+                JOptionPane.showMessageDialog(this, "Reporte exportado a HTML.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al generar el informe: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+        
+    }//GEN-LAST:event_bInforme3ActionPerformed
+
+    private void bInforme4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInforme4ActionPerformed
+        // TODO add your handling code here:
+        
+           
+        if (!chPDF.isSelected() && !chHTML.isSelected()) {
+        JOptionPane.showMessageDialog(this, "Debe seleccionar al menos una opción de exportación (PDF o HTML).", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try {
+        // Rutas relativas
+        String reportSource = "src/informes/reporteEventos.jrxml";
+        String reportCompilado = "src/informes/reporteEventos.jasper";
+        Map<String, Object> params = new HashMap<>();
+        params.put("titulo", "Usuarios del Sistema");
+
+        // Poner la hora en el archivo
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String timestamp = formatter.format(new Date());
+
+        // Compilar y cargar el reporte
+        File file = new File(reportCompilado);
+        if (!file.exists()) {
+            JasperCompileManager.compileReportToFile(reportSource, reportCompilado);
+        }
+        JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(reportCompilado);
+
+        // Establecer la conexión a SQLite
+        try (Connection conexion = DriverManager.getConnection("jdbc:sqlite:src/basedatos/eventos.db")) {
+            JasperPrint miInforme = JasperFillManager.fillReport(reporte, params, conexion);
+
+            // Mostrar vista previa con JasperViewer
+            JasperViewer.viewReport(miInforme, false); // false para no cerrar al salir
+
+            // Exportar PDF si está seleccionado
+            if (chPDF.isSelected()) {
+                String reportDestinoPDF = "src/informes/pdf_" + timestamp + ".pdf";
+                JasperExportManager.exportReportToPdfFile(miInforme, reportDestinoPDF);
+                JOptionPane.showMessageDialog(this, "Reporte exportado a PDF.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            // Exportar HTML si está seleccionado
+            if (chHTML.isSelected()) {
+                String reportDestinoHTML = "src/informes/html_" + timestamp + ".html";
+                JasperExportManager.exportReportToHtmlFile(miInforme, reportDestinoHTML);
+                JOptionPane.showMessageDialog(this, "Reporte exportado a HTML.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al generar el informe: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+        
+    }//GEN-LAST:event_bInforme4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -289,6 +472,7 @@ public class ventInformes extends javax.swing.JFrame {
     private javax.swing.JButton bInforme1;
     private javax.swing.JButton bInforme2;
     private javax.swing.JButton bInforme3;
+    private javax.swing.JButton bInforme4;
     private javax.swing.JCheckBox chHTML;
     private javax.swing.JCheckBox chPDF;
     private javax.swing.JLabel jLabel1;
