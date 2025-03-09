@@ -265,12 +265,7 @@ public class ventCrearEvento extends javax.swing.JFrame {
 
     private void jmAyuda2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyuda2ActionPerformed
         // TODO add your handling code here:
-        jmAyuda.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controlarJavaHelp.mostrarAyuda();
-            }
-        });
+    controlarJavaHelp.mostrarAyuda();
     }//GEN-LAST:event_jmAyuda2ActionPerformed
 
     /**

@@ -36,13 +36,13 @@ public class ventAdministracion extends javax.swing.JFrame {
      */
     public ventAdministracion() {
         initComponents();
-        controlarJavaHelp.inicializarAyuda();
         bAnterior.setEnabled(false);
         bSiguiente.setEnabled(false);
         pack();
         setResizable(false);
         setLocationRelativeTo(null);
         cargarEventosUsuarios();
+        controlarJavaHelp.inicializarAyuda();
     }
 
     public void cargarEventosUsuarios() {

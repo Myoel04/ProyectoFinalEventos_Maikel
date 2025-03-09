@@ -8,7 +8,6 @@ import DAO.UsuarioDAO;
 import controlador.controlarJavaHelp;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 
@@ -26,10 +25,10 @@ public class ventLogin extends javax.swing.JFrame {
      */
     public ventLogin() {
         initComponents();
-        controlarJavaHelp.inicializarAyuda();
         pack();
         setResizable(false);
         setLocationRelativeTo(null);
+        controlarJavaHelp.inicializarAyuda();
     }
 
     /**
@@ -187,12 +186,7 @@ public class ventLogin extends javax.swing.JFrame {
 
     private void jmAyuda2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyuda2ActionPerformed
         // TODO add your handling code here:
-        jmAyuda.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controlarJavaHelp.mostrarAyuda();
-            }
-        });
+      controlarJavaHelp.mostrarAyuda();
     }//GEN-LAST:event_jmAyuda2ActionPerformed
 
     /**

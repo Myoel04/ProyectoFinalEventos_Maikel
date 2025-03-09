@@ -314,12 +314,7 @@ public class ventVistaUsuario extends javax.swing.JFrame {
 
     private void jmAyuda6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyuda6ActionPerformed
         // TODO add your handling code here:
-        jmAyuda.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controlarJavaHelp.mostrarAyuda();
-            }
-        });
+       controlarJavaHelp.mostrarAyuda();
     }//GEN-LAST:event_jmAyuda6ActionPerformed
 
     /**

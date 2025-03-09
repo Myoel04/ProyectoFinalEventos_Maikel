@@ -292,12 +292,7 @@ public class ventActuEventos extends javax.swing.JFrame {
 
     private void jmAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyudaActionPerformed
         // TODO add your handling code here:
-        jmAyuda.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controlarJavaHelp.mostrarAyuda();
-            }
-        });
+       controlarJavaHelp.mostrarAyuda();
 
     }//GEN-LAST:event_jmAyudaActionPerformed
 
