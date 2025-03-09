@@ -15,6 +15,10 @@ public class ventInformes extends javax.swing.JFrame {
      */
     public ventInformes() {
         initComponents();
+          pack();
+        setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setTitle("Generar informes");
     }
 
     /**
@@ -30,45 +34,66 @@ public class ventInformes extends javax.swing.JFrame {
         bInforme1 = new javax.swing.JButton();
         bInforme3 = new javax.swing.JButton();
         bInforme2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         chPDF = new javax.swing.JCheckBox();
         chHTML = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        bInforme1.setText("jButton1");
+        bInforme1.setText("Eventos agrupado en tipo de evento.");
 
         bInforme3.setText("jButton1");
 
-        bInforme2.setText("jButton1");
+        bInforme2.setText("Usuarios por cada evento");
+
+        jLabel1.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 18)); // NOI18N
+        jLabel1.setText("INFORMES");
 
         javax.swing.GroupLayout pBotonesGenerarLayout = new javax.swing.GroupLayout(pBotonesGenerar);
         pBotonesGenerar.setLayout(pBotonesGenerarLayout);
         pBotonesGenerarLayout.setHorizontalGroup(
             pBotonesGenerarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pBotonesGenerarLayout.createSequentialGroup()
-                .addGap(109, 109, 109)
+                .addContainerGap(90, Short.MAX_VALUE)
                 .addGroup(pBotonesGenerarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bInforme2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bInforme3, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bInforme1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(98, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pBotonesGenerarLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(206, 206, 206))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pBotonesGenerarLayout.createSequentialGroup()
+                        .addGroup(pBotonesGenerarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bInforme2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bInforme3, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bInforme1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(87, 87, 87))))
         );
         pBotonesGenerarLayout.setVerticalGroup(
             pBotonesGenerarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pBotonesGenerarLayout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGap(32, 32, 32)
                 .addComponent(bInforme1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bInforme2)
                 .addGap(7, 7, 7)
                 .addComponent(bInforme3)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         chPDF.setText("PDF");
+        chPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chPDFActionPerformed(evt);
+            }
+        });
 
         chHTML.setText("HTML");
+        chHTML.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chHTMLActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,7 +113,7 @@ public class ventInformes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chPDF)
                     .addComponent(chHTML))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -109,11 +134,19 @@ public class ventInformes extends javax.swing.JFrame {
                 .addComponent(pBotonesGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void chPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chPDFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chPDFActionPerformed
+
+    private void chHTMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chHTMLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chHTMLActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,6 +189,7 @@ public class ventInformes extends javax.swing.JFrame {
     private javax.swing.JButton bInforme3;
     private javax.swing.JCheckBox chHTML;
     private javax.swing.JCheckBox chPDF;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel pBotonesGenerar;
     // End of variables declaration//GEN-END:variables

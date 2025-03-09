@@ -38,6 +38,7 @@ public class ventEventos extends javax.swing.JFrame {
      */
     public ventEventos() {
         initComponents();
+        setTitle("Gestión de Eventos");
         bAnterior.setEnabled(false);
         bSiguiente.setEnabled(false);
         eventosCargados = new ArrayList<>(); // Inicialización inicial

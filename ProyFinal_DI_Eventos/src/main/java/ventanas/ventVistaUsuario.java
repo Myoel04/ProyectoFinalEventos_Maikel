@@ -23,7 +23,7 @@ public class ventVistaUsuario extends javax.swing.JFrame {
     EventoDAO edao = new EventoDAO();
     metodos metodos = new metodos();
     private int paginaActual = 1;
-    private int tamanoPagina = 1; // 5 eventos por página
+    private int tamanoPagina = 5; // 5 eventos por página
     private int totalPaginas;
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private List<Evento> eventosCargados;
@@ -35,6 +35,7 @@ public class ventVistaUsuario extends javax.swing.JFrame {
     public ventVistaUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
         initComponents();
+         setTitle("Mis Eventos");
         bAnterior.setEnabled(false);
         bSiguiente.setEnabled(false);
         eventosCargados = new ArrayList<>();
@@ -42,7 +43,7 @@ public class ventVistaUsuario extends javax.swing.JFrame {
         pack();
         setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setTitle("Mis Eventos");
+       
     }
 
     private void filtrarEventos() {

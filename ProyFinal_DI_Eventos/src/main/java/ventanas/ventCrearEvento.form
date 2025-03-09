@@ -46,35 +46,37 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Component id="lTitulo" min="-2" pref="100" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="tTituloEvento" min="-2" pref="239" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="lDescripcion" min="-2" max="-2" attributes="0"/>
-                              <Component id="lUbicacion" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lFecha" alignment="1" min="-2" pref="37" max="-2" attributes="0"/>
-                              <Component id="lCapacidad" min="-2" max="-2" attributes="0"/>
-                              <Component id="lTipo" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <Component id="lTitulo" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="tTituloEvento" min="-2" pref="239" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="lDescripcion" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lUbicacion" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lFecha" alignment="1" min="-2" pref="37" max="-2" attributes="0"/>
+                                      <Component id="lCapacidad" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lTipo" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="dcFecha" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane1" pref="239" max="32767" attributes="0"/>
+                                      <Component id="tUbicacion" max="32767" attributes="0"/>
+                                      <Component id="tCapacidad" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="cbTipoEvento" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="dcFecha" max="32767" attributes="0"/>
-                              <Component id="jScrollPane1" pref="239" max="32767" attributes="0"/>
-                              <Component id="tUbicacion" max="32767" attributes="0"/>
-                              <Component id="tCapacidad" alignment="0" max="32767" attributes="0"/>
-                              <Component id="cbTipoEvento" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="0" pref="60" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
-                          <Component id="bCrear" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="bCrear" alignment="1" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="66" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
