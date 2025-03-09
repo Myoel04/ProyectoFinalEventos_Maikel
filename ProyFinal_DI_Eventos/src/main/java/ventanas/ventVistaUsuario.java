@@ -9,6 +9,8 @@ import controlador.controlarJavaHelp;
 import controlador.metodos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ public class ventVistaUsuario extends javax.swing.JFrame {
         this.idUsuario = idUsuario;
         initComponents();
         controlarJavaHelp.inicializarAyuda();
-         setTitle("Mis Eventos");
+        setTitle("Mis Eventos");
         bAnterior.setEnabled(false);
         bSiguiente.setEnabled(false);
         eventosCargados = new ArrayList<>();
@@ -47,7 +49,24 @@ public class ventVistaUsuario extends javax.swing.JFrame {
         pack();
         setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-       
+
+        //filtrar con el enter
+        tTituloEvento.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    bFiltrar.doClick();
+                }
+            }
+        });
+
+        cbTipoEvento.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    bFiltrar.doClick();
+                }
+            }
+        });
+
     }
 
     private void filtrarEventos() {
@@ -95,8 +114,8 @@ public class ventVistaUsuario extends javax.swing.JFrame {
 
         pGeneral = new javax.swing.JPanel();
         pBotones = new javax.swing.JPanel();
-        bVaciar = new javax.swing.JButton();
         bAnterior = new javax.swing.JButton();
+        bVaciar = new javax.swing.JButton();
         bSiguiente = new javax.swing.JButton();
         pFiltro = new javax.swing.JPanel();
         lNombre = new javax.swing.JLabel();
@@ -115,19 +134,21 @@ public class ventVistaUsuario extends javax.swing.JFrame {
 
         pGeneral.setLayout(new java.awt.BorderLayout());
 
-        bVaciar.setText("Vaciar");
-        bVaciar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bVaciarActionPerformed(evt);
-            }
-        });
-
         bAnterior.setText("Anterior");
         bAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bAnteriorActionPerformed(evt);
             }
         });
+        pBotones.add(bAnterior);
+
+        bVaciar.setText("Vaciar");
+        bVaciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bVaciarActionPerformed(evt);
+            }
+        });
+        pBotones.add(bVaciar);
 
         bSiguiente.setText("Siguiente");
         bSiguiente.addActionListener(new java.awt.event.ActionListener() {
@@ -135,30 +156,7 @@ public class ventVistaUsuario extends javax.swing.JFrame {
                 bSiguienteActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout pBotonesLayout = new javax.swing.GroupLayout(pBotones);
-        pBotones.setLayout(pBotonesLayout);
-        pBotonesLayout.setHorizontalGroup(
-            pBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pBotonesLayout.createSequentialGroup()
-                .addGap(217, 217, 217)
-                .addComponent(bAnterior)
-                .addGap(42, 42, 42)
-                .addComponent(bVaciar)
-                .addGap(42, 42, 42)
-                .addComponent(bSiguiente)
-                .addContainerGap(260, Short.MAX_VALUE))
-        );
-        pBotonesLayout.setVerticalGroup(
-            pBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pBotonesLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(pBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bVaciar)
-                    .addComponent(bAnterior)
-                    .addComponent(bSiguiente))
-                .addContainerGap(45, Short.MAX_VALUE))
-        );
+        pBotones.add(bSiguiente);
 
         pGeneral.add(pBotones, java.awt.BorderLayout.PAGE_END);
 
@@ -190,7 +188,7 @@ public class ventVistaUsuario extends javax.swing.JFrame {
                 .addComponent(cbTipoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addComponent(bFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         pFiltroLayout.setVerticalGroup(
             pFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,7 +233,7 @@ public class ventVistaUsuario extends javax.swing.JFrame {
             .addGroup(pTablaLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(tEventos, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         pTablaLayout.setVerticalGroup(
             pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,13 +306,14 @@ public class ventVistaUsuario extends javax.swing.JFrame {
 
     private void bFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFiltrarActionPerformed
         // TODO add your handling code here:
+
         paginaActual = 1; // Reinicia a la primera página al filtrar
         filtrarEventos();
     }//GEN-LAST:event_bFiltrarActionPerformed
 
     private void jmAyuda6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyuda6ActionPerformed
         // TODO add your handling code here:
-       controlarJavaHelp.mostrarAyuda();
+        controlarJavaHelp.mostrarAyuda();
     }//GEN-LAST:event_jmAyuda6ActionPerformed
 
     /**
@@ -358,28 +357,10 @@ public class ventVistaUsuario extends javax.swing.JFrame {
     private javax.swing.JButton bSiguiente;
     private javax.swing.JButton bVaciar;
     private javax.swing.JComboBox<String> cbTipoEvento;
-    private javax.swing.JMenuItem jmAyuda;
-    private javax.swing.JMenuItem jmAyuda1;
-    private javax.swing.JMenuItem jmAyuda2;
-    private javax.swing.JMenuItem jmAyuda3;
-    private javax.swing.JMenuItem jmAyuda4;
-    private javax.swing.JMenuItem jmAyuda5;
     private javax.swing.JMenuItem jmAyuda6;
     private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lTipoEvento;
-    private javax.swing.JMenu mAyuda;
-    private javax.swing.JMenu mAyuda1;
-    private javax.swing.JMenu mAyuda2;
-    private javax.swing.JMenu mAyuda3;
-    private javax.swing.JMenu mAyuda4;
-    private javax.swing.JMenu mAyuda5;
     private javax.swing.JMenu mAyuda6;
-    private javax.swing.JMenuBar mbAyuda;
-    private javax.swing.JMenuBar mbAyuda1;
-    private javax.swing.JMenuBar mbAyuda2;
-    private javax.swing.JMenuBar mbAyuda3;
-    private javax.swing.JMenuBar mbAyuda4;
-    private javax.swing.JMenuBar mbAyuda5;
     private javax.swing.JMenuBar mbAyuda6;
     private javax.swing.JPanel pBotones;
     private javax.swing.JPanel pFiltro;

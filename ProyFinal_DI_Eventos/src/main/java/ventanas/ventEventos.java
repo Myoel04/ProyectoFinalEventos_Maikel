@@ -19,6 +19,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Evento;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -44,11 +46,37 @@ public class ventEventos extends javax.swing.JFrame {
         bAnterior.setEnabled(false);
         bSiguiente.setEnabled(false);
         eventosCargados = new ArrayList<>(); // Inicialización inicial
-        filtrarEventos(); // Carga inicial con paginación
+        filtrarEventos(); // carga inicial con paginación
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();
         setResizable(false);
         setLocationRelativeTo(null);
+
+        //key para filtro en teclado
+        tNombre.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    bBuscar.doClick();
+                }
+            }
+        });
+
+        cbTipoEvento.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    bBuscar.doClick();
+                }
+            }
+        });
+
+        jFecha.getDateEditor().getUiComponent().addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    bBuscar.doClick();
+                }
+            }
+        });
+
     }
 
     /**
@@ -298,7 +326,7 @@ public class ventEventos extends javax.swing.JFrame {
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
         // TODO add your handling code here:
 
-        paginaActual = 1; // Reinicia a la primera página al filtrar
+        paginaActual = 1; //reiniciar pagina 1
         filtrarEventos();
     }//GEN-LAST:event_bBuscarActionPerformed
 
@@ -319,7 +347,7 @@ public class ventEventos extends javax.swing.JFrame {
         if (filaSeleccionada != -1) {
             Object valor = tEventos.getModel().getValueAt(filaSeleccionada, 0); // Columna 0 es idEvento
             try {
-                int idEvento = (Integer) valor; 
+                int idEvento = (Integer) valor;
                 int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea eliminar el evento?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
                 if (confirmacion == JOptionPane.YES_OPTION) {
                     edao.eliminarEvento(idEvento);
@@ -353,30 +381,30 @@ public class ventEventos extends javax.swing.JFrame {
     }//GEN-LAST:event_bSiguienteActionPerformed
 
     private void bActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualizarActionPerformed
-       int filaSeleccionada = tEventos.getSelectedRow();
-    if (filaSeleccionada == -1) {
-        JOptionPane.showMessageDialog(this, "Por favor seleccione un evento para actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    int idEvento = (int) tEventos.getValueAt(filaSeleccionada, 0); // Columna 0 es idEvento
-    String titulo = (String) tEventos.getValueAt(filaSeleccionada, 1); // Columna 1 es Nombre
-    String descripcion = (String) tEventos.getValueAt(filaSeleccionada, 2); // Columna 2 es Descripción
-    String tipoEvento = (String) tEventos.getValueAt(filaSeleccionada, 3); // Columna 3 es Tipo Evento
-    String ubicacion = (String) tEventos.getValueAt(filaSeleccionada, 4); // Columna 4 es Ubicación
-    String fechaStr = (String) tEventos.getValueAt(filaSeleccionada, 5); // Columna 5 es Fecha
-    Date fecha = null;
-    try {
-        if (fechaStr != null && !fechaStr.isEmpty()) {
-            fecha = new SimpleDateFormat("yyyy-MM-dd").parse(fechaStr);
+        int filaSeleccionada = tEventos.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un evento para actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-    } catch (java.text.ParseException e) {
-        JOptionPane.showMessageDialog(this, "Error al parsear la fecha del evento seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
 
-    ventActuEventos vactuev = new ventActuEventos(this, idEvento, titulo, descripcion, ubicacion, fecha, tipoEvento);
-    vactuev.setVisible(true);
+        int idEvento = (int) tEventos.getValueAt(filaSeleccionada, 0); // Columna 0 es idEvento
+        String titulo = (String) tEventos.getValueAt(filaSeleccionada, 1); // Columna 1 es Nombre
+        String descripcion = (String) tEventos.getValueAt(filaSeleccionada, 2); // Columna 2 es Descripción
+        String tipoEvento = (String) tEventos.getValueAt(filaSeleccionada, 3); // Columna 3 es Tipo Evento
+        String ubicacion = (String) tEventos.getValueAt(filaSeleccionada, 4); // Columna 4 es Ubicación
+        String fechaStr = (String) tEventos.getValueAt(filaSeleccionada, 5); // Columna 5 es Fecha
+        Date fecha = null;
+        try {
+            if (fechaStr != null && !fechaStr.isEmpty()) {
+                fecha = new SimpleDateFormat("yyyy-MM-dd").parse(fechaStr);
+            }
+        } catch (java.text.ParseException e) {
+            JOptionPane.showMessageDialog(this, "Error al parsear la fecha del evento seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        ventActuEventos vactuev = new ventActuEventos(this, idEvento, titulo, descripcion, ubicacion, fecha, tipoEvento);
+        vactuev.setVisible(true);
     }//GEN-LAST:event_bActualizarActionPerformed
 
     private void jmAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyudaActionPerformed
@@ -388,8 +416,6 @@ public class ventEventos extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_jmAyudaActionPerformed
-
-    
 
     public void filtrarEventos() {
         try {

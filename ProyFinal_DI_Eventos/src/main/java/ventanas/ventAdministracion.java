@@ -9,6 +9,8 @@ import controlador.controlarJavaHelp;
 import controlador.metodos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,6 +45,49 @@ public class ventAdministracion extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         cargarEventosUsuarios();
         controlarJavaHelp.inicializarAyuda();
+
+        //keys para las entradas de teclado 
+        tTitulo.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    bFiltrar.doClick();
+                }
+            }
+        });
+
+        tNombreUsuario.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    bFiltrar.doClick();
+                }
+            }
+        });
+
+        jDateChooser1.getDateEditor().getUiComponent().addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    bFiltrar.doClick();
+                }
+            }
+        });
+
+// Hacer lo mismo para cbTipoEvento y cbRol si es necesario
+        cbTipoEvento.getEditor().getEditorComponent().addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    bFiltrar.doClick();
+                }
+            }
+        });
+
+        cbRol.getEditor().getEditorComponent().addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    bFiltrar.doClick();
+                }
+            }
+        });
+
     }
 
     public void cargarEventosUsuarios() {
@@ -545,11 +590,10 @@ public class ventAdministracion extends javax.swing.JFrame {
 
     private void menuInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInformesActionPerformed
         // TODO add your handling code here:
-        
-        
+
         ventInformes vi = new ventInformes();
         vi.setVisible(true);
-        
+
     }//GEN-LAST:event_menuInformesActionPerformed
 
     private void jmiAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAyudaActionPerformed
@@ -557,11 +601,11 @@ public class ventAdministracion extends javax.swing.JFrame {
         jmiAyuda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-           controlarJavaHelp.mostrarAyuda();
-            
+                controlarJavaHelp.mostrarAyuda();
+
             }
         });
-        
+
     }//GEN-LAST:event_jmiAyudaActionPerformed
 
     /**

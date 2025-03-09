@@ -48,6 +48,7 @@ public class ventLogin extends javax.swing.JFrame {
         tContrasena = new javax.swing.JPasswordField();
         lLogo = new javax.swing.JLabel();
         bEntrar = new javax.swing.JButton();
+        bRegistrarse = new javax.swing.JButton();
         mbAyuda2 = new javax.swing.JMenuBar();
         mAyuda2 = new javax.swing.JMenu();
         jmAyuda2 = new javax.swing.JMenuItem();
@@ -73,6 +74,13 @@ public class ventLogin extends javax.swing.JFrame {
             }
         });
 
+        bRegistrarse.setText("Registrarse");
+        bRegistrarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bRegistrarseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -82,19 +90,20 @@ public class ventLogin extends javax.swing.JFrame {
                 .addComponent(lLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(87, 87, 87))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lContrasena)
                             .addComponent(lUsuario))
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(bEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(40, 40, 40))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(bRegistrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bEntrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -110,9 +119,11 @@ public class ventLogin extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lContrasena)
                     .addComponent(tContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
-                .addComponent(bEntrar)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bEntrar)
+                    .addComponent(bRegistrarse))
+                .addGap(43, 43, 43))
         );
 
         mAyuda2.setText("Ayuda");
@@ -189,6 +200,13 @@ public class ventLogin extends javax.swing.JFrame {
       controlarJavaHelp.mostrarAyuda();
     }//GEN-LAST:event_jmAyuda2ActionPerformed
 
+    private void bRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegistrarseActionPerformed
+        // TODO add your handling code here:
+        
+        ventRegistroUsuario vru = new ventRegistroUsuario();
+        vru.setVisible(true);
+    }//GEN-LAST:event_bRegistrarseActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -227,19 +245,14 @@ public class ventLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bEntrar;
+    private javax.swing.JButton bRegistrarse;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JMenuItem jmAyuda;
-    private javax.swing.JMenuItem jmAyuda1;
     private javax.swing.JMenuItem jmAyuda2;
     private javax.swing.JLabel lContrasena;
     private javax.swing.JLabel lLogo;
     private javax.swing.JLabel lUsuario;
-    private javax.swing.JMenu mAyuda;
-    private javax.swing.JMenu mAyuda1;
     private javax.swing.JMenu mAyuda2;
-    private javax.swing.JMenuBar mbAyuda;
-    private javax.swing.JMenuBar mbAyuda1;
     private javax.swing.JMenuBar mbAyuda2;
     private javax.swing.JPasswordField tContrasena;
     private javax.swing.JTextField tEmail;
