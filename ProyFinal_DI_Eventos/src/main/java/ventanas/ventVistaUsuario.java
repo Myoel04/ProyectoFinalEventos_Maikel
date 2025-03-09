@@ -5,6 +5,7 @@
 package ventanas;
 
 import DAO.EventoDAO;
+import DAO.eventousuarioDAO;
 import controlador.controlarJavaHelp;
 import controlador.metodos;
 import java.awt.event.ActionEvent;
@@ -25,6 +26,7 @@ import modelo.Evento;
  */
 public class ventVistaUsuario extends javax.swing.JFrame {
 
+    eventousuarioDAO eudao = new eventousuarioDAO();
     EventoDAO edao = new EventoDAO();
     metodos metodos = new metodos();
     private int paginaActual = 1;
@@ -40,14 +42,15 @@ public class ventVistaUsuario extends javax.swing.JFrame {
     public ventVistaUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
         initComponents();
+        pack();
+        setResizable(false);
         controlarJavaHelp.inicializarAyuda();
         setTitle("Mis Eventos");
         bAnterior.setEnabled(false);
         bSiguiente.setEnabled(false);
         eventosCargados = new ArrayList<>();
         filtrarEventos();
-        pack();
-        setResizable(false);
+
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         //filtrar con el enter
@@ -116,6 +119,7 @@ public class ventVistaUsuario extends javax.swing.JFrame {
         pBotones = new javax.swing.JPanel();
         bAnterior = new javax.swing.JButton();
         bVaciar = new javax.swing.JButton();
+        bEliminar = new javax.swing.JButton();
         bSiguiente = new javax.swing.JButton();
         pFiltro = new javax.swing.JPanel();
         lNombre = new javax.swing.JLabel();
@@ -149,6 +153,14 @@ public class ventVistaUsuario extends javax.swing.JFrame {
             }
         });
         pBotones.add(bVaciar);
+
+        bEliminar.setText("Eliminar");
+        bEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEliminarActionPerformed(evt);
+            }
+        });
+        pBotones.add(bEliminar);
 
         bSiguiente.setText("Siguiente");
         bSiguiente.addActionListener(new java.awt.event.ActionListener() {
@@ -316,6 +328,25 @@ public class ventVistaUsuario extends javax.swing.JFrame {
         controlarJavaHelp.mostrarAyuda();
     }//GEN-LAST:event_jmAyuda6ActionPerformed
 
+    private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
+        // TODO add your handling code here:
+
+        int selectedRow = tEventosUsuario.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un evento para desapuntarse.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int idEvento = (int) tEventosUsuario.getValueAt(selectedRow, 0); // idEvento está en la columna 0
+        try {
+            eudao.eliminarAsociacion(idUsuario, idEvento);
+            JOptionPane.showMessageDialog(this, "Te has desapuntado del evento con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            filtrarEventos(); // Refresca la tabla
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al desapuntarse: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bEliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -353,6 +384,7 @@ public class ventVistaUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAnterior;
+    private javax.swing.JButton bEliminar;
     private javax.swing.JButton bFiltrar;
     private javax.swing.JButton bSiguiente;
     private javax.swing.JButton bVaciar;
