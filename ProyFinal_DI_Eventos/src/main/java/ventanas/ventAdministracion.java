@@ -5,7 +5,10 @@
 package ventanas;
 
 import DAO.eventousuarioDAO;
+import controlador.controlarJavaHelp;
 import controlador.metodos;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,6 +36,7 @@ public class ventAdministracion extends javax.swing.JFrame {
      */
     public ventAdministracion() {
         initComponents();
+        controlarJavaHelp.inicializarAyuda();
         bAnterior.setEnabled(false);
         bSiguiente.setEnabled(false);
         pack();
@@ -117,6 +121,8 @@ public class ventAdministracion extends javax.swing.JFrame {
         mVer = new javax.swing.JMenu();
         jmiVerUsuarios = new javax.swing.JMenuItem();
         jmiEventos = new javax.swing.JMenuItem();
+        jmAyuda = new javax.swing.JMenu();
+        jmiAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -389,6 +395,18 @@ public class ventAdministracion extends javax.swing.JFrame {
 
         jMenuBar1.add(mVer);
 
+        jmAyuda.setText("Ayuda");
+
+        jmiAyuda.setText("Help");
+        jmiAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAyudaActionPerformed(evt);
+            }
+        });
+        jmAyuda.add(jmiAyuda);
+
+        jMenuBar1.add(jmAyuda);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -534,6 +552,18 @@ public class ventAdministracion extends javax.swing.JFrame {
         
     }//GEN-LAST:event_menuInformesActionPerformed
 
+    private void jmiAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAyudaActionPerformed
+        // TODO add your handling code here:
+        jmiAyuda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+           controlarJavaHelp.mostrarAyuda();
+            
+            }
+        });
+        
+    }//GEN-LAST:event_jmiAyudaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -581,9 +611,11 @@ public class ventAdministracion extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem jmAsociar;
+    private javax.swing.JMenu jmAyuda;
     private javax.swing.JMenuItem jmCrearEvento;
     private javax.swing.JMenuItem jmCrearUsuario;
     private javax.swing.JMenu jmEvento;
+    private javax.swing.JMenuItem jmiAyuda;
     private javax.swing.JMenuItem jmiEventos;
     private javax.swing.JMenuItem jmiVerUsuarios;
     private javax.swing.JLabel lFecha;

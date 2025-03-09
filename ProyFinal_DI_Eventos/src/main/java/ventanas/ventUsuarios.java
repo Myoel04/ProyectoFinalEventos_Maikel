@@ -5,6 +5,7 @@
 package ventanas;
 
 import DAO.UsuarioDAO;
+import controlador.controlarJavaHelp;
 import controlador.metodos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,6 +32,7 @@ public class ventUsuarios extends javax.swing.JFrame {
      */
     public ventUsuarios() {
         initComponents();
+        controlarJavaHelp.inicializarAyuda();
         setTitle("Gestión de Usuarios");
         m.cargarUsuariosEnTabla(tUsuarios);
         filtrarUsuarios();
@@ -67,6 +69,9 @@ public class ventUsuarios extends javax.swing.JFrame {
         bEliminar = new javax.swing.JButton();
         bActualizar = new javax.swing.JButton();
         bCrear = new javax.swing.JButton();
+        mbAyuda = new javax.swing.JMenuBar();
+        mAyuda = new javax.swing.JMenu();
+        jmAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,7 +142,7 @@ public class ventUsuarios extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 353, Short.MAX_VALUE)
+            .addGap(0, 340, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -224,6 +229,20 @@ public class ventUsuarios extends javax.swing.JFrame {
                     .addComponent(bCrear))
                 .addGap(27, 27, 27))
         );
+
+        mAyuda.setText("Ayuda");
+
+        jmAyuda.setText("JavaHelp");
+        jmAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAyudaActionPerformed(evt);
+            }
+        });
+        mAyuda.add(jmAyuda);
+
+        mbAyuda.add(mAyuda);
+
+        setJMenuBar(mbAyuda);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -395,6 +414,16 @@ public class ventUsuarios extends javax.swing.JFrame {
 
     }//GEN-LAST:event_bSiguienteActionPerformed
 
+    private void jmAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyudaActionPerformed
+        // TODO add your handling code here:
+        jmAyuda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controlarJavaHelp.mostrarAyuda();
+            }
+        });
+    }//GEN-LAST:event_jmAyudaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -441,8 +470,11 @@ public class ventUsuarios extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbRol;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem jmAyuda;
     private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lRol;
+    private javax.swing.JMenu mAyuda;
+    private javax.swing.JMenuBar mbAyuda;
     private javax.swing.JPanel pBotones;
     private javax.swing.JPanel pBotonesAcciones;
     private javax.swing.JPanel pFiltros;

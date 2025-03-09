@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ventanas;
-
+import controlador.controlarJavaHelp;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 /**
  *
  * @author yosoy
@@ -19,6 +21,7 @@ public class ventInformes extends javax.swing.JFrame {
         setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Generar informes");
+    controlarJavaHelp.inicializarAyuda();
     }
 
     /**
@@ -38,6 +41,9 @@ public class ventInformes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         chPDF = new javax.swing.JCheckBox();
         chHTML = new javax.swing.JCheckBox();
+        mbAyuda = new javax.swing.JMenuBar();
+        mAyuda = new javax.swing.JMenu();
+        jmAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,6 +122,20 @@ public class ventInformes extends javax.swing.JFrame {
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
+        mAyuda.setText("Ayuda");
+
+        jmAyuda.setText("JavaHelp");
+        jmAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAyudaActionPerformed(evt);
+            }
+        });
+        mAyuda.add(jmAyuda);
+
+        mbAyuda.add(mAyuda);
+
+        setJMenuBar(mbAyuda);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,7 +154,7 @@ public class ventInformes extends javax.swing.JFrame {
                 .addComponent(pBotonesGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -147,6 +167,17 @@ public class ventInformes extends javax.swing.JFrame {
     private void chHTMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chHTMLActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chHTMLActionPerformed
+
+    private void jmAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyudaActionPerformed
+        // TODO add your handling code here:
+        jmAyuda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+        controlarJavaHelp.mostrarAyuda();
+            }
+        });
+        
+    }//GEN-LAST:event_jmAyudaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,6 +222,9 @@ public class ventInformes extends javax.swing.JFrame {
     private javax.swing.JCheckBox chPDF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem jmAyuda;
+    private javax.swing.JMenu mAyuda;
+    private javax.swing.JMenuBar mbAyuda;
     private javax.swing.JPanel pBotonesGenerar;
     // End of variables declaration//GEN-END:variables
 }

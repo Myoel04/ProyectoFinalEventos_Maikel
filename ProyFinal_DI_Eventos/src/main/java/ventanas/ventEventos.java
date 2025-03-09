@@ -5,6 +5,7 @@
 package ventanas;
 
 import DAO.EventoDAO;
+import controlador.controlarJavaHelp;
 import controlador.metodos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,6 +39,7 @@ public class ventEventos extends javax.swing.JFrame {
      */
     public ventEventos() {
         initComponents();
+        controlarJavaHelp.inicializarAyuda();
         setTitle("Gestión de Eventos");
         bAnterior.setEnabled(false);
         bSiguiente.setEnabled(false);
@@ -78,6 +80,9 @@ public class ventEventos extends javax.swing.JFrame {
         pBotonesPaginas = new javax.swing.JPanel();
         bAnterior = new javax.swing.JButton();
         bSiguiente = new javax.swing.JButton();
+        mbAyuda = new javax.swing.JMenuBar();
+        mAyuda = new javax.swing.JMenu();
+        jmAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -253,8 +258,22 @@ public class ventEventos extends javax.swing.JFrame {
                 .addComponent(pBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pBotonesPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
+
+        mAyuda.setText("Ayuda");
+
+        jmAyuda.setText("JavaHelp");
+        jmAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAyudaActionPerformed(evt);
+            }
+        });
+        mAyuda.add(jmAyuda);
+
+        mbAyuda.add(mAyuda);
+
+        setJMenuBar(mbAyuda);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -360,6 +379,16 @@ public class ventEventos extends javax.swing.JFrame {
     vactuev.setVisible(true);
     }//GEN-LAST:event_bActualizarActionPerformed
 
+    private void jmAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyudaActionPerformed
+        // TODO add your handling code here:
+        jmAyuda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controlarJavaHelp.mostrarAyuda();
+            }
+        });
+    }//GEN-LAST:event_jmAyudaActionPerformed
+
     
 
     public void filtrarEventos() {
@@ -451,9 +480,12 @@ public class ventEventos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbTipoEvento;
     private com.toedter.calendar.JDateChooser jFecha;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem jmAyuda;
     private javax.swing.JLabel lFecha;
     private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lTipoEvento;
+    private javax.swing.JMenu mAyuda;
+    private javax.swing.JMenuBar mbAyuda;
     private javax.swing.JPanel pBotones;
     private javax.swing.JPanel pBotonesPaginas;
     private javax.swing.JPanel pFiltros;

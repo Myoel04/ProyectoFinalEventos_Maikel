@@ -7,6 +7,9 @@ package ventanas;
 import DAO.EventoDAO;
 import DAO.UsuarioDAO;
 import DAO.eventousuarioDAO;
+import controlador.controlarJavaHelp;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -31,6 +34,7 @@ public class ventAsociar extends javax.swing.JFrame {
     public ventAsociar(ventAdministracion ventAdmin) {
         this.ventAdmin = ventAdmin; // Guardamos la referencia para actualizar la tabla
         initComponents();
+        controlarJavaHelp.inicializarAyuda();
         cargarUsuarios();
         cargarEventos();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -100,6 +104,9 @@ public class ventAsociar extends javax.swing.JFrame {
         tEventos = new javax.swing.JTable();
         pBotones = new javax.swing.JPanel();
         bAsociar = new javax.swing.JButton();
+        mbAyuda = new javax.swing.JMenuBar();
+        mAyuda = new javax.swing.JMenu();
+        jmAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -226,6 +233,20 @@ public class ventAsociar extends javax.swing.JFrame {
                 .addGap(35, 35, 35))
         );
 
+        mAyuda.setText("Ayuda");
+
+        jmAyuda.setText("JavaHelp");
+        jmAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAyudaActionPerformed(evt);
+            }
+        });
+        mAyuda.add(jmAyuda);
+
+        mbAyuda.add(mAyuda);
+
+        setJMenuBar(mbAyuda);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -296,6 +317,16 @@ public class ventAsociar extends javax.swing.JFrame {
 
     }//GEN-LAST:event_bAsociarActionPerformed
 
+    private void jmAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyudaActionPerformed
+        // TODO add your handling code here:
+        jmAyuda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controlarJavaHelp.mostrarAyuda();
+            }
+        });
+    }//GEN-LAST:event_jmAyudaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -335,6 +366,9 @@ public class ventAsociar extends javax.swing.JFrame {
     private javax.swing.JButton bAsociar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JMenuItem jmAyuda;
+    private javax.swing.JMenu mAyuda;
+    private javax.swing.JMenuBar mbAyuda;
     private javax.swing.JPanel pBotones;
     private javax.swing.JPanel pTablaEvento;
     private javax.swing.JPanel pTablaUsuario;

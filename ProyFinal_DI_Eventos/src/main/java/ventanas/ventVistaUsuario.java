@@ -5,7 +5,10 @@
 package ventanas;
 
 import DAO.EventoDAO;
+import controlador.controlarJavaHelp;
 import controlador.metodos;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,6 +38,7 @@ public class ventVistaUsuario extends javax.swing.JFrame {
     public ventVistaUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
         initComponents();
+        controlarJavaHelp.inicializarAyuda();
          setTitle("Mis Eventos");
         bAnterior.setEnabled(false);
         bSiguiente.setEnabled(false);
@@ -103,6 +107,9 @@ public class ventVistaUsuario extends javax.swing.JFrame {
         pTabla = new javax.swing.JPanel();
         tEventos = new javax.swing.JScrollPane();
         tEventosUsuario = new javax.swing.JTable();
+        mbAyuda6 = new javax.swing.JMenuBar();
+        mAyuda6 = new javax.swing.JMenu();
+        jmAyuda6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -240,6 +247,20 @@ public class ventVistaUsuario extends javax.swing.JFrame {
 
         pGeneral.add(pTabla, java.awt.BorderLayout.CENTER);
 
+        mAyuda6.setText("Ayuda");
+
+        jmAyuda6.setText("JavaHelp");
+        jmAyuda6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAyuda6ActionPerformed(evt);
+            }
+        });
+        mAyuda6.add(jmAyuda6);
+
+        mbAyuda6.add(mAyuda6);
+
+        setJMenuBar(mbAyuda6);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -291,6 +312,16 @@ public class ventVistaUsuario extends javax.swing.JFrame {
         filtrarEventos();
     }//GEN-LAST:event_bFiltrarActionPerformed
 
+    private void jmAyuda6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyuda6ActionPerformed
+        // TODO add your handling code here:
+        jmAyuda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controlarJavaHelp.mostrarAyuda();
+            }
+        });
+    }//GEN-LAST:event_jmAyuda6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -332,8 +363,29 @@ public class ventVistaUsuario extends javax.swing.JFrame {
     private javax.swing.JButton bSiguiente;
     private javax.swing.JButton bVaciar;
     private javax.swing.JComboBox<String> cbTipoEvento;
+    private javax.swing.JMenuItem jmAyuda;
+    private javax.swing.JMenuItem jmAyuda1;
+    private javax.swing.JMenuItem jmAyuda2;
+    private javax.swing.JMenuItem jmAyuda3;
+    private javax.swing.JMenuItem jmAyuda4;
+    private javax.swing.JMenuItem jmAyuda5;
+    private javax.swing.JMenuItem jmAyuda6;
     private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lTipoEvento;
+    private javax.swing.JMenu mAyuda;
+    private javax.swing.JMenu mAyuda1;
+    private javax.swing.JMenu mAyuda2;
+    private javax.swing.JMenu mAyuda3;
+    private javax.swing.JMenu mAyuda4;
+    private javax.swing.JMenu mAyuda5;
+    private javax.swing.JMenu mAyuda6;
+    private javax.swing.JMenuBar mbAyuda;
+    private javax.swing.JMenuBar mbAyuda1;
+    private javax.swing.JMenuBar mbAyuda2;
+    private javax.swing.JMenuBar mbAyuda3;
+    private javax.swing.JMenuBar mbAyuda4;
+    private javax.swing.JMenuBar mbAyuda5;
+    private javax.swing.JMenuBar mbAyuda6;
     private javax.swing.JPanel pBotones;
     private javax.swing.JPanel pFiltro;
     private javax.swing.JPanel pGeneral;

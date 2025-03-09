@@ -5,7 +5,10 @@
 package ventanas;
 
 import DAO.UsuarioDAO;
+import controlador.controlarJavaHelp;
 import controlador.metodos;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 
@@ -24,6 +27,7 @@ public class ventActuUsuarios extends javax.swing.JFrame {
         this.vu = vu; // Ajustado para usar vu
         this.idUsuario = idUsuario;
         initComponents();
+        controlarJavaHelp.inicializarAyuda();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();
         setResizable(false);
@@ -56,6 +60,9 @@ setLocationRelativeTo(null);
         cbRol = new javax.swing.JComboBox<>();
         bGuardarCambios = new javax.swing.JButton();
         bCancelar = new javax.swing.JButton();
+        mbAyuda = new javax.swing.JMenuBar();
+        mAyuda = new javax.swing.JMenu();
+        jmAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,12 +150,26 @@ setLocationRelativeTo(null);
                 .addGroup(pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lRol)
                     .addComponent(cbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bGuardarCambios)
                     .addComponent(bCancelar))
                 .addGap(44, 44, 44))
         );
+
+        mAyuda.setText("Ayuda");
+
+        jmAyuda.setText("JavaHelp");
+        jmAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAyudaActionPerformed(evt);
+            }
+        });
+        mAyuda.add(jmAyuda);
+
+        mbAyuda.add(mAyuda);
+
+        setJMenuBar(mbAyuda);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -222,6 +243,16 @@ setLocationRelativeTo(null);
 dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
 
+    private void jmAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyudaActionPerformed
+        // TODO add your handling code here:
+        jmAyuda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controlarJavaHelp.mostrarAyuda();
+            }
+        });
+    }//GEN-LAST:event_jmAyudaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -262,11 +293,14 @@ dispose();
     private javax.swing.JButton bCancelar;
     private javax.swing.JButton bGuardarCambios;
     private javax.swing.JComboBox<String> cbRol;
+    private javax.swing.JMenuItem jmAyuda;
     private javax.swing.JLabel lContrasena;
     private javax.swing.JLabel lCrear;
     private javax.swing.JLabel lEmail;
     private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lRol;
+    private javax.swing.JMenu mAyuda;
+    private javax.swing.JMenuBar mbAyuda;
     private javax.swing.JPanel pFormulario;
     private javax.swing.JPasswordField tContrasena;
     private javax.swing.JTextField tEmail;

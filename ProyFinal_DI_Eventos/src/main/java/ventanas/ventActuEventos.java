@@ -5,6 +5,9 @@
 package ventanas;
 
 import DAO.EventoDAO;
+import controlador.controlarJavaHelp;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.Evento;
@@ -23,6 +26,7 @@ public class ventActuEventos extends javax.swing.JFrame {
         this.ventEventos = ventEventos;
         this.idEvento = idEvento;
         initComponents();
+        controlarJavaHelp.inicializarAyuda();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();
         setResizable(false);
@@ -62,6 +66,9 @@ public class ventActuEventos extends javax.swing.JFrame {
         cbTipoEvento = new javax.swing.JComboBox<>();
         bGuardarCambios = new javax.swing.JButton();
         bCancelar = new javax.swing.JButton();
+        mbAyuda = new javax.swing.JMenuBar();
+        mAyuda = new javax.swing.JMenu();
+        jmAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -174,12 +181,26 @@ public class ventActuEventos extends javax.swing.JFrame {
                 .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lTipo)
                     .addComponent(cbTipoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bGuardarCambios)
                     .addComponent(bCancelar))
                 .addGap(27, 27, 27))
         );
+
+        mAyuda.setText("Ayuda");
+
+        jmAyuda.setText("JavaHelp");
+        jmAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAyudaActionPerformed(evt);
+            }
+        });
+        mAyuda.add(jmAyuda);
+
+        mbAyuda.add(mAyuda);
+
+        setJMenuBar(mbAyuda);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -269,6 +290,17 @@ public class ventActuEventos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_bCancelarActionPerformed
 
+    private void jmAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyudaActionPerformed
+        // TODO add your handling code here:
+        jmAyuda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controlarJavaHelp.mostrarAyuda();
+            }
+        });
+
+    }//GEN-LAST:event_jmAyudaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -311,6 +343,7 @@ public class ventActuEventos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbTipoEvento;
     private com.toedter.calendar.JDateChooser dcFecha;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem jmAyuda;
     private javax.swing.JLabel lCapacidad;
     private javax.swing.JLabel lCrear;
     private javax.swing.JLabel lDescripcion;
@@ -318,6 +351,8 @@ public class ventActuEventos extends javax.swing.JFrame {
     private javax.swing.JLabel lTipo;
     private javax.swing.JLabel lTitulo;
     private javax.swing.JLabel lUbicacion;
+    private javax.swing.JMenu mAyuda;
+    private javax.swing.JMenuBar mbAyuda;
     private javax.swing.JPanel pCrearEvento;
     private javax.swing.JTextField tCapacidad;
     private javax.swing.JTextField tTituloEvento;

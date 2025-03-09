@@ -5,6 +5,9 @@
 package ventanas;
 
 import DAO.UsuarioDAO;
+import controlador.controlarJavaHelp;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
@@ -23,6 +26,7 @@ public class ventLogin extends javax.swing.JFrame {
      */
     public ventLogin() {
         initComponents();
+        controlarJavaHelp.inicializarAyuda();
         pack();
         setResizable(false);
         setLocationRelativeTo(null);
@@ -45,6 +49,9 @@ public class ventLogin extends javax.swing.JFrame {
         tContrasena = new javax.swing.JPasswordField();
         lLogo = new javax.swing.JLabel();
         bEntrar = new javax.swing.JButton();
+        mbAyuda2 = new javax.swing.JMenuBar();
+        mAyuda2 = new javax.swing.JMenu();
+        jmAyuda2 = new javax.swing.JMenuItem();
 
         jTextField2.setText("jTextField2");
 
@@ -106,8 +113,22 @@ public class ventLogin extends javax.swing.JFrame {
                     .addComponent(tContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49)
                 .addComponent(bEntrar)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
+
+        mAyuda2.setText("Ayuda");
+
+        jmAyuda2.setText("JavaHelp");
+        jmAyuda2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAyuda2ActionPerformed(evt);
+            }
+        });
+        mAyuda2.add(jmAyuda2);
+
+        mbAyuda2.add(mAyuda2);
+
+        setJMenuBar(mbAyuda2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,6 +185,16 @@ public class ventLogin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bEntrarActionPerformed
 
+    private void jmAyuda2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyuda2ActionPerformed
+        // TODO add your handling code here:
+        jmAyuda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controlarJavaHelp.mostrarAyuda();
+            }
+        });
+    }//GEN-LAST:event_jmAyuda2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -204,9 +235,18 @@ public class ventLogin extends javax.swing.JFrame {
     private javax.swing.JButton bEntrar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JMenuItem jmAyuda;
+    private javax.swing.JMenuItem jmAyuda1;
+    private javax.swing.JMenuItem jmAyuda2;
     private javax.swing.JLabel lContrasena;
     private javax.swing.JLabel lLogo;
     private javax.swing.JLabel lUsuario;
+    private javax.swing.JMenu mAyuda;
+    private javax.swing.JMenu mAyuda1;
+    private javax.swing.JMenu mAyuda2;
+    private javax.swing.JMenuBar mbAyuda;
+    private javax.swing.JMenuBar mbAyuda1;
+    private javax.swing.JMenuBar mbAyuda2;
     private javax.swing.JPasswordField tContrasena;
     private javax.swing.JTextField tEmail;
     // End of variables declaration//GEN-END:variables
