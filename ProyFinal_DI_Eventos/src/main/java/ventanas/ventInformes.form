@@ -111,13 +111,13 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="bInforme1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Eventos agrupado en tipo de evento."/>
+            <Property name="text" type="java.lang.String" value="Eventos agrupado por tipos de eventos."/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bInforme1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bInforme3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="bInforme2">
           <Properties>

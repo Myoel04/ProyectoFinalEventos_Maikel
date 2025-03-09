@@ -6,6 +6,21 @@ package ventanas;
 import controlador.controlarJavaHelp;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author yosoy
@@ -47,9 +62,12 @@ public class ventInformes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        bInforme1.setText("Eventos agrupado en tipo de evento.");
-
-        bInforme3.setText("jButton1");
+        bInforme1.setText("Eventos agrupado por tipos de eventos.");
+        bInforme1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bInforme1ActionPerformed(evt);
+            }
+        });
 
         bInforme2.setText("Usuarios por cada evento");
 
@@ -178,6 +196,59 @@ public class ventInformes extends javax.swing.JFrame {
         });
         
     }//GEN-LAST:event_jmAyudaActionPerformed
+
+    private void bInforme1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInforme1ActionPerformed
+        // TODO add your handling code here:
+        
+        if (!chPDF.isSelected() && !chHTML.isSelected()) {
+        JOptionPane.showMessageDialog(this, "Debe seleccionar al menos una opción de exportación (PDF o HTML).", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try {
+        // Rutas relativas
+        String reportSource = "src/informes/reporteEventosTipo.jrxml";
+        String reportCompilado = "src/informes/reporteEventosTipo.jasper";
+        Map<String, Object> params = new HashMap<>();
+        params.put("titulo", "Eventos por cada tipo - Gestión de eventos");
+
+        // Poner la hora en el archivo
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String timestamp = formatter.format(new Date());
+
+        // Compilar y cargar el reporte
+        File file = new File(reportCompilado);
+        if (!file.exists()) {
+            JasperCompileManager.compileReportToFile(reportSource, reportCompilado);
+        }
+        JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(reportCompilado);
+
+        // Establecer la conexión a SQLite
+        try (Connection conexion = DriverManager.getConnection("jdbc:sqlite:src/basedatos/eventos.db")) {
+            JasperPrint miInforme = JasperFillManager.fillReport(reporte, params, conexion);
+
+            // Mostrar vista previa con JasperViewer
+            JasperViewer.viewReport(miInforme, false); // false para no cerrar al salir
+
+            // Exportar PDF si está seleccionado
+            if (chPDF.isSelected()) {
+                String reportDestinoPDF = "src/informes/pdf_" + timestamp + ".pdf";
+                JasperExportManager.exportReportToPdfFile(miInforme, reportDestinoPDF);
+                JOptionPane.showMessageDialog(this, "Reporte exportado a PDF.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            // Exportar HTML si está seleccionado
+            if (chHTML.isSelected()) {
+                String reportDestinoHTML = "src/informes/html_" + timestamp + ".html";
+                JasperExportManager.exportReportToHtmlFile(miInforme, reportDestinoHTML);
+                JOptionPane.showMessageDialog(this, "Reporte exportado a HTML.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al generar el informe: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+        
+    }//GEN-LAST:event_bInforme1ActionPerformed
 
     /**
      * @param args the command line arguments
