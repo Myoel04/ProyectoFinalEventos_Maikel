@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <toc version="1.0">
-    <tocitem text="Java Help Gestión de Eventos" target="main">
+    <tocitem text="Java Help Gestion de Eventos" target="main">
         <tocitem text="Login" target="login"/>
         <tocitem text="Eventos" target="eventos"/>
         <tocitem text="Usuarios" target="usuarios"/>
