@@ -43,7 +43,7 @@ public class ventVistaUsuario extends javax.swing.JFrame {
      * Creates new form ventVistaUsuario
      */
     public ventVistaUsuario(int idUsuario) {
-        
+
         this.idUsuario = idUsuario;
         initComponents();
         pack();
@@ -73,31 +73,29 @@ public class ventVistaUsuario extends javax.swing.JFrame {
                 }
             }
         });
-        
+
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_F1) {
                     controlarJavaHelp.mostrarAyuda();
                 }
-                
-                
+
             }
-        
+
         });
-          getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
         getRootPane().getActionMap().put("javahelp", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controlarJavaHelp.mostrarAyuda();
             }
         });
-        
 
     }
 
     private void filtrarEventos() {
-        
+
         try {
             String titulo = tTituloEvento.getText().trim();
             String tipoEvento = (cbTipoEvento.getSelectedItem() != null) ? cbTipoEvento.getSelectedItem().toString() : "Deportivo";
