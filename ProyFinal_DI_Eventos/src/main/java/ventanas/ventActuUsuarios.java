@@ -43,10 +43,10 @@ public class ventActuUsuarios extends javax.swing.JFrame {
                 controlarJavaHelp.mostrarAyuda();
             }
         });
-         temporizador1.setBackground(Color.LIGHT_GRAY);
-          temporizador1.setTextoNuevo("Cancelar");
+        temporizador1.setBackground(Color.LIGHT_GRAY);
+        temporizador1.setTextoNuevo("Cancelar");
         temporizador1.setTiempo(15);
-        
+
 // campos 
         tNombre.setText(nombreUsuario);
         tEmail.setText(emailUsuario);

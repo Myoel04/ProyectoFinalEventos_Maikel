@@ -65,7 +65,7 @@ public class ventAdministracion extends javax.swing.JFrame {
             }
         });
 
-        jDateChooser1.getDateEditor().getUiComponent().addKeyListener(new KeyAdapter() {
+        jDateChooser1.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     bFiltrar.doClick();
@@ -74,7 +74,7 @@ public class ventAdministracion extends javax.swing.JFrame {
         });
 
 // Hacer lo mismo para cbTipoEvento y cbRol si es necesario
-        cbTipoEvento.getEditor().getEditorComponent().addKeyListener(new KeyAdapter() {
+        cbTipoEvento.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     bFiltrar.doClick();
@@ -82,22 +82,34 @@ public class ventAdministracion extends javax.swing.JFrame {
             }
         });
 
-        cbRol.getEditor().getEditorComponent().addKeyListener(new KeyAdapter() {
+        cbTipoEvento.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    bFiltrar.doClick();
+                }
+            }
+
+        });
+
+        cbRol.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     bFiltrar.doClick();
                 }
             }
         });
-        
-        
-          getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
+
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
         getRootPane().getActionMap().put("javahelp", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controlarJavaHelp.mostrarAyuda();
             }
         });
+        
+        
 
     }
 

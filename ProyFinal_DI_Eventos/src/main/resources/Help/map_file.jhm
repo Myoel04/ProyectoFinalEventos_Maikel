@@ -3,16 +3,16 @@
 PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 2.0//EN"
 "http://java.sun.com/products/javahelp/map_2_0.dtd">
 <map version="1.0">
-   <mapID target="main" url="./Help/main.html" />
-   <mapID target="login" url="./Help/login.html" />
-   <mapID target="eventos" url="./Help/eventos.html" />
-   <mapID target="usuarios" url="./Help/usuarios.html" />
-   <mapID target="ventAdministracion" url="./Help/ventAdministracion.html" />
-   <mapID target="ventVistaUsuario" url="./Help/ventVistaUsuario.html" />
-   <mapID target="ventCrearUsuario" url="./Help/ventCrearUsuario.html" />
-   <mapID target="ventCrearEvento" url="./Help/ventCrearEvento.html" />
-   <mapID target="ventActuEventos" url="./Help/ventActuEventos.html" />
-   <mapID target="ventActuUsuarios" url="./Help/ventActuUsuarios.html" />
-   <mapID target="ventInformes" url="./Help/ventInformes.html" />
-   <mapID target="asociar" url="./Help/asociar.html" />
+   <mapID target="main" url="main.html" />
+   <mapID target="login" url="login.html" />
+   <mapID target="eventos" url="eventos.html" />
+   <mapID target="usuarios" url="usuarios.html" />
+   <mapID target="ventAdministracion" url="ventAdministracion.html" />
+   <mapID target="ventVistaUsuario" url="ventVistaUsuario.html" />
+   <mapID target="ventCrearUsuario" url="ventCrearUsuario.html" />
+   <mapID target="ventCrearEvento" url="ventCrearEvento.html" />
+   <mapID target="ventActuEventos" url="ventActuEventos.html" />
+   <mapID target="ventActuUsuarios" url="ventActuUsuarios.html" />
+   <mapID target="ventInformes" url="ventInformes.html" />
+   <mapID target="asociar" url="asociar.html" />
 </map>
