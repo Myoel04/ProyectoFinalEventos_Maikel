@@ -16,7 +16,7 @@ import javax.swing.Timer;
  *
  * @author yosoy
  */
-public class temporizador extends JButton implements Serializable {
+public class Temporizador extends JButton implements Serializable {
 
     private int tiempo = 10;
     private Timer timer;
@@ -24,7 +24,7 @@ public class temporizador extends JButton implements Serializable {
     String texto = "Cancelar";
 
 //constructor de la clase 
-    public temporizador() {
+    public Temporizador() {
         super("Púlsame(10)");
         //colores del boton
         setForeground(Color.red);
@@ -33,7 +33,7 @@ public class temporizador extends JButton implements Serializable {
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (tiempo == 10) { // Si el tiempo es 10, comienza el temporizador
+                if (tiempo == 10) { // Si el tiempo es 10, comienza el Temporizador
                     comenzarTemporizador();
                 }
             }
