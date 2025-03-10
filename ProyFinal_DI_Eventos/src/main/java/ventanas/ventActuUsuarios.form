@@ -82,6 +82,7 @@
                                       <Component id="lNombre" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
                                       <Component id="lEmail" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
                                       <Component id="lContrasena" alignment="0" min="-2" pref="81" max="-2" attributes="0"/>
+                                      <Component id="lRol" min="-2" pref="37" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -95,19 +96,12 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lRol" min="-2" pref="37" max="-2" attributes="0"/>
-                              <Component id="bCancelar" min="-2" pref="140" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="temporizador1" min="-2" pref="111" max="-2" attributes="0"/>
+                          <EmptySpace pref="35" max="32767" attributes="0"/>
+                          <Component id="bGuardarCambios" min="-2" pref="140" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="bGuardarCambios" min="-2" pref="140" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -136,12 +130,12 @@
                       <Component id="lRol" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cbRol" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="temporizador1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bGuardarCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -203,12 +197,10 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bGuardarCambiosActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="bCancelar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Cancelar"/>
-          </Properties>
+        <Component class="ComponentePropio.Temporizador" name="temporizador1">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bCancelarActionPerformed"/>
+            <EventHandler event="capturarFinCuentaAtras" listener="ComponentePropio.Temporizador$CapturaListener" parameters="ComponentePropio.botonEvento" handler="temporizador1CapturarFinCuentaAtras"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="temporizador1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

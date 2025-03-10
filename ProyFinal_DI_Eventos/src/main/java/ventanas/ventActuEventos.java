@@ -6,6 +6,7 @@ package ventanas;
 
 import DAO.EventoDAO;
 import controlador.controlarJavaHelp;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -26,17 +27,12 @@ public class ventActuEventos extends javax.swing.JFrame {
     private final int idEvento; // ID del evento a actualizar
 
     public ventActuEventos(ventEventos ventEventos, int idEvento, String titulo, String descripcion, String ubicacion, Date fecha, String tipoEvento) {
+      
         this.ventEventos = ventEventos;
         this.idEvento = idEvento;
         initComponents();
         controlarJavaHelp.inicializarAyuda();
-          getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
-        getRootPane().getActionMap().put("javahelp", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controlarJavaHelp.mostrarAyuda();
-            }
-        });
+       
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();
         setResizable(false);
@@ -48,6 +44,18 @@ public class ventActuEventos extends javax.swing.JFrame {
         dcFecha.setDate(fecha);
         tCapacidad.setText(""); // Capacidad no se muestra inicialmente; se deja al usuario
         cbTipoEvento.setSelectedItem(tipoEvento != null ? tipoEvento : "Deportivo");
+        
+            getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
+        getRootPane().getActionMap().put("javahelp", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controlarJavaHelp.mostrarAyuda();
+            }
+        });
+        temporizador2.setBackground(Color.LIGHT_GRAY);
+          temporizador2.setTextoNuevo("Cancelar");
+        temporizador2.setTiempo(15);
+        
     }
 
     /**
@@ -75,7 +83,7 @@ public class ventActuEventos extends javax.swing.JFrame {
         lTipo = new javax.swing.JLabel();
         cbTipoEvento = new javax.swing.JComboBox<>();
         bGuardarCambios = new javax.swing.JButton();
-        bCancelar = new javax.swing.JButton();
+        temporizador2 = new ComponentePropio.Temporizador();
         mbAyuda = new javax.swing.JMenuBar();
         mAyuda = new javax.swing.JMenu();
         jmAyuda = new javax.swing.JMenuItem();
@@ -116,10 +124,9 @@ public class ventActuEventos extends javax.swing.JFrame {
             }
         });
 
-        bCancelar.setText("Cancelar");
-        bCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bCancelarActionPerformed(evt);
+        temporizador2.addCapturaListener(new ComponentePropio.Temporizador.CapturaListener() {
+            public void capturarFinCuentaAtras(ComponentePropio.botonEvento evt) {
+                temporizador2CapturarFinCuentaAtras(evt);
             }
         });
 
@@ -156,8 +163,8 @@ public class ventActuEventos extends javax.swing.JFrame {
                         .addComponent(lCrear))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCrearEventoLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(temporizador2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
                         .addComponent(bGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17)))
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -174,8 +181,8 @@ public class ventActuEventos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lDescripcion)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lUbicacion)
                     .addComponent(tUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -191,10 +198,10 @@ public class ventActuEventos extends javax.swing.JFrame {
                 .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lTipo)
                     .addComponent(cbTipoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bGuardarCambios)
-                    .addComponent(bCancelar))
+                    .addComponent(temporizador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
 
@@ -294,17 +301,16 @@ public class ventActuEventos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_bGuardarCambiosActionPerformed
 
-    private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        // TODO add your handling code here:
-        dispose();
-
-    }//GEN-LAST:event_bCancelarActionPerformed
-
     private void jmAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyudaActionPerformed
         // TODO add your handling code here:
        controlarJavaHelp.mostrarAyuda();
 
     }//GEN-LAST:event_jmAyudaActionPerformed
+
+    private void temporizador2CapturarFinCuentaAtras(ComponentePropio.botonEvento evt) {//GEN-FIRST:event_temporizador2CapturarFinCuentaAtras
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_temporizador2CapturarFinCuentaAtras
 
     /**
      * @param args the command line arguments
@@ -343,7 +349,6 @@ public class ventActuEventos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bCancelar;
     private javax.swing.JButton bGuardarCambios;
     private javax.swing.JComboBox<String> cbTipoEvento;
     private com.toedter.calendar.JDateChooser dcFecha;
@@ -363,5 +368,6 @@ public class ventActuEventos extends javax.swing.JFrame {
     private javax.swing.JTextField tTituloEvento;
     private javax.swing.JTextField tUbicacion;
     private javax.swing.JTextArea taDescripcion;
+    private ComponentePropio.Temporizador temporizador2;
     // End of variables declaration//GEN-END:variables
 }

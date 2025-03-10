@@ -96,8 +96,8 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="bCancelar" min="-2" pref="140" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="temporizador2" min="-2" pref="111" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="bGuardarCambios" min="-2" pref="140" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       </Group>
@@ -119,9 +119,9 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lDescripcion" min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="142" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="117" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lUbicacion" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tUbicacion" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -141,10 +141,10 @@
                       <Component id="lTipo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cbTipoEvento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="17" max="32767" attributes="0"/>
+                  <EmptySpace pref="33" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="bGuardarCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="temporizador2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
@@ -242,12 +242,9 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bGuardarCambiosActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="bCancelar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Cancelar"/>
-          </Properties>
+        <Component class="ComponentePropio.Temporizador" name="temporizador2">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bCancelarActionPerformed"/>
+            <EventHandler event="capturarFinCuentaAtras" listener="ComponentePropio.Temporizador$CapturaListener" parameters="ComponentePropio.botonEvento" handler="temporizador2CapturarFinCuentaAtras"/>
           </Events>
         </Component>
       </SubComponents>

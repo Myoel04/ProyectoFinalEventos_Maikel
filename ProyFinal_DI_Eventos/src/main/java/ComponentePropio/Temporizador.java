@@ -25,10 +25,11 @@ public class Temporizador extends JButton implements Serializable {
 
 //constructor de la clase 
     public Temporizador() {
-        super("Púlsame(10)");
+        super();
         //colores del boton
         setForeground(Color.red);
         setBackground(Color.white);
+        comenzarTemporizador();
         // Acción del botón
         addActionListener(new ActionListener() {
             @Override
@@ -47,7 +48,7 @@ public class Temporizador extends JButton implements Serializable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tiempo--;//contador para que quite tiempo
-                setText("Púlsame (" + tiempo + ")");
+                setText("Cancelar (" + tiempo + ")");
                 //si llega a 0 que pare de contar acia atras
                 if (tiempo == 0) {
                     timer.stop();
@@ -69,7 +70,7 @@ public class Temporizador extends JButton implements Serializable {
     public void setTiempo(int tiemporestante) {
 
         this.tiempo = tiemporestante;
-        setText("Púlsame(" + tiemporestante + ")");
+        setText("Cancelar(" + tiemporestante + ")");
 
     }
 
