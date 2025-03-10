@@ -9,7 +9,10 @@ import controlador.controlarJavaHelp;
 import controlador.metodos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import modelo.Usuario;
 
 /**
@@ -30,6 +33,13 @@ public class ventCrearUsuario extends javax.swing.JFrame {
         pack();
         setResizable(false);
         setLocationRelativeTo(null);
+          getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
+        getRootPane().getActionMap().put("javahelp", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controlarJavaHelp.mostrarAyuda();
+            }
+        });
     }
 
     /**

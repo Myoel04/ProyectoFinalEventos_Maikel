@@ -9,7 +9,10 @@ import controlador.controlarJavaHelp;
 import controlador.metodos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import modelo.Usuario;
 
 /**
@@ -18,7 +21,7 @@ import modelo.Usuario;
  */
 public class ventActuUsuarios extends javax.swing.JFrame {
 
-  private final metodos m = new metodos();
+    private final metodos m = new metodos();
     private final ventUsuarios vu; // Referencia a la ventana padre
     private final int idUsuario; // ID del usuario a actualizar
     private final UsuarioDAO udao = new UsuarioDAO();
@@ -31,8 +34,15 @@ public class ventActuUsuarios extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();
         setResizable(false);
-setLocationRelativeTo(null);
-        // campos 
+        setLocationRelativeTo(null);
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
+        getRootPane().getActionMap().put("javahelp", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controlarJavaHelp.mostrarAyuda();
+            }
+        });
+// campos 
         tNombre.setText(nombreUsuario);
         tEmail.setText(emailUsuario);
         tContrasena.setText(""); // No mostramos la contraseña por seguridad
@@ -192,7 +202,7 @@ setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarCambiosActionPerformed
-       // Recoger los datos del formulario
+        // Recoger los datos del formulario
         String nombre = tNombre.getText().trim();
         String email = tEmail.getText().trim();
         String contrasena = new String(tContrasena.getPassword()).trim();
@@ -240,7 +250,7 @@ setLocationRelativeTo(null);
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
         // TODO add your handling code here:
 
-dispose();
+        dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void jmAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyudaActionPerformed

@@ -9,7 +9,10 @@ import controlador.controlarJavaHelp;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import modelo.Evento;
 
 /**
@@ -27,6 +30,13 @@ public class ventActuEventos extends javax.swing.JFrame {
         this.idEvento = idEvento;
         initComponents();
         controlarJavaHelp.inicializarAyuda();
+          getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
+        getRootPane().getActionMap().put("javahelp", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controlarJavaHelp.mostrarAyuda();
+            }
+        });
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();
         setResizable(false);

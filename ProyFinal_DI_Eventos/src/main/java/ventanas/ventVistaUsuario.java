@@ -16,7 +16,10 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 import modelo.Evento;
 
@@ -40,6 +43,7 @@ public class ventVistaUsuario extends javax.swing.JFrame {
      * Creates new form ventVistaUsuario
      */
     public ventVistaUsuario(int idUsuario) {
+        
         this.idUsuario = idUsuario;
         initComponents();
         pack();
@@ -69,10 +73,31 @@ public class ventVistaUsuario extends javax.swing.JFrame {
                 }
             }
         });
+        
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_F1) {
+                    controlarJavaHelp.mostrarAyuda();
+                }
+                
+                
+            }
+        
+        });
+          getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
+        getRootPane().getActionMap().put("javahelp", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controlarJavaHelp.mostrarAyuda();
+            }
+        });
+        
 
     }
 
     private void filtrarEventos() {
+        
         try {
             String titulo = tTituloEvento.getText().trim();
             String tipoEvento = (cbTipoEvento.getSelectedItem() != null) ? cbTipoEvento.getSelectedItem().toString() : "Deportivo";
@@ -173,10 +198,16 @@ public class ventVistaUsuario extends javax.swing.JFrame {
         pGeneral.add(pBotones, java.awt.BorderLayout.PAGE_END);
 
         lNombre.setText("Titulo:");
+        pFiltro.add(lNombre);
+
+        tTituloEvento.setColumns(15);
+        pFiltro.add(tTituloEvento);
 
         lTipoEvento.setText("Tipo Evento:");
+        pFiltro.add(lTipoEvento);
 
         cbTipoEvento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Deportivo", "Cultural", "Cumpleaños", "Boda", "Musical", "Bautizo", "Comunion" }));
+        pFiltro.add(cbTipoEvento);
 
         bFiltrar.setText("Filtrar");
         bFiltrar.addActionListener(new java.awt.event.ActionListener() {
@@ -184,36 +215,7 @@ public class ventVistaUsuario extends javax.swing.JFrame {
                 bFiltrarActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout pFiltroLayout = new javax.swing.GroupLayout(pFiltro);
-        pFiltro.setLayout(pFiltroLayout);
-        pFiltroLayout.setHorizontalGroup(
-            pFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pFiltroLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(lNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tTituloEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(lTipoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbTipoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addComponent(bFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
-        );
-        pFiltroLayout.setVerticalGroup(
-            pFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pFiltroLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lNombre)
-                    .addComponent(tTituloEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lTipoEvento)
-                    .addComponent(cbTipoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
+        pFiltro.add(bFiltrar);
 
         pGeneral.add(pFiltro, java.awt.BorderLayout.PAGE_START);
 
@@ -236,6 +238,7 @@ public class ventVistaUsuario extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tEventosUsuario.setRowHeight(25);
         tEventos.setViewportView(tEventosUsuario);
 
         javax.swing.GroupLayout pTablaLayout = new javax.swing.GroupLayout(pTabla);

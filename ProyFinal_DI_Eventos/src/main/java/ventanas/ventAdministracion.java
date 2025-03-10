@@ -16,7 +16,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 import modelo.eventoUsuario;
 
@@ -84,6 +87,15 @@ public class ventAdministracion extends javax.swing.JFrame {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     bFiltrar.doClick();
                 }
+            }
+        });
+        
+        
+          getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
+        getRootPane().getActionMap().put("javahelp", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controlarJavaHelp.mostrarAyuda();
             }
         });
 
@@ -252,6 +264,7 @@ public class ventAdministracion extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tGeneral.setRowHeight(25);
         jScrollPane1.setViewportView(tGeneral);
 
         javax.swing.GroupLayout pTablaLayout = new javax.swing.GroupLayout(pTabla);

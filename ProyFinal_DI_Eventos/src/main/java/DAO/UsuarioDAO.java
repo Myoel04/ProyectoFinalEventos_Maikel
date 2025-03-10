@@ -217,12 +217,12 @@ public List<Usuario> obtenerUsuariosParaTabla(JTable tUsuarios) {
         StringBuilder query = new StringBuilder("SELECT idUsuario, nombreUsuario, emailUsuario, rol FROM usuario WHERE 1=1");
 
         if (nombre != null && !nombre.isEmpty()) {
-            query.append(" AND nombreUsuario LIKE ?");
-        }
-        if (rol != null && !rol.isEmpty() && !rol.equals("Todos")) {
-            query.append(" AND rol = ?");
-        }
-        query.append(" LIMIT ? OFFSET ?");
+        query.append(" AND LOWER(nombreUsuario) LIKE LOWER(?)");
+    }
+    if (rol != null && !rol.isEmpty() && !rol.equals("Todos")) {
+        query.append(" AND LOWER(rol) = LOWER(?)");
+    }
+    query.append(" LIMIT ? OFFSET ?");
 
         try (Connection conn = GestorBD.conectar();
              PreparedStatement stmt = conn.prepareStatement(query.toString())) {
