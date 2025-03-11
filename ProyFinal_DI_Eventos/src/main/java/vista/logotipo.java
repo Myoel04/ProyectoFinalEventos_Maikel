@@ -47,7 +47,7 @@ public class logotipo extends JWindow {
     }
 
     public static void main(String[] args) {
-        logotipo log = new logotipo();
+            logotipo log = new logotipo();
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {

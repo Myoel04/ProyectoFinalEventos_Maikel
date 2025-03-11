@@ -188,7 +188,7 @@ public class ventUsuarios extends javax.swing.JFrame {
         pFiltros.add(bFiltros);
 
         bVaciar.setText("Limpiar Filtros");
-        bVaciar.setPreferredSize(new java.awt.Dimension(109, 32));
+        bVaciar.setPreferredSize(new java.awt.Dimension(115, 32));
         bVaciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bVaciarActionPerformed(evt);

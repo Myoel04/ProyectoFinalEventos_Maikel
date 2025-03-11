@@ -67,7 +67,7 @@ public class ventLogin extends javax.swing.JFrame {
         lLogo.setText("Inicio de Sesión");
 
         bRegistrarse.setText("Registrarse");
-        bRegistrarse.setPreferredSize(new java.awt.Dimension(98, 27));
+        bRegistrarse.setPreferredSize(new java.awt.Dimension(102, 27));
         bRegistrarse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bRegistrarseActionPerformed(evt);

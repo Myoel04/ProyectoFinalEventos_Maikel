@@ -1,34 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.io.File;
 
-/**
- *
- * @author yosoy
- */
 public class GestorBD {
     
-    public static Connection conectar(){
+    public static Connection conectar() {
+        String url = "jdbc:sqlite:./eventos.db"; // Ruta relativa al directorio de trabajo
+        Connection conn = null;
         
-        String url = "jdbc:sqlite:./src/basedatos/eventos.db";
-        
-      Connection conn = null;
         try {
-            // Crea una conexión a la base de datos
+            // Verifica si el archivo de la base de datos existe
+            File dbFile = new File("eventos.db");
+            if (!dbFile.exists()) {
+                System.err.println("El archivo de base de datos 'eventos.db' no existe en: " + dbFile.getAbsolutePath());
+                return null;
+            }
+            
+            // Intenta establecer la conexión
             conn = DriverManager.getConnection(url);
-            System.out.println("Conexión a SQLite establecida.");
+            System.out.println("Conexión a SQLite establecida correctamente en: " + dbFile.getAbsolutePath());
         } catch (SQLException e) {
-            System.out.println("Error al conectar a la base de datos: " + e.getMessage());
+            System.err.println("Error al conectar a la base de datos: " + e.getMessage());
+            e.printStackTrace();
         }
+        
         return conn;
     }
-    
-    }
-    
-
+}

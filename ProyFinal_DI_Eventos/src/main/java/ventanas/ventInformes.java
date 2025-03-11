@@ -37,6 +37,7 @@ public class ventInformes extends javax.swing.JFrame {
         initComponents();
           pack();
         setResizable(false);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Generar informes");
     controlarJavaHelp.inicializarAyuda();
@@ -234,72 +235,76 @@ public class ventInformes extends javax.swing.JFrame {
     private void bInforme1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInforme1ActionPerformed
         // TODO add your handling code here:
         
-        if (!chPDF.isSelected() && !chHTML.isSelected()) {
+       if (!chPDF.isSelected() && !chHTML.isSelected()) {
         JOptionPane.showMessageDialog(this, "Debe seleccionar al menos una opción de exportación (PDF o HTML).", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
 
     try {
-        // Rutas relativas
-        String reportSource = "src/informes/reporteEventosTipo.jrxml";
-        String reportCompilado = "src/informes/reporteEventosTipo.jasper";
+        // Rutas relativas al directorio de trabajo del .exe
+        String reportSource = "reportes/reporteEventosTipo.jrxml";
+        String reportCompilado = "reportes/reporteEventosTipo.jasper";
+        String reportesDir = "reportes";
+        String dbRuta = "eventos.db"; 
+
         Map<String, Object> params = new HashMap<>();
         params.put("titulo", "Eventos por cada tipo - Gestión de eventos");
 
-        // Poner la hora en el archivo
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String timestamp = formatter.format(new Date());
 
-        // Compilar y cargar el reporte si no esta compilado ya 
+        // Compilar y cargar el reporte
         File file = new File(reportCompilado);
         if (!file.exists()) {
             JasperCompileManager.compileReportToFile(reportSource, reportCompilado);
         }
         JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(reportCompilado);
 
-        // a conexión a SQLite
-        try (Connection conexion = DriverManager.getConnection("jdbc:sqlite:src/basedatos/eventos.db")) {
+        // Conexión a SQLite usando la ruta relativa
+        try (Connection conexion = DriverManager.getConnection("jdbc:sqlite:" + dbRuta)) {
             JasperPrint miInforme = JasperFillManager.fillReport(reporte, params, conexion);
 
-            //  vista previa con JasperViewer
-            JasperViewer.viewReport(miInforme, false); 
+            // Mostrar vista previa con JasperViewer
+            JasperViewer.viewReport(miInforme, false);
 
             // Exportar PDF si está seleccionado
             if (chPDF.isSelected()) {
-                String reportDestinoPDF = "src/informes/pdf_" + timestamp + ".pdf";
+                String reportDestinoPDF = reportesDir + "/pdf_" + timestamp + ".pdf";
                 JasperExportManager.exportReportToPdfFile(miInforme, reportDestinoPDF);
-                JOptionPane.showMessageDialog(this, "Reporte exportado a PDF.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Reporte exportado a PDF en: " + reportDestinoPDF, "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
 
             // Exportar HTML si está seleccionado
             if (chHTML.isSelected()) {
-                String reportDestinoHTML = "src/informes/html_" + timestamp + ".html";
+                String reportDestinoHTML = reportesDir + "/html_" + timestamp + ".html";
                 JasperExportManager.exportReportToHtmlFile(miInforme, reportDestinoHTML);
-                JOptionPane.showMessageDialog(this, "Reporte exportado a HTML.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Reporte exportado a HTML en: " + reportDestinoHTML, "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Error al generar el informe: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace(); 
     }
         
     }//GEN-LAST:event_bInforme1ActionPerformed
 //para sacar el primer reporte
     private void bInforme2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInforme2ActionPerformed
         // TODO add your handling code here:
-        
-        if (!chPDF.isSelected() && !chHTML.isSelected()) {
+  if (!chPDF.isSelected() && !chHTML.isSelected()) {
         JOptionPane.showMessageDialog(this, "Debe seleccionar al menos una opción de exportación (PDF o HTML).", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
 
     try {
-        // Rutas relativas
-        String reportSource = "src/informes/reporteUsuarioEvento.jrxml";
-        String reportCompilado = "src/informes/reporteUsuarioEvento.jasper";
-        Map<String, Object> params = new HashMap<>();
-        params.put("titulo", "Usuarios por cada evento - Gestión de eventos");
+        // Rutas relativas al directorio de trabajo del .exe
+        String reportSource = "reportes/reporteUsuarioEvento.jrxml";
+        String reportCompilado = "reportes/reporteUsuarioEvento.jasper";
+        String reportesDir = "reportes"; // Carpeta donde estarán los reportes
+        String dbRuta = "eventos.db"; // Base de datos en el mismo directorio
 
-        // Poner  hora en el archivo
+        Map<String, Object> params = new HashMap<>();
+        params.put("titulo", "Eventos por cada tipo - Gestión de eventos");
+
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String timestamp = formatter.format(new Date());
 
@@ -310,49 +315,51 @@ public class ventInformes extends javax.swing.JFrame {
         }
         JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(reportCompilado);
 
-        //  la conexión a SQLite
-        try (Connection conexion = DriverManager.getConnection("jdbc:sqlite:src/basedatos/eventos.db")) {
+        // Conexión a SQLite usando la ruta relativa
+        try (Connection conexion = DriverManager.getConnection("jdbc:sqlite:" + dbRuta)) {
             JasperPrint miInforme = JasperFillManager.fillReport(reporte, params, conexion);
 
-            //  vista previa con JasperViewer
-            JasperViewer.viewReport(miInforme, false); 
+            // Mostrar vista previa con JasperViewer
+            JasperViewer.viewReport(miInforme, false);
 
             // Exportar PDF si está seleccionado
             if (chPDF.isSelected()) {
-                String reportDestinoPDF = "src/informes/pdf_" + timestamp + ".pdf";
+                String reportDestinoPDF = reportesDir + "/pdf_" + timestamp + ".pdf";
                 JasperExportManager.exportReportToPdfFile(miInforme, reportDestinoPDF);
-                JOptionPane.showMessageDialog(this, "Reporte exportado a PDF.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Reporte exportado a PDF en: " + reportDestinoPDF, "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
 
             // Exportar HTML si está seleccionado
             if (chHTML.isSelected()) {
-                String reportDestinoHTML = "src/informes/html_" + timestamp + ".html";
+                String reportDestinoHTML = reportesDir + "/html_" + timestamp + ".html";
                 JasperExportManager.exportReportToHtmlFile(miInforme, reportDestinoHTML);
-                JOptionPane.showMessageDialog(this, "Reporte exportado a HTML.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Reporte exportado a HTML en: " + reportDestinoHTML, "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Error al generar el informe: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace(); // Para depuración
     }
     }//GEN-LAST:event_bInforme2ActionPerformed
 //para sacar el tercer reporte
     private void bInforme3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInforme3ActionPerformed
         // TODO add your handling code here:
         
-          
-        if (!chPDF.isSelected() && !chHTML.isSelected()) {
+    if (!chPDF.isSelected() && !chHTML.isSelected()) {
         JOptionPane.showMessageDialog(this, "Debe seleccionar al menos una opción de exportación (PDF o HTML).", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
 
     try {
-        // Rutas relativas
-        String reportSource = "src/informes/reporteUsuarios.jrxml";
-        String reportCompilado = "src/informes/reporteUsuarios.jasper";
-        Map<String, Object> params = new HashMap<>();
-        params.put("titulo", "Usuarios del Sistema");
+        // Rutas relativas al directorio de trabajo del .exe
+        String reportSource = "reportes/reporteUsuarios.jrxml";
+        String reportCompilado = "reportes/reporteUsuarios.jasper";
+        String reportesDir = "reportes"; // Carpeta donde estarán los reportes
+        String dbRuta = "eventos.db"; // Base de datos en el mismo directorio
 
-        // Poner la hora en el archivo
+        Map<String, Object> params = new HashMap<>();
+        params.put("titulo", "Eventos por cada tipo - Gestión de eventos");
+
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String timestamp = formatter.format(new Date());
 
@@ -363,29 +370,30 @@ public class ventInformes extends javax.swing.JFrame {
         }
         JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(reportCompilado);
 
-        // Establecer la conexión a SQLite
-        try (Connection conexion = DriverManager.getConnection("jdbc:sqlite:src/basedatos/eventos.db")) {
+        // Conexión a SQLite usando la ruta relativa
+        try (Connection conexion = DriverManager.getConnection("jdbc:sqlite:" + dbRuta)) {
             JasperPrint miInforme = JasperFillManager.fillReport(reporte, params, conexion);
 
             // Mostrar vista previa con JasperViewer
-            JasperViewer.viewReport(miInforme, false); // false para no cerrar al salir
+            JasperViewer.viewReport(miInforme, false);
 
             // Exportar PDF si está seleccionado
             if (chPDF.isSelected()) {
-                String reportDestinoPDF = "src/informes/pdf_" + timestamp + ".pdf";
+                String reportDestinoPDF = reportesDir + "/pdf_" + timestamp + ".pdf";
                 JasperExportManager.exportReportToPdfFile(miInforme, reportDestinoPDF);
-                JOptionPane.showMessageDialog(this, "Reporte exportado a PDF.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Reporte exportado a PDF en: " + reportDestinoPDF, "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
 
             // Exportar HTML si está seleccionado
             if (chHTML.isSelected()) {
-                String reportDestinoHTML = "src/informes/html_" + timestamp + ".html";
+                String reportDestinoHTML = reportesDir + "/html_" + timestamp + ".html";
                 JasperExportManager.exportReportToHtmlFile(miInforme, reportDestinoHTML);
-                JOptionPane.showMessageDialog(this, "Reporte exportado a HTML.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Reporte exportado a HTML en: " + reportDestinoHTML, "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Error al generar el informe: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace(); // Para depuración
     }
         
     }//GEN-LAST:event_bInforme3ActionPerformed
@@ -394,19 +402,22 @@ public class ventInformes extends javax.swing.JFrame {
         // TODO add your handling code here:
         
            
-        if (!chPDF.isSelected() && !chHTML.isSelected()) {
+          
+    if (!chPDF.isSelected() && !chHTML.isSelected()) {
         JOptionPane.showMessageDialog(this, "Debe seleccionar al menos una opción de exportación (PDF o HTML).", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
 
     try {
-        // Rutas relativas
-        String reportSource = "src/informes/reporteEventos.jrxml";
-        String reportCompilado = "src/informes/reporteEventos.jasper";
-        Map<String, Object> params = new HashMap<>();
-        params.put("titulo", "Usuarios del Sistema");
+        // Rutas relativas al directorio de trabajo del .exe
+        String reportSource = "reportes/reporteEventos.jrxml";
+        String reportCompilado = "reportes/reporteEventos.jasper";
+        String reportesDir = "reportes"; // Carpeta donde estarán los reportes
+        String dbRuta = "eventos.db"; // Base de datos en el mismo directorio
 
-        // Poner la hora en el archivo
+        Map<String, Object> params = new HashMap<>();
+        params.put("titulo", "Eventos por cada tipo - Gestión de eventos");
+
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String timestamp = formatter.format(new Date());
 
@@ -417,29 +428,30 @@ public class ventInformes extends javax.swing.JFrame {
         }
         JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(reportCompilado);
 
-        // Establecer la conexión a SQLite
-        try (Connection conexion = DriverManager.getConnection("jdbc:sqlite:src/basedatos/eventos.db")) {
+        // Conexión a SQLite usando la ruta relativa
+        try (Connection conexion = DriverManager.getConnection("jdbc:sqlite:" + dbRuta)) {
             JasperPrint miInforme = JasperFillManager.fillReport(reporte, params, conexion);
 
             // Mostrar vista previa con JasperViewer
-            JasperViewer.viewReport(miInforme, false); // false para no cerrar al salir
+            JasperViewer.viewReport(miInforme, false);
 
             // Exportar PDF si está seleccionado
             if (chPDF.isSelected()) {
-                String reportDestinoPDF = "src/informes/pdf_" + timestamp + ".pdf";
+                String reportDestinoPDF = reportesDir + "/pdf_" + timestamp + ".pdf";
                 JasperExportManager.exportReportToPdfFile(miInforme, reportDestinoPDF);
-                JOptionPane.showMessageDialog(this, "Reporte exportado a PDF.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Reporte exportado a PDF en: " + reportDestinoPDF, "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
 
             // Exportar HTML si está seleccionado
             if (chHTML.isSelected()) {
-                String reportDestinoHTML = "src/informes/html_" + timestamp + ".html";
+                String reportDestinoHTML = reportesDir + "/html_" + timestamp + ".html";
                 JasperExportManager.exportReportToHtmlFile(miInforme, reportDestinoHTML);
-                JOptionPane.showMessageDialog(this, "Reporte exportado a HTML.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Reporte exportado a HTML en: " + reportDestinoHTML, "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Error al generar el informe: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace(); // Para depuración
     }
         
     }//GEN-LAST:event_bInforme4ActionPerformed

@@ -6,52 +6,49 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <dependencies>
+        <!-- JCalendar -->
         <dependency>
             <groupId>com.toedter</groupId>
             <artifactId>jcalendar</artifactId>
             <version>1.4</version>
         </dependency>
-       
- 
- <dependency>
+        <!-- JavaHelp -->
+        <dependency>
             <groupId>javax.help</groupId>
             <artifactId>javahelp</artifactId>
             <version>2.0.05</version>
         </dependency>
-
-<dependency>
-      <groupId>org.xerial</groupId>
-      <artifactId>sqlite-jdbc</artifactId>
-      <version>3.49.1.0</version>
-    </dependency>
-
-
-   <!-- JasperReports -->
+        <!-- SQLite JDBC -->
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.49.1.0</version>
+        </dependency>
+        <!-- JasperReports -->
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
             <version>6.20.0</version>
         </dependency>
-
-        <!-- iText for PDF Export -->
+        <!-- iText para exportación a PDF -->
         <dependency>
             <groupId>com.itextpdf</groupId>
             <artifactId>itextpdf</artifactId>
             <version>5.5.13.3</version>
         </dependency>
-        
+        <!-- Groovy -->
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy</artifactId>
-            <version>3.0.15</version> 
+            <version>3.0.15</version>
         </dependency>
-
-        <!-- Apache Commons Logging (Required by JasperReports) -->
+        <!-- Apache Commons Logging (requerido por JasperReports) -->
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
             <version>1.2</version>
         </dependency>
+        <!-- AbsoluteLayout -->
         <dependency>
             <groupId>org.netbeans.external</groupId>
             <artifactId>AbsoluteLayout</artifactId>
@@ -61,7 +58,43 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>23</maven.compiler.release>
-        <exec.mainClass>com.mycompany.proyfinal_di_hoteles.ProyFinal_DI_Hoteles</exec.mainClass>
+        <exec.mainClass>vista.logotipo</exec.mainClass> <!-- Clase principal corregida -->
     </properties>
     <name>ProyFinal_DI_Eventos</name>
+    <build>
+        <plugins>
+            <!-- Plugin para crear un Fat JAR con todas las dependencias -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.4.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>vista.logotipo</mainClass>
+                                </transformer>
+                            </transformers>
+                            <!-- Evita conflictos de recursos (como firmas duplicadas) -->
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
