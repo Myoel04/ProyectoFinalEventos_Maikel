@@ -90,7 +90,7 @@ public class ventActuEventos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lCrear.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 18)); // NOI18N
+        lCrear.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lCrear.setText("ACTUALIZAR EVENTO");
 
         lTitulo.setText("Titulo del Evento:");
@@ -144,37 +144,36 @@ public class ventActuEventos extends javax.swing.JFrame {
                                 .addComponent(lTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(tTituloEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pCrearEventoLayout.createSequentialGroup()
-                                .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lDescripcion)
-                                    .addComponent(lUbicacion)
-                                    .addComponent(lFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lCapacidad)
-                                    .addComponent(lTipo))
-                                .addGap(18, 18, 18)
-                                .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(dcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-                                    .addComponent(tUbicacion)
-                                    .addComponent(tCapacidad)
-                                    .addComponent(cbTipoEvento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(pCrearEventoLayout.createSequentialGroup()
+                                    .addComponent(temporizador2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(46, 46, 46)
+                                    .addComponent(bGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pCrearEventoLayout.createSequentialGroup()
+                                    .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lDescripcion)
+                                        .addComponent(lUbicacion)
+                                        .addComponent(lFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lCapacidad)
+                                        .addComponent(lTipo))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(dcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                                        .addComponent(tUbicacion)
+                                        .addComponent(tCapacidad)
+                                        .addComponent(cbTipoEvento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                     .addGroup(pCrearEventoLayout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(lCrear))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCrearEventoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(temporizador2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(bGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)))
+                        .addGap(98, 98, 98)
+                        .addComponent(lCrear)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         pCrearEventoLayout.setVerticalGroup(
             pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pCrearEventoLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(30, 30, 30)
                 .addComponent(lCrear)
-                .addGap(37, 37, 37)
+                .addGap(38, 38, 38)
                 .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tTituloEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lTitulo))
@@ -241,7 +240,7 @@ public class ventActuEventos extends javax.swing.JFrame {
             int capacidad = Integer.parseInt(capacIntroducida);
             if (capacidad < 0) {
                 JOptionPane.showMessageDialog(null, "Introduce un número positivo.", "Error", JOptionPane.ERROR_MESSAGE);
-            } else if (capacidad > 1000) {
+            } else if (capacidad > 10000) {
                 JOptionPane.showMessageDialog(null, "La capacidad máxima no puede exceder de 1000.", "Límite excedido", JOptionPane.WARNING_MESSAGE);
             } else {
                 System.out.println("Capacidad establecida a " + capacidad);
@@ -270,7 +269,7 @@ public class ventActuEventos extends javax.swing.JFrame {
         int capacidad;
         try {
             capacidad = Integer.parseInt(capacidadStr);
-            if (capacidad <= 0 || capacidad > 1000) {
+            if (capacidad <= 0 || capacidad > 10000) {
                 JOptionPane.showMessageDialog(this, "La capacidad debe ser un número positivo menor o igual a 1000.", "Error en la capacidad", JOptionPane.ERROR_MESSAGE);
                 return;
             }

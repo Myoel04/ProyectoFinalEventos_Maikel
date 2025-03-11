@@ -94,7 +94,7 @@ public class ventInformes extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("INFORMES");
 
         bInforme4.setText("Todos los Eventos");

@@ -81,7 +81,7 @@ public class ventActuUsuarios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lCrear.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 18)); // NOI18N
+        lCrear.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lCrear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lCrear.setText("ACTUALIZAR USUARIO");
 

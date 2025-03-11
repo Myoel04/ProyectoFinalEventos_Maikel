@@ -74,7 +74,7 @@ public class ventCrearEvento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lCrear.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 18)); // NOI18N
+        lCrear.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lCrear.setText("CREAR EVENTO");
 
         lTitulo.setText("Titulo del Evento:");
@@ -112,10 +112,6 @@ public class ventCrearEvento extends javax.swing.JFrame {
         pCrearEvento.setLayout(pCrearEventoLayout);
         pCrearEventoLayout.setHorizontalGroup(
             pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCrearEventoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lCrear)
-                .addGap(125, 125, 125))
             .addGroup(pCrearEventoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,13 +139,17 @@ public class ventCrearEvento extends javax.swing.JFrame {
                         .addGap(0, 60, Short.MAX_VALUE))
                     .addComponent(bCrear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCrearEventoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lCrear)
+                .addGap(132, 132, 132))
         );
         pCrearEventoLayout.setVerticalGroup(
             pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pCrearEventoLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(25, 25, 25)
                 .addComponent(lCrear)
-                .addGap(46, 46, 46)
+                .addGap(43, 43, 43)
                 .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tTituloEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lTitulo))
@@ -318,8 +318,6 @@ public class ventCrearEvento extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbTipoEvento;
     private com.toedter.calendar.JDateChooser dcFecha;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JMenuItem jmAyuda;
-    private javax.swing.JMenuItem jmAyuda1;
     private javax.swing.JMenuItem jmAyuda2;
     private javax.swing.JLabel lCapacidad;
     private javax.swing.JLabel lCrear;
@@ -328,11 +326,7 @@ public class ventCrearEvento extends javax.swing.JFrame {
     private javax.swing.JLabel lTipo;
     private javax.swing.JLabel lTitulo;
     private javax.swing.JLabel lUbicacion;
-    private javax.swing.JMenu mAyuda;
-    private javax.swing.JMenu mAyuda1;
     private javax.swing.JMenu mAyuda2;
-    private javax.swing.JMenuBar mbAyuda;
-    private javax.swing.JMenuBar mbAyuda1;
     private javax.swing.JMenuBar mbAyuda2;
     private javax.swing.JPanel pCrearEvento;
     private javax.swing.JTextField tCapacidad;
