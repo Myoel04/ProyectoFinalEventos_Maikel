@@ -10,8 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.eventoUsuario;
 
 public class eventousuarioDAO {
@@ -32,7 +30,7 @@ public class eventousuarioDAO {
         }
     }
 
-    // Los métodos existentes (obtenerEventosUsuarios, buscarEventosUsuariosPaginados, contarEventosUsuarios) permanecen igual...
+    
     public List<eventoUsuario> obtenerEventosUsuarios() {
         List<eventoUsuario> eventosUsuarios = new ArrayList<>();
         String sql = "SELECT E.idEvento, E.tituloEvento, E.tipoEvento, E.fecha, U.idUsuario, U.nombreUsuario, U.emailUsuario, EU.rolEnEvento " +
@@ -72,7 +70,7 @@ public class eventousuarioDAO {
         }
         return eventosUsuarios;
     }
-
+//metodo para buscar los eventso
     public List<eventoUsuario> buscarEventosUsuariosPaginados(String titulo, String tipoEvento, String fecha, 
                                                               String nombreUsuario, String rol, 
                                                               int pagina, int tamanoPagina)  {
@@ -151,7 +149,7 @@ public class eventousuarioDAO {
         }
         return eventosUsuarios;
     }
-
+//contar los eventos de un usuario
     public int contarEventosUsuarios(String titulo, String tipoEvento, String fecha, String nombreUsuario, String rol) throws SQLException {
         StringBuilder query = new StringBuilder(
             "SELECT COUNT(*) " +
@@ -205,7 +203,7 @@ public class eventousuarioDAO {
     }
     
     
-    // Método para eliminar una asociación
+    //  eliminar una asociación
     public void eliminarAsociacion(int idUsuario, int idEvento) throws SQLException {
         String sql = "DELETE FROM evento_usuario WHERE idUsuario = ? AND idEvento = ?";
         try (Connection conn = GestorBD.conectar();
@@ -216,7 +214,7 @@ public class eventousuarioDAO {
         }
     }
 
-    // Método para obtener una asociación por título de evento y nombre de usuario
+    // obtrener asociacion
     public eventoUsuario obtenerAsociacionPorDatos(String tituloEvento, String nombreUsuario, String email) throws SQLException {
         String sql = "SELECT E.idEvento, E.tituloEvento, E.tipoEvento, E.fecha, U.idUsuario, U.nombreUsuario, U.emailUsuario, EU.rolEnEvento " +
                      "FROM eventos E " +

@@ -456,42 +456,33 @@ public class ventEventos extends javax.swing.JFrame {
     }//GEN-LAST:event_bCrearActionPerformed
 
     public void filtrarEventos() {
-        try {
-            String titulo = tNombre.getText().trim();
-            String fechaStr = null;
-            Date fecha = jFecha.getDate();
-            if (fecha != null) {
-                fechaStr = new SimpleDateFormat("yyyy-MM-dd").format(fecha);
-            }
-            String tipoEvento = (cbTipoEvento.getSelectedItem() != null) ? cbTipoEvento.getSelectedItem().toString() : "Deportivo";
-
-            int totalEventos = edao.contarEventos(titulo, fechaStr, tipoEvento);
-            totalPaginas = (int) Math.ceil((double) totalEventos / tamanoPagina);
-
-            bAnterior.setEnabled(paginaActual > 1);
-            bSiguiente.setEnabled(paginaActual < totalPaginas);
-
-            List<Evento> eventos = edao.buscarEventosPaginados(titulo, fechaStr, tipoEvento, paginaActual, tamanoPagina);
-
-            // guardar eventos cargados
-            eventosCargados = new ArrayList<>(eventos);
-
-            DefaultTableModel tableModel = (DefaultTableModel) tEventos.getModel();
-            tableModel.setRowCount(0);
-//recoge datos de eventos
-            for (Evento evento : eventos) {
-                String fechaFormateada = (evento.getFecha() != null) ? sdf.format(evento.getFecha()) : "";
-                tableModel.addRow(new Object[]{
-                    evento.getIdEvento(),
-                    evento.getTituloEvento(),
-                    evento.getDescripcion(),
-                    evento.getTipoEvento(),
-                    evento.getUbicacion(),
-                    fechaFormateada
-                });
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error al cargar eventos: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        String titulo = tNombre.getText().trim();
+        String fechaStr = null;
+        Date fecha = jFecha.getDate();
+        if (fecha != null) {
+            fechaStr = new SimpleDateFormat("yyyy-MM-dd").format(fecha);
+        }
+        String tipoEvento = (cbTipoEvento.getSelectedItem() != null) ? cbTipoEvento.getSelectedItem().toString() : "Deportivo";
+        int totalEventos = edao.contarEventos(titulo, fechaStr, tipoEvento);
+        totalPaginas = (int) Math.ceil((double) totalEventos / tamanoPagina);
+        bAnterior.setEnabled(paginaActual > 1);
+        bSiguiente.setEnabled(paginaActual < totalPaginas);
+        List<Evento> eventos = edao.buscarEventosPaginados(titulo, fechaStr, tipoEvento, paginaActual, tamanoPagina);
+        // guardar eventos cargados
+        eventosCargados = new ArrayList<>(eventos);
+        DefaultTableModel tableModel = (DefaultTableModel) tEventos.getModel();
+        tableModel.setRowCount(0);
+        //recoge datos de eventos
+        for (Evento evento : eventos) {
+            String fechaFormateada = (evento.getFecha() != null) ? sdf.format(evento.getFecha()) : "";
+            tableModel.addRow(new Object[]{
+                evento.getIdEvento(),
+                evento.getTituloEvento(),
+                evento.getDescripcion(),
+                evento.getTipoEvento(),
+                evento.getUbicacion(),
+                fechaFormateada
+            });
         }
         lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
     }

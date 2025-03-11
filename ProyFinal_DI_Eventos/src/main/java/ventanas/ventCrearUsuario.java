@@ -215,6 +215,7 @@ public class ventCrearUsuario extends javax.swing.JFrame {
             UsuarioDAO usuarioDao = new UsuarioDAO();
             usuarioDao.insertarUsuario(usuario);
             JOptionPane.showMessageDialog(this, "Usuario creado con éxito.", "Usuario Creado", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al crear el usuario: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
