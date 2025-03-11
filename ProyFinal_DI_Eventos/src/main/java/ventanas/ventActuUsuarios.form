@@ -69,39 +69,34 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="lCrear" min="-2" pref="274" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lNombre" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                                      <Component id="lEmail" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
-                                      <Component id="lContrasena" alignment="0" min="-2" pref="81" max="-2" attributes="0"/>
-                                      <Component id="lRol" min="-2" pref="37" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="tContrasena" max="32767" attributes="0"/>
-                                      <Component id="tEmail" max="32767" attributes="0"/>
-                                      <Component id="tNombre" max="32767" attributes="0"/>
-                                      <Component id="cbRol" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="lCrear" min="-2" pref="274" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                          <Component id="temporizador1" min="-2" pref="111" max="-2" attributes="0"/>
-                          <EmptySpace pref="35" max="32767" attributes="0"/>
-                          <Component id="bGuardarCambios" min="-2" pref="140" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lNombre" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                              <Component id="lEmail" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
+                              <Component id="lContrasena" alignment="0" min="-2" pref="81" max="-2" attributes="0"/>
+                              <Component id="lRol" min="-2" pref="37" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="tContrasena" max="32767" attributes="0"/>
+                              <Component id="tEmail" max="32767" attributes="0"/>
+                              <Component id="tNombre" max="32767" attributes="0"/>
+                              <Component id="cbRol" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                  <Component id="bGuardarCambios" min="-2" pref="140" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -130,12 +125,9 @@
                       <Component id="lRol" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cbRol" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="36" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="temporizador1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bGuardarCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace pref="40" max="32767" attributes="0"/>
+                  <Component id="bGuardarCambios" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -195,12 +187,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bGuardarCambiosActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="ComponentePropio.Temporizador" name="temporizador1">
-          <Events>
-            <EventHandler event="capturarFinCuentaAtras" listener="ComponentePropio.Temporizador$CapturaListener" parameters="ComponentePropio.botonEvento" handler="temporizador1CapturarFinCuentaAtras"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="temporizador1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

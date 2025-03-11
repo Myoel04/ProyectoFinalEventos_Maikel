@@ -32,7 +32,7 @@ public class ventEventos extends javax.swing.JFrame {
     EventoDAO edao = new EventoDAO();
     metodos metodos = new metodos();
     private int paginaActual = 1;
-    private int tamanoPagina = 5; // 10 eventos por página
+    private int tamanoPagina = 5;
     private int totalPaginas;
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private List<Evento> eventosCargados;
@@ -78,14 +78,14 @@ public class ventEventos extends javax.swing.JFrame {
             }
         });
 
-          getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
         getRootPane().getActionMap().put("javahelp", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controlarJavaHelp.mostrarAyuda();
             }
         });
-        
+
     }
 
     /**
@@ -106,16 +106,17 @@ public class ventEventos extends javax.swing.JFrame {
         lTipoEvento = new javax.swing.JLabel();
         cbTipoEvento = new javax.swing.JComboBox<>();
         lFecha = new javax.swing.JLabel();
+        bLimpiar = new javax.swing.JButton();
         pTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tEventos = new javax.swing.JTable();
         pBotones = new javax.swing.JPanel();
         bCrear = new javax.swing.JButton();
         bEliminar = new javax.swing.JButton();
-        bLimpiar = new javax.swing.JButton();
         bActualizar = new javax.swing.JButton();
         pBotonesPaginas = new javax.swing.JPanel();
         bAnterior = new javax.swing.JButton();
+        lPagina = new javax.swing.JLabel();
         bSiguiente = new javax.swing.JButton();
         mbAyuda = new javax.swing.JMenuBar();
         mAyuda = new javax.swing.JMenu();
@@ -138,6 +139,14 @@ public class ventEventos extends javax.swing.JFrame {
 
         lFecha.setText("Fecha:");
 
+        bLimpiar.setText("Vaciar Filtros");
+        bLimpiar.setPreferredSize(new java.awt.Dimension(95, 27));
+        bLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pFiltrosLayout = new javax.swing.GroupLayout(pFiltros);
         pFiltros.setLayout(pFiltrosLayout);
         pFiltrosLayout.setHorizontalGroup(
@@ -157,16 +166,21 @@ public class ventEventos extends javax.swing.JFrame {
                         .addComponent(lTipoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cbTipoEvento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(pFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(22, 22, 22))
         );
         pFiltrosLayout.setVerticalGroup(
             pFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pFiltrosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(bBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pFiltrosLayout.createSequentialGroup()
+                        .addComponent(bBuscar)
+                        .addGap(18, 18, 18)
+                        .addComponent(bLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pFiltrosLayout.createSequentialGroup()
                         .addGroup(pFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -220,6 +234,11 @@ public class ventEventos extends javax.swing.JFrame {
 
         bCrear.setText("Crear");
         bCrear.setPreferredSize(new java.awt.Dimension(95, 27));
+        bCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCrearActionPerformed(evt);
+            }
+        });
         pBotones.add(bCrear);
 
         bEliminar.setText("Eliminar");
@@ -231,15 +250,6 @@ public class ventEventos extends javax.swing.JFrame {
         });
         pBotones.add(bEliminar);
 
-        bLimpiar.setText("Vaciar");
-        bLimpiar.setPreferredSize(new java.awt.Dimension(95, 27));
-        bLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bLimpiarActionPerformed(evt);
-            }
-        });
-        pBotones.add(bLimpiar);
-
         bActualizar.setText("Actualizar");
         bActualizar.setPreferredSize(new java.awt.Dimension(95, 27));
         bActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -249,7 +259,7 @@ public class ventEventos extends javax.swing.JFrame {
         });
         pBotones.add(bActualizar);
 
-        bAnterior.setText("Anterior");
+        bAnterior.setText("<");
         bAnterior.setPreferredSize(new java.awt.Dimension(95, 27));
         bAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,8 +267,9 @@ public class ventEventos extends javax.swing.JFrame {
             }
         });
         pBotonesPaginas.add(bAnterior);
+        pBotonesPaginas.add(lPagina);
 
-        bSiguiente.setText("Siguiente");
+        bSiguiente.setText(">");
         bSiguiente.setPreferredSize(new java.awt.Dimension(95, 27));
         bSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,8 +373,13 @@ public class ventEventos extends javax.swing.JFrame {
             Object valor = tEventos.getModel().getValueAt(filaSeleccionada, 0); // Columna 0 es idEvento
             try {
                 int idEvento = (Integer) valor;
-                int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea eliminar el evento?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
-                if (confirmacion == JOptionPane.YES_OPTION) {
+
+                // Crea y muestra el diálogo personalizado
+                dialogoEliminarEvento dialog = new dialogoEliminarEvento(this, true);
+                dialog.setVisible(true);
+
+                // Verifica si se presionó el botón "Si" en el diálogo personalizado
+                if (dialog.isDeletionConfirmed()) {
                     edao.eliminarEvento(idEvento);
                     filtrarEventos();
                 }
@@ -382,6 +398,7 @@ public class ventEventos extends javax.swing.JFrame {
         if (paginaActual > 1) {
             paginaActual--;
             filtrarEventos();
+            lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
         }
     }//GEN-LAST:event_bAnteriorActionPerformed
 
@@ -391,6 +408,7 @@ public class ventEventos extends javax.swing.JFrame {
         if (paginaActual < totalPaginas) {
             paginaActual++;
             filtrarEventos();
+            lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
         }
     }//GEN-LAST:event_bSiguienteActionPerformed
 
@@ -431,6 +449,12 @@ public class ventEventos extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_jmAyudaActionPerformed
 
+    private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
+        // TODO add your handling code here:
+        ventCrearEvento vce = new ventCrearEvento();
+        vce.setVisible(true);
+    }//GEN-LAST:event_bCrearActionPerformed
+
     public void filtrarEventos() {
         try {
             String titulo = tNombre.getText().trim();
@@ -469,6 +493,7 @@ public class ventEventos extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error al cargar eventos: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+        lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
     }
 
     /**
@@ -523,6 +548,7 @@ public class ventEventos extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmAyuda;
     private javax.swing.JLabel lFecha;
     private javax.swing.JLabel lNombre;
+    private javax.swing.JLabel lPagina;
     private javax.swing.JLabel lTipoEvento;
     private javax.swing.JMenu mAyuda;
     private javax.swing.JMenuBar mbAyuda;

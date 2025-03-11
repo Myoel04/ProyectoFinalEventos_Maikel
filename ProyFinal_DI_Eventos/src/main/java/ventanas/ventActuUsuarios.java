@@ -43,9 +43,6 @@ public class ventActuUsuarios extends javax.swing.JFrame {
                 controlarJavaHelp.mostrarAyuda();
             }
         });
-        temporizador1.setBackground(Color.LIGHT_GRAY);
-        temporizador1.setTextoNuevo("Cancelar");
-        temporizador1.setTiempo(15);
 
 // campos 
         tNombre.setText(nombreUsuario);
@@ -74,7 +71,6 @@ public class ventActuUsuarios extends javax.swing.JFrame {
         lRol = new javax.swing.JLabel();
         cbRol = new javax.swing.JComboBox<>();
         bGuardarCambios = new javax.swing.JButton();
-        temporizador1 = new ComponentePropio.Temporizador();
         mbAyuda = new javax.swing.JMenuBar();
         mAyuda = new javax.swing.JMenu();
         jmAyuda = new javax.swing.JMenuItem();
@@ -102,47 +98,33 @@ public class ventActuUsuarios extends javax.swing.JFrame {
             }
         });
 
-        temporizador1.addCapturaListener(new ComponentePropio.Temporizador.CapturaListener() {
-            public void capturarFinCuentaAtras(ComponentePropio.botonEvento evt) {
-                temporizador1CapturarFinCuentaAtras(evt);
-            }
-        });
-        temporizador1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                temporizador1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pFormularioLayout = new javax.swing.GroupLayout(pFormulario);
         pFormulario.setLayout(pFormularioLayout);
         pFormularioLayout.setHorizontalGroup(
             pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pFormularioLayout.createSequentialGroup()
-                .addGroup(pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pFormularioLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                .addGap(29, 29, 29)
+                .addGroup(pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pFormularioLayout.createSequentialGroup()
+                        .addComponent(lCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 30, Short.MAX_VALUE))
+                    .addGroup(pFormularioLayout.createSequentialGroup()
                         .addGroup(pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pFormularioLayout.createSequentialGroup()
-                                .addComponent(lCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(pFormularioLayout.createSequentialGroup()
-                                .addGroup(pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lRol, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tContrasena)
-                                    .addComponent(tEmail)
-                                    .addComponent(tNombre)
-                                    .addComponent(cbRol, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pFormularioLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(temporizador1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addComponent(bGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lRol, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tContrasena)
+                            .addComponent(tEmail)
+                            .addComponent(tNombre)
+                            .addComponent(cbRol, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(21, 21, 21))
+            .addGroup(pFormularioLayout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addComponent(bGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pFormularioLayout.setVerticalGroup(
             pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,11 +147,9 @@ public class ventActuUsuarios extends javax.swing.JFrame {
                 .addGroup(pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lRol)
                     .addComponent(cbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addGroup(pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(temporizador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bGuardarCambios))
-                .addGap(27, 27, 27))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(bGuardarCambios)
+                .addGap(23, 23, 23))
         );
 
         mAyuda.setText("Ayuda");
@@ -262,16 +242,6 @@ public class ventActuUsuarios extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_jmAyudaActionPerformed
 
-    private void temporizador1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_temporizador1ActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_temporizador1ActionPerformed
-
-    private void temporizador1CapturarFinCuentaAtras(ComponentePropio.botonEvento evt) {//GEN-FIRST:event_temporizador1CapturarFinCuentaAtras
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_temporizador1CapturarFinCuentaAtras
-
     /**
      * @param args the command line arguments
      */
@@ -323,6 +293,5 @@ public class ventActuUsuarios extends javax.swing.JFrame {
     private javax.swing.JPasswordField tContrasena;
     private javax.swing.JTextField tEmail;
     private javax.swing.JTextField tNombre;
-    private ComponentePropio.Temporizador temporizador1;
     // End of variables declaration//GEN-END:variables
 }

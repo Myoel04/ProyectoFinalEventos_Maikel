@@ -52,9 +52,6 @@ public class ventActuEventos extends javax.swing.JFrame {
                 controlarJavaHelp.mostrarAyuda();
             }
         });
-        temporizador2.setBackground(Color.LIGHT_GRAY);
-          temporizador2.setTextoNuevo("Cancelar");
-        temporizador2.setTiempo(15);
         
     }
 
@@ -83,7 +80,6 @@ public class ventActuEventos extends javax.swing.JFrame {
         lTipo = new javax.swing.JLabel();
         cbTipoEvento = new javax.swing.JComboBox<>();
         bGuardarCambios = new javax.swing.JButton();
-        temporizador2 = new ComponentePropio.Temporizador();
         mbAyuda = new javax.swing.JMenuBar();
         mAyuda = new javax.swing.JMenu();
         jmAyuda = new javax.swing.JMenuItem();
@@ -124,12 +120,6 @@ public class ventActuEventos extends javax.swing.JFrame {
             }
         });
 
-        temporizador2.addCapturaListener(new ComponentePropio.Temporizador.CapturaListener() {
-            public void capturarFinCuentaAtras(ComponentePropio.botonEvento evt) {
-                temporizador2CapturarFinCuentaAtras(evt);
-            }
-        });
-
         javax.swing.GroupLayout pCrearEventoLayout = new javax.swing.GroupLayout(pCrearEvento);
         pCrearEvento.setLayout(pCrearEventoLayout);
         pCrearEventoLayout.setHorizontalGroup(
@@ -144,25 +134,23 @@ public class ventActuEventos extends javax.swing.JFrame {
                                 .addComponent(lTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(tTituloEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(pCrearEventoLayout.createSequentialGroup()
-                                    .addComponent(temporizador2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(46, 46, 46)
-                                    .addComponent(bGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pCrearEventoLayout.createSequentialGroup()
-                                    .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(lDescripcion)
-                                        .addComponent(lUbicacion)
-                                        .addComponent(lFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lCapacidad)
-                                        .addComponent(lTipo))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(dcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-                                        .addComponent(tUbicacion)
-                                        .addComponent(tCapacidad)
-                                        .addComponent(cbTipoEvento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                            .addGroup(pCrearEventoLayout.createSequentialGroup()
+                                .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lDescripcion)
+                                    .addComponent(lUbicacion)
+                                    .addComponent(lFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lCapacidad)
+                                    .addComponent(lTipo))
+                                .addGap(18, 18, 18)
+                                .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(dcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                                    .addComponent(tUbicacion)
+                                    .addComponent(tCapacidad)
+                                    .addComponent(cbTipoEvento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(pCrearEventoLayout.createSequentialGroup()
+                                .addGap(115, 115, 115)
+                                .addComponent(bGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pCrearEventoLayout.createSequentialGroup()
                         .addGap(98, 98, 98)
                         .addComponent(lCrear)))
@@ -198,9 +186,7 @@ public class ventActuEventos extends javax.swing.JFrame {
                     .addComponent(lTipo)
                     .addComponent(cbTipoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bGuardarCambios)
-                    .addComponent(temporizador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(bGuardarCambios)
                 .addGap(27, 27, 27))
         );
 
@@ -306,11 +292,6 @@ public class ventActuEventos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jmAyudaActionPerformed
 
-    private void temporizador2CapturarFinCuentaAtras(ComponentePropio.botonEvento evt) {//GEN-FIRST:event_temporizador2CapturarFinCuentaAtras
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_temporizador2CapturarFinCuentaAtras
-
     /**
      * @param args the command line arguments
      */
@@ -367,6 +348,5 @@ public class ventActuEventos extends javax.swing.JFrame {
     private javax.swing.JTextField tTituloEvento;
     private javax.swing.JTextField tUbicacion;
     private javax.swing.JTextArea taDescripcion;
-    private ComponentePropio.Temporizador temporizador2;
     // End of variables declaration//GEN-END:variables
 }

@@ -109,7 +109,7 @@ public class ventAdministracion extends javax.swing.JFrame {
             }
         });
         
-        
+        lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
 
     }
 
@@ -172,13 +172,14 @@ public class ventAdministracion extends javax.swing.JFrame {
         lNombreUsuario = new javax.swing.JLabel();
         tNombreUsuario = new javax.swing.JTextField();
         bFiltrar = new javax.swing.JButton();
+        bVaciar = new javax.swing.JButton();
+        bEliminarAsociacion = new javax.swing.JButton();
         pTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tGeneral = new javax.swing.JTable();
         pBotones = new javax.swing.JPanel();
         bAnterior = new javax.swing.JButton();
-        bVaciar = new javax.swing.JButton();
-        bEliminarAsociacion = new javax.swing.JButton();
+        lPagina = new javax.swing.JLabel();
         bSiguiente = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmEvento = new javax.swing.JMenu();
@@ -257,6 +258,22 @@ public class ventAdministracion extends javax.swing.JFrame {
         });
         pFiltros.add(bFiltrar);
 
+        bVaciar.setText("Vaciar Filtros");
+        bVaciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bVaciarActionPerformed(evt);
+            }
+        });
+        pFiltros.add(bVaciar);
+
+        bEliminarAsociacion.setText("Eliminar Asociacion");
+        bEliminarAsociacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEliminarAsociacionActionPerformed(evt);
+            }
+        });
+        pFiltros.add(bEliminarAsociacion);
+
         tGeneral.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -283,7 +300,7 @@ public class ventAdministracion extends javax.swing.JFrame {
         pTabla.setLayout(pTablaLayout);
         pTablaLayout.setHorizontalGroup(
             pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1168, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         pTablaLayout.setVerticalGroup(
             pTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,31 +310,18 @@ public class ventAdministracion extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        bAnterior.setText("Anterior");
+        bAnterior.setText("<");
+        bAnterior.setPreferredSize(new java.awt.Dimension(84, 27));
         bAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bAnteriorActionPerformed(evt);
             }
         });
         pBotones.add(bAnterior);
+        pBotones.add(lPagina);
 
-        bVaciar.setText("Vaciar Filtros");
-        bVaciar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bVaciarActionPerformed(evt);
-            }
-        });
-        pBotones.add(bVaciar);
-
-        bEliminarAsociacion.setText("Eliminar Asociacion");
-        bEliminarAsociacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bEliminarAsociacionActionPerformed(evt);
-            }
-        });
-        pBotones.add(bEliminarAsociacion);
-
-        bSiguiente.setText("Siguiente");
+        bSiguiente.setText(">");
+        bSiguiente.setPreferredSize(new java.awt.Dimension(84, 27));
         bSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bSiguienteActionPerformed(evt);
@@ -336,7 +340,7 @@ public class ventAdministracion extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(pTabla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pFiltros, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1168, Short.MAX_VALUE))
+                    .addComponent(pFiltros, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pGenerarAdmLayout.setVerticalGroup(
@@ -461,6 +465,7 @@ public class ventAdministracion extends javax.swing.JFrame {
         if (paginaActual > 1) {
             paginaActual--;
             cargarEventosUsuarios();
+            lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
         }
     }//GEN-LAST:event_bAnteriorActionPerformed
 
@@ -480,6 +485,7 @@ public class ventAdministracion extends javax.swing.JFrame {
         if (paginaActual < totalPaginas) {
             paginaActual++;
             cargarEventosUsuarios();
+            lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
         }
     }//GEN-LAST:event_bSiguienteActionPerformed
 
@@ -631,6 +637,7 @@ public class ventAdministracion extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiVerUsuarios;
     private javax.swing.JLabel lFecha;
     private javax.swing.JLabel lNombreUsuario;
+    private javax.swing.JLabel lPagina;
     private javax.swing.JLabel lRol;
     private javax.swing.JLabel lTipoEvento;
     private javax.swing.JLabel lTitulo;

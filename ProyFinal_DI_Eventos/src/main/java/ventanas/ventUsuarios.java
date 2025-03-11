@@ -75,6 +75,7 @@ public class ventUsuarios extends javax.swing.JFrame {
                 if (paginaActual > 1) {
                     paginaActual--;
                     filtrarUsuarios();
+                    lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
                 }
             }
         });
@@ -85,6 +86,7 @@ public class ventUsuarios extends javax.swing.JFrame {
                 if (paginaActual < totalPaginas) {
                     paginaActual++;
                     filtrarUsuarios();
+                    lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
                 }
             }
         });
@@ -108,13 +110,14 @@ public class ventUsuarios extends javax.swing.JFrame {
         lRol = new javax.swing.JLabel();
         cbRol = new javax.swing.JComboBox<>();
         bFiltros = new javax.swing.JButton();
-        pBotonesAcciones = new javax.swing.JPanel();
         bVaciar = new javax.swing.JButton();
+        pBotonesAcciones = new javax.swing.JPanel();
         bEliminar = new javax.swing.JButton();
         bActualizar = new javax.swing.JButton();
         bCrear = new javax.swing.JButton();
         pBotones = new javax.swing.JPanel();
         bAnterior = new javax.swing.JButton();
+        lPagina = new javax.swing.JLabel();
         bSiguiente = new javax.swing.JButton();
         mbAyuda = new javax.swing.JMenuBar();
         mAyuda = new javax.swing.JMenu();
@@ -184,13 +187,14 @@ public class ventUsuarios extends javax.swing.JFrame {
         });
         pFiltros.add(bFiltros);
 
-        bVaciar.setText("Vaciar");
+        bVaciar.setText("Limpiar Filtros");
+        bVaciar.setPreferredSize(new java.awt.Dimension(109, 32));
         bVaciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bVaciarActionPerformed(evt);
             }
         });
-        pBotonesAcciones.add(bVaciar);
+        pFiltros.add(bVaciar);
 
         bEliminar.setText("Eliminar");
         bEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -216,15 +220,18 @@ public class ventUsuarios extends javax.swing.JFrame {
         });
         pBotonesAcciones.add(bCrear);
 
-        bAnterior.setText("Anterior");
+        bAnterior.setText("<");
+        bAnterior.setPreferredSize(new java.awt.Dimension(84, 27));
         bAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bAnteriorActionPerformed(evt);
             }
         });
         pBotones.add(bAnterior);
+        pBotones.add(lPagina);
 
-        bSiguiente.setText("Siguiente");
+        bSiguiente.setText(">");
+        bSiguiente.setPreferredSize(new java.awt.Dimension(84, 27));
         bSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bSiguienteActionPerformed(evt);
@@ -338,25 +345,29 @@ public class ventUsuarios extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error al cargar usuarios: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+        lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
     }
 
 
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
         // TODO add your handling code here:
 
-        int filaSeleccionada = tUsuarios.getSelectedRow();
+   int filaSeleccionada = tUsuarios.getSelectedRow();
         if (filaSeleccionada != -1) {
-            //obtencion id usuario
+            // obtención id usuario
             int idUsuario = (int) tUsuarios.getModel().getValueAt(filaSeleccionada, 0);
 
-            // Confirmación
-            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea eliminar al usuario?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
-            if (confirmacion == JOptionPane.YES_OPTION) {
-                // llamo al método para eliminar el usuario
+            // Crea y muestra el diálogo personalizado
+            dialogoEliminarUsuario dialog = new dialogoEliminarUsuario(this, true);
+            dialog.setVisible(true);
+
+            // Verifica si se presionó el botón "Si" en el diálogo personalizado
+            if (dialog.isDeletionConfirmed()) {
+                // Llama al método para eliminar el usuario si se confirmó la eliminación
                 UsuarioDAO dao = new UsuarioDAO();
                 dao.eliminarUsuario(idUsuario);
 
-                // Actualiza la tabla 
+                // Actualiza la tabla
                 m.cargarUsuariosEnTabla(tUsuarios);
             }
         } else {
@@ -454,6 +465,7 @@ public class ventUsuarios extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem jmAyuda;
     private javax.swing.JLabel lNombre;
+    private javax.swing.JLabel lPagina;
     private javax.swing.JLabel lRol;
     private javax.swing.JMenu mAyuda;
     private javax.swing.JMenuBar mbAyuda;

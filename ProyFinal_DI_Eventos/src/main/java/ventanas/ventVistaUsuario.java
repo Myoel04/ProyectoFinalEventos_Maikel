@@ -91,7 +91,7 @@ public class ventVistaUsuario extends javax.swing.JFrame {
                 controlarJavaHelp.mostrarAyuda();
             }
         });
-
+lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
     }
 
     private void filtrarEventos() {
@@ -127,6 +127,8 @@ public class ventVistaUsuario extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error al cargar eventos: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+        lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
+
     }
 
     /**
@@ -139,20 +141,21 @@ public class ventVistaUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         pGeneral = new javax.swing.JPanel();
-        pBotones = new javax.swing.JPanel();
-        bAnterior = new javax.swing.JButton();
-        bVaciar = new javax.swing.JButton();
-        bEliminar = new javax.swing.JButton();
-        bSiguiente = new javax.swing.JButton();
         pFiltro = new javax.swing.JPanel();
         lNombre = new javax.swing.JLabel();
         tTituloEvento = new javax.swing.JTextField();
         lTipoEvento = new javax.swing.JLabel();
         cbTipoEvento = new javax.swing.JComboBox<>();
         bFiltrar = new javax.swing.JButton();
+        bVaciar = new javax.swing.JButton();
+        bEliminar = new javax.swing.JButton();
         pTabla = new javax.swing.JPanel();
         tEventos = new javax.swing.JScrollPane();
         tEventosUsuario = new javax.swing.JTable();
+        pPaginacion = new javax.swing.JPanel();
+        bAnterior = new javax.swing.JButton();
+        lPagina = new javax.swing.JLabel();
+        bSiguiente = new javax.swing.JButton();
         mbAyuda6 = new javax.swing.JMenuBar();
         mAyuda6 = new javax.swing.JMenu();
         jmAyuda6 = new javax.swing.JMenuItem();
@@ -160,40 +163,6 @@ public class ventVistaUsuario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         pGeneral.setLayout(new java.awt.BorderLayout());
-
-        bAnterior.setText("Anterior");
-        bAnterior.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAnteriorActionPerformed(evt);
-            }
-        });
-        pBotones.add(bAnterior);
-
-        bVaciar.setText("Vaciar");
-        bVaciar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bVaciarActionPerformed(evt);
-            }
-        });
-        pBotones.add(bVaciar);
-
-        bEliminar.setText("Eliminar");
-        bEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bEliminarActionPerformed(evt);
-            }
-        });
-        pBotones.add(bEliminar);
-
-        bSiguiente.setText("Siguiente");
-        bSiguiente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSiguienteActionPerformed(evt);
-            }
-        });
-        pBotones.add(bSiguiente);
-
-        pGeneral.add(pBotones, java.awt.BorderLayout.PAGE_END);
 
         lNombre.setText("Titulo:");
         pFiltro.add(lNombre);
@@ -214,6 +183,22 @@ public class ventVistaUsuario extends javax.swing.JFrame {
             }
         });
         pFiltro.add(bFiltrar);
+
+        bVaciar.setText("Limpiar Filtros");
+        bVaciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bVaciarActionPerformed(evt);
+            }
+        });
+        pFiltro.add(bVaciar);
+
+        bEliminar.setText("Eliminar");
+        bEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEliminarActionPerformed(evt);
+            }
+        });
+        pFiltro.add(bEliminar);
 
         pGeneral.add(pFiltro, java.awt.BorderLayout.PAGE_START);
 
@@ -258,6 +243,25 @@ public class ventVistaUsuario extends javax.swing.JFrame {
 
         pGeneral.add(pTabla, java.awt.BorderLayout.CENTER);
 
+        bAnterior.setText("<");
+        bAnterior.setPreferredSize(new java.awt.Dimension(84, 27));
+        bAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAnteriorActionPerformed(evt);
+            }
+        });
+        pPaginacion.add(bAnterior);
+        pPaginacion.add(lPagina);
+
+        bSiguiente.setText(">");
+        bSiguiente.setPreferredSize(new java.awt.Dimension(84, 27));
+        bSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSiguienteActionPerformed(evt);
+            }
+        });
+        pPaginacion.add(bSiguiente);
+
         mAyuda6.setText("Ayuda");
 
         jmAyuda6.setText("JavaHelp");
@@ -278,7 +282,9 @@ public class ventVistaUsuario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pPaginacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -286,6 +292,8 @@ public class ventVistaUsuario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pPaginacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -306,6 +314,8 @@ public class ventVistaUsuario extends javax.swing.JFrame {
         if (paginaActual < totalPaginas) {
             paginaActual++;
             filtrarEventos();
+            lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
+
         }
     }//GEN-LAST:event_bSiguienteActionPerformed
 
@@ -314,6 +324,8 @@ public class ventVistaUsuario extends javax.swing.JFrame {
         if (paginaActual > 1) {
             paginaActual--;
             filtrarEventos();
+            lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
+
         }
     }//GEN-LAST:event_bAnteriorActionPerformed
 
@@ -392,12 +404,13 @@ public class ventVistaUsuario extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbTipoEvento;
     private javax.swing.JMenuItem jmAyuda6;
     private javax.swing.JLabel lNombre;
+    private javax.swing.JLabel lPagina;
     private javax.swing.JLabel lTipoEvento;
     private javax.swing.JMenu mAyuda6;
     private javax.swing.JMenuBar mbAyuda6;
-    private javax.swing.JPanel pBotones;
     private javax.swing.JPanel pFiltro;
     private javax.swing.JPanel pGeneral;
+    private javax.swing.JPanel pPaginacion;
     private javax.swing.JPanel pTabla;
     private javax.swing.JScrollPane tEventos;
     private javax.swing.JTable tEventosUsuario;
