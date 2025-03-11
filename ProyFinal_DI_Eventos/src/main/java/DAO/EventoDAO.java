@@ -10,32 +10,36 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Evento;
 
 public class EventoDAO {
+
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//metodo para insertar un evetno
 
     public void insertarEvento(Evento evento) {
-    String sql = "INSERT INTO Eventos (tituloEvento, descripcion, fecha, capacidadMax, tipoEvento, ubicacion) VALUES (?, ?, ?, ?, ?, ?)";
-    try (Connection conn = GestorBD.conectar();
-         PreparedStatement pstmt = conn.prepareStatement(sql)) {
-        pstmt.setString(1, evento.getTituloEvento());
-        pstmt.setString(2, evento.getDescripcion());
-        pstmt.setString(3, evento.getFecha() != null ? sdf.format(evento.getFecha()) : null);
-        pstmt.setInt(4, evento.getCapacidadMax());
-        pstmt.setString(5, evento.getTipoEvento());
-        pstmt.setString(6, evento.getUbicacion()); // Añadir la ubicación
-        pstmt.executeUpdate();
-    } catch (SQLException e) {
-        System.out.println("Error al insertar el evento: " + e.getMessage());
+        String sql = "INSERT INTO Eventos (tituloEvento, descripcion, fecha, capacidadMax, tipoEvento, ubicacion) VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection conn = GestorBD.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, evento.getTituloEvento());
+            pstmt.setString(2, evento.getDescripcion());
+            pstmt.setString(3, evento.getFecha() != null ? sdf.format(evento.getFecha()) : null);
+            pstmt.setInt(4, evento.getCapacidadMax());
+            pstmt.setString(5, evento.getTipoEvento());
+            pstmt.setString(6, evento.getUbicacion());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al insertar el evento: " + e.getMessage());
+        }
     }
-}
+//metodo para obtener el evento
 
     public Evento obtenerEvento(int id) {
         String sql = "SELECT * FROM Eventos WHERE idEvento = ?";
         Evento evento = null;
-        try (Connection conn = GestorBD.conectar();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = GestorBD.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
@@ -64,36 +68,37 @@ public class EventoDAO {
         }
         return evento;
     }
+//metodo para actualizar evento
 
-  public void actualizarEvento(Evento evento) {
-    String sql = "UPDATE Eventos SET tituloEvento = ?, descripcion = ?, fecha = ?, capacidadMax = ?, tipoEvento = ?, ubicacion = ? WHERE idEvento = ?";
-    try (Connection conn = GestorBD.conectar();
-         PreparedStatement pstmt = conn.prepareStatement(sql)) {
-        pstmt.setString(1, evento.getTituloEvento());
-        pstmt.setString(2, evento.getDescripcion());
-        pstmt.setString(3, evento.getFecha() != null ? sdf.format(evento.getFecha()) : null);
-        pstmt.setInt(4, evento.getCapacidadMax());
-        pstmt.setString(5, evento.getTipoEvento());
-        pstmt.setString(6, evento.getUbicacion()); // Añadir la ubicación
-        pstmt.setInt(7, evento.getIdEvento());
-        pstmt.executeUpdate();
-    } catch (SQLException e) {
-        System.out.println("Error al actualizar el evento: " + e.getMessage());
+    public void actualizarEvento(Evento evento) {
+        String sql = "UPDATE Eventos SET tituloEvento = ?, descripcion = ?, fecha = ?, capacidadMax = ?, tipoEvento = ?, ubicacion = ? WHERE idEvento = ?";
+        try (Connection conn = GestorBD.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, evento.getTituloEvento());
+            pstmt.setString(2, evento.getDescripcion());
+            pstmt.setString(3, evento.getFecha() != null ? sdf.format(evento.getFecha()) : null);
+            pstmt.setInt(4, evento.getCapacidadMax());
+            pstmt.setString(5, evento.getTipoEvento());
+            pstmt.setString(6, evento.getUbicacion());
+            pstmt.setInt(7, evento.getIdEvento());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar el evento: " + e.getMessage());
+        }
     }
-}
+//metodo de eliminar evento
 
     public void eliminarEvento(int id) {
         String sql = "DELETE FROM Eventos WHERE idEvento = ?";
-        try (Connection conn = GestorBD.conectar();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = GestorBD.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error al eliminar el evento: " + e.getMessage());
         }
     }
+//metodo de buscar eventos
 
-    public List<Evento> buscarEventos(String titulo, String fecha, String tipoEvento) throws SQLException {
+    public List<Evento> buscarEventos(String titulo, String fecha, String tipoEvento) {
         List<Evento> eventos = new ArrayList<>();
         StringBuilder query = new StringBuilder("SELECT idEvento, tituloEvento, descripcion, ubicacion, fecha, tipoEvento FROM Eventos WHERE 1=1");
 
@@ -107,8 +112,7 @@ public class EventoDAO {
             query.append(" AND tipoEvento = ?");
         }
 
-        try (Connection conn = GestorBD.conectar();
-             PreparedStatement stmt = conn.prepareStatement(query.toString())) {
+        try (Connection conn = GestorBD.conectar(); PreparedStatement stmt = conn.prepareStatement(query.toString())) {
             int paramIndex = 1;
             if (titulo != null && !titulo.isEmpty()) {
                 stmt.setString(paramIndex++, "%" + titulo + "%");
@@ -142,10 +146,14 @@ public class EventoDAO {
                 eventos.add(evento);
             }
             return eventos;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error con la BBDD: " + ex.getMessage(), "Error de base de datos", JOptionPane.ERROR_MESSAGE);
         }
+
+        return eventos;
     }
 
-    public List<Evento> buscarEventosPaginados(String titulo, String fecha, String tipoEvento, int pagina, int tamanoPagina) throws SQLException {
+    public List<Evento> buscarEventosPaginados(String titulo, String fecha, String tipoEvento, int pagina, int tamanoPagina) {
         List<Evento> eventos = new ArrayList<>();
         StringBuilder query = new StringBuilder("SELECT idEvento, tituloEvento, descripcion, ubicacion, fecha, tipoEvento FROM Eventos WHERE 1=1");
 
@@ -160,8 +168,7 @@ public class EventoDAO {
         }
         query.append(" LIMIT ? OFFSET ?");
 
-        try (Connection conn = GestorBD.conectar();
-             PreparedStatement stmt = conn.prepareStatement(query.toString())) {
+        try (Connection conn = GestorBD.conectar(); PreparedStatement stmt = conn.prepareStatement(query.toString())) {
             int paramIndex = 1;
             if (titulo != null && !titulo.isEmpty()) {
                 stmt.setString(paramIndex++, "%" + titulo + "%");
@@ -197,10 +204,14 @@ public class EventoDAO {
                 eventos.add(evento);
             }
             return eventos;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error con la BBDD: " + ex.getMessage(), "Error de base de datos", JOptionPane.ERROR_MESSAGE);
+
         }
+        return eventos;
     }
 
-    public int contarEventos(String titulo, String fecha, String tipoEvento) throws SQLException {
+    public int contarEventos(String titulo, String fecha, String tipoEvento) {
         StringBuilder query = new StringBuilder("SELECT COUNT(*) FROM Eventos WHERE 1=1");
 
         if (titulo != null && !titulo.isEmpty()) {
@@ -213,8 +224,7 @@ public class EventoDAO {
             query.append(" AND tipoEvento = ?");
         }
 
-        try (Connection conn = GestorBD.conectar();
-             PreparedStatement stmt = conn.prepareStatement(query.toString())) {
+        try (Connection conn = GestorBD.conectar(); PreparedStatement stmt = conn.prepareStatement(query.toString())) {
             int paramIndex = 1;
             if (titulo != null && !titulo.isEmpty()) {
                 stmt.setString(paramIndex++, "%" + titulo + "%");
@@ -231,16 +241,20 @@ public class EventoDAO {
                 return rs.getInt(1);
             }
             return 0;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error con la BBDD: " + ex.getMessage(), "Error de base de datos", JOptionPane.ERROR_MESSAGE);
+
         }
+        return 0;
     }
-    
+
     public List<Evento> buscarEventosPorUsuarioPaginados(String titulo, String tipoEvento, int pagina, int tamanoPagina, int idUsuario) throws SQLException {
         List<Evento> eventos = new ArrayList<>();
         StringBuilder query = new StringBuilder(
-            "SELECT e.idEvento, e.tituloEvento, e.descripcion, e.ubicacion, e.fecha, e.tipoEvento " +
-            "FROM Eventos e " +
-            "INNER JOIN evento_usuario eu ON e.idEvento = eu.idEvento " +
-            "WHERE eu.idUsuario = ?"
+                "SELECT e.idEvento, e.tituloEvento, e.descripcion, e.ubicacion, e.fecha, e.tipoEvento "
+                + "FROM Eventos e "
+                + "INNER JOIN evento_usuario eu ON e.idEvento = eu.idEvento "
+                + "WHERE eu.idUsuario = ?"
         );
 
         if (titulo != null && !titulo.isEmpty()) {
@@ -251,8 +265,7 @@ public class EventoDAO {
         }
         query.append(" LIMIT ? OFFSET ?");
 
-        try (Connection conn = GestorBD.conectar();
-             PreparedStatement stmt = conn.prepareStatement(query.toString())) {
+        try (Connection conn = GestorBD.conectar(); PreparedStatement stmt = conn.prepareStatement(query.toString())) {
             int paramIndex = 1;
             stmt.setInt(paramIndex++, idUsuario);
             if (titulo != null && !titulo.isEmpty()) {
@@ -291,10 +304,10 @@ public class EventoDAO {
 
     public int contarEventosPorUsuario(String titulo, String tipoEvento, int idUsuario) throws SQLException {
         StringBuilder query = new StringBuilder(
-            "SELECT COUNT(*) " +
-            "FROM Eventos e " +
-            "INNER JOIN evento_usuario eu ON e.idEvento = eu.idEvento " +
-            "WHERE eu.idUsuario = ?"
+                "SELECT COUNT(*) "
+                + "FROM Eventos e "
+                + "INNER JOIN evento_usuario eu ON e.idEvento = eu.idEvento "
+                + "WHERE eu.idUsuario = ?"
         );
 
         if (titulo != null && !titulo.isEmpty()) {
@@ -304,8 +317,7 @@ public class EventoDAO {
             query.append(" AND e.tipoEvento = ?");
         }
 
-        try (Connection conn = GestorBD.conectar();
-             PreparedStatement stmt = conn.prepareStatement(query.toString())) {
+        try (Connection conn = GestorBD.conectar(); PreparedStatement stmt = conn.prepareStatement(query.toString())) {
             int paramIndex = 1;
             stmt.setInt(paramIndex++, idUsuario);
             if (titulo != null && !titulo.isEmpty()) {
@@ -322,18 +334,20 @@ public class EventoDAO {
             return 0;
         }
     }
-    
-    public int contarAsistentesActuales(int idEvento) throws SQLException {
+
+    public int contarAsistentesActuales(int idEvento) {
         String sql = "SELECT COUNT(*) FROM evento_usuario WHERE idEvento = ?";
-        try (Connection conn = GestorBD.conectar();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = GestorBD.conectar(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, idEvento);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 return rs.getInt(1);
             }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error con la BBDD: " + ex.getMessage(), "Error de base de datos", JOptionPane.ERROR_MESSAGE);
+
         }
         return 0;
     }
-    
+
 }

@@ -16,10 +16,10 @@ import modelo.Usuario;
  * @author yosoy
  */
 public class ventLogin extends javax.swing.JFrame {
+
     UsuarioDAO ud = new UsuarioDAO();
-    ventAdministracion va = new ventAdministracion();
-    
-    
+    ventAdministracion va  = new ventAdministracion();
+
     /**
      * Creates new form vistaLogin
      */
@@ -161,9 +161,9 @@ public class ventLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//confirmo credenciales y luego entro 
     private void bEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEntrarActionPerformed
-      String email = tEmail.getText().trim();
+        String email = tEmail.getText().trim();
         String contrasena = new String(tContrasena.getPassword()).trim();
 
         if (email.isEmpty() || contrasena.isEmpty()) {
@@ -171,21 +171,21 @@ public class ventLogin extends javax.swing.JFrame {
             return;
         }
 
-        // Autenticar al usuario y obtener su ID y rol
+        // obtener id y rol
         Usuario usuario = ud.autenticarUsuarioConId(email, contrasena);
         if (usuario != null) {
-            String rol = usuario.getRol().toLowerCase(); // Convertir a minúsculas para consistencia
+            String rol = usuario.getRol().toLowerCase();
             int idUsuario = usuario.getIdUsuario();
-            
+
             switch (rol) {
                 case "administrador":
                     va.setVisible(true);
-                    this.dispose(); // Cierra la ventana de login
+                    this.dispose();
                     break;
                 case "usuario":
-                    ventVistaUsuario vvu = new ventVistaUsuario(idUsuario); // Usar el idUsuario dinámico
+                    ventVistaUsuario vvu = new ventVistaUsuario(idUsuario);
                     vvu.setVisible(true);
-                    this.dispose(); // Cierra la ventana de login
+                    this.dispose();
                     break;
                 default:
                     JOptionPane.showMessageDialog(this, "Rol no reconocido: " + rol);
@@ -194,27 +194,26 @@ public class ventLogin extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Email o contraseña incorrectos.");
         }
-        
+
     }//GEN-LAST:event_bEntrarActionPerformed
 
     private void bRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegistrarseActionPerformed
         // TODO add your handling code here:
-        
+
         ventRegistroUsuario vru = new ventRegistroUsuario();
         vru.setVisible(true);
     }//GEN-LAST:event_bRegistrarseActionPerformed
 
     private void chMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chMostrarActionPerformed
         // TODO add your handling code here:
-        
-        
-          if (chMostrar.isSelected()) {
-        tContrasena.setEchoChar((char) 0); // Caracteres visibles
-    } else {
-        tContrasena.setEchoChar('*'); // Caracteres ocultos, muestra puntos
-    }
 
-        
+        if (chMostrar.isSelected()) {
+            tContrasena.setEchoChar((char) 0);
+        } else {
+            tContrasena.setEchoChar('*'); // 
+        }
+
+
     }//GEN-LAST:event_chMostrarActionPerformed
 
     /**

@@ -112,7 +112,7 @@ public class ventAdministracion extends javax.swing.JFrame {
         lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
 
     }
-
+//metodo de cargar los eventos usuarios
     public void cargarEventosUsuarios() {
         try {
             String titulo = tTitulo.getText().trim();
@@ -531,7 +531,7 @@ public class ventAdministracion extends javax.swing.JFrame {
         ve.setVisible(true);
 
     }//GEN-LAST:event_jmiEventosActionPerformed
-
+//boton para eliminar la asociacion entre una persona y un evento
     private void bEliminarAsociacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarAsociacionActionPerformed
         // TODO add your handling code here:
 
@@ -563,7 +563,6 @@ public class ventAdministracion extends javax.swing.JFrame {
 
     private void menuInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInformesActionPerformed
         // TODO add your handling code here:
-
         ventInformes vi = new ventInformes();
         vi.setVisible(true);
 

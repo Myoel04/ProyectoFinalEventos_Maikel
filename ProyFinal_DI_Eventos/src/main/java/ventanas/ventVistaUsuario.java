@@ -54,7 +54,6 @@ public class ventVistaUsuario extends javax.swing.JFrame {
         bSiguiente.setEnabled(false);
         eventosCargados = new ArrayList<>();
         filtrarEventos();
-
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         //filtrar con el enter
@@ -91,9 +90,9 @@ public class ventVistaUsuario extends javax.swing.JFrame {
                 controlarJavaHelp.mostrarAyuda();
             }
         });
-lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
+        lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
     }
-
+    //metodo para los filtros
     private void filtrarEventos() {
 
         try {
@@ -112,7 +111,7 @@ lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
 
             DefaultTableModel tableModel = (DefaultTableModel) tEventosUsuario.getModel();
             tableModel.setRowCount(0);
-
+//recorrer los eventos
             for (Evento evento : eventos) {
                 String fechaFormateada = (evento.getFecha() != null) ? sdf.format(evento.getFecha()) : "";
                 tableModel.addRow(new Object[]{
@@ -302,7 +301,6 @@ lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
 
     private void bVaciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVaciarActionPerformed
         // TODO add your handling code here:
-
         tTituloEvento.setText("");
         cbTipoEvento.setSelectedIndex(0);
         paginaActual = 1;

@@ -45,7 +45,7 @@ public class ventUsuarios extends javax.swing.JFrame {
         pack();
         setResizable(false);
         setLocationRelativeTo(null);
-
+//listenrsf para los filtros con el enter
         tNombre.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -284,7 +284,6 @@ public class ventUsuarios extends javax.swing.JFrame {
 
     private void bFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFiltrosActionPerformed
         // TODO add your handling code here:
-
         paginaActual = 1;
         filtrarUsuarios();
 
@@ -307,7 +306,7 @@ public class ventUsuarios extends javax.swing.JFrame {
 
         tNombre.setText("");
         cbRol.setSelectedIndex(0);
-        paginaActual = 1; // Reinicia la página
+        paginaActual = 1;
         filtrarUsuarios();
 
     }//GEN-LAST:event_bVaciarActionPerformed
@@ -330,7 +329,7 @@ public class ventUsuarios extends javax.swing.JFrame {
 
             DefaultTableModel tableModel = (DefaultTableModel) tUsuarios.getModel();
 
-            // Limpiar la tabla
+            // limpiar la tabla
             tableModel.setRowCount(0);
 
             // relleno la tabla con los datos paginados
@@ -347,7 +346,7 @@ public class ventUsuarios extends javax.swing.JFrame {
         }
         lPagina.setText("Página " + paginaActual + " de " + totalPaginas);
     }
-
+//metodo para eliminar
 
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
         // TODO add your handling code here:
@@ -357,17 +356,17 @@ public class ventUsuarios extends javax.swing.JFrame {
             // obtención id usuario
             int idUsuario = (int) tUsuarios.getModel().getValueAt(filaSeleccionada, 0);
 
-            // Crea y muestra el diálogo personalizado
+            // mostrar dialogo personalizado
             dialogoEliminarUsuario dialog = new dialogoEliminarUsuario(this, true);
             dialog.setVisible(true);
 
-            // Verifica si se presionó el botón "Si" en el diálogo personalizado
+            // verificar la confirmacion
             if (dialog.isDeletionConfirmed()) {
                 // Llama al método para eliminar el usuario si se confirmó la eliminación
                 UsuarioDAO dao = new UsuarioDAO();
                 dao.eliminarUsuario(idUsuario);
 
-                // Actualiza la tabla
+                // actualizar tabla despues de eliminar
                 m.cargarUsuariosEnTabla(tUsuarios);
             }
         } else {
@@ -384,7 +383,7 @@ public class ventUsuarios extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Por favor seleccione un usuario para actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+//coger los datos de la fila seleccionada
         int idUsuario = (int) tUsuarios.getValueAt(filaSeleccionada, 0);
         String nombreUsuario = (String) tUsuarios.getValueAt(filaSeleccionada, 1);
         String emailUsuario = (String) tUsuarios.getValueAt(filaSeleccionada, 2);

@@ -23,9 +23,6 @@ public class ventCrearEvento extends javax.swing.JFrame {
 
     EventoDAO edao = new EventoDAO();
 
-    /**
-     * Creates new form ventCrearEvento
-     */
     public ventCrearEvento() {
         initComponents();
         controlarJavaHelp.inicializarAyuda();
@@ -33,7 +30,7 @@ public class ventCrearEvento extends javax.swing.JFrame {
         pack();
         setResizable(false);
         setLocationRelativeTo(null);
-          getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
         getRootPane().getActionMap().put("javahelp", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -112,10 +109,14 @@ public class ventCrearEvento extends javax.swing.JFrame {
         pCrearEvento.setLayout(pCrearEventoLayout);
         pCrearEventoLayout.setHorizontalGroup(
             pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCrearEventoLayout.createSequentialGroup()
+                .addContainerGap(156, Short.MAX_VALUE)
+                .addComponent(lCrear)
+                .addGap(132, 132, 132))
             .addGroup(pCrearEventoLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pCrearEventoLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
                         .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pCrearEventoLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
@@ -126,30 +127,27 @@ public class ventCrearEvento extends javax.swing.JFrame {
                                 .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lDescripcion)
                                     .addComponent(lUbicacion)
-                                    .addComponent(lFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lCapacidad)
-                                    .addComponent(lTipo))
+                                    .addComponent(lTipo)
+                                    .addComponent(lFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(dcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1)
                                     .addComponent(tUbicacion)
                                     .addComponent(tCapacidad)
-                                    .addComponent(cbTipoEvento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 60, Short.MAX_VALUE))
-                    .addComponent(bCrear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCrearEventoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lCrear)
-                .addGap(132, 132, 132))
+                                    .addComponent(cbTipoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(pCrearEventoLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(bCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pCrearEventoLayout.setVerticalGroup(
             pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pCrearEventoLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(lCrear)
-                .addGap(43, 43, 43)
+                .addGap(18, 18, 18)
                 .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tTituloEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lTitulo))
@@ -173,9 +171,9 @@ public class ventCrearEvento extends javax.swing.JFrame {
                 .addGroup(pCrearEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lTipo)
                     .addComponent(cbTipoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(bCrear)
-                .addGap(29, 29, 29))
+                .addGap(31, 31, 31))
         );
 
         mAyuda2.setText("Ayuda");
@@ -209,15 +207,15 @@ public class ventCrearEvento extends javax.swing.JFrame {
     private void tCapacidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tCapacidadActionPerformed
         // TODO add your handling code here:
 
-        String capacIntroducida = tCapacidad.getText(); // Asumiendo que tCapacidad es tu JTextField
+        String capacIntroducida = tCapacidad.getText();
         try {
-            int capacidad = Integer.parseInt(capacIntroducida); // Intenta convertir el texto a entero
+            int capacidad = Integer.parseInt(capacIntroducida);
             if (capacidad < 0) {
                 JOptionPane.showMessageDialog(null, "Introduce un número positivo.", "Error", JOptionPane.ERROR_MESSAGE);
             } else if (capacidad > 10000) {
                 JOptionPane.showMessageDialog(null, "La capacidad máxima no puede exceder de 1000.", "Límite excedido", JOptionPane.WARNING_MESSAGE);
             } else {
-                // Aquí puedes seguir con el código si el número es válido y está en el rango permitido
+
                 System.out.println("Capacidad establecida a " + capacidad);
             }
         } catch (NumberFormatException e) {
@@ -228,33 +226,32 @@ public class ventCrearEvento extends javax.swing.JFrame {
     }//GEN-LAST:event_tCapacidadActionPerformed
 
     private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
-        // TODO add your handling code here:
-        // Recoger los datos del formulario
+        //recojo datos formulario
         String titulo = tTituloEvento.getText();
         String descripcion = taDescripcion.getText();
         String ubicacion = tUbicacion.getText();
-        Date fecha = dcFecha.getDate();  // Esto recoge la fecha del JDateChooser
+        Date fecha = dcFecha.getDate();
         String capacidadStr = tCapacidad.getText();
         String tipoEvento = (String) cbTipoEvento.getSelectedItem();
 
         if (titulo.isEmpty() || descripcion.isEmpty() || ubicacion.isEmpty() || fecha == null || capacidadStr.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
-            return;  // Detiene la ejecución si algún campo necesario está vacío
+            JOptionPane.showMessageDialog(this, "Por favor, rellena todos los campos.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
+            return; //si campo vacio se detiene
         }
 
         int capacidad;
         try {
             capacidad = Integer.parseInt(capacidadStr);
             if (capacidad <= 0 || capacidad > 10000) {
-                JOptionPane.showMessageDialog(this, "La capacidad debe ser un número positivo menor o igual a 1000.", "Error en la capacidad", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "La capacidad debe ser un número positivo menor o igual a 1000.", "Error ", JOptionPane.ERROR_MESSAGE);
                 return;
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Por favor, introduce un número válido para la capacidad.", "Error en la capacidad", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, introduce un número válido para la capacidad.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Crear el objeto evento
+        // creo el objeto evento
         Evento evento = new Evento();
         evento.setTituloEvento(titulo);
         evento.setDescripcion(descripcion);
@@ -263,10 +260,11 @@ public class ventCrearEvento extends javax.swing.JFrame {
         evento.setCapacidadMax(capacidad);
         evento.setTipoEvento(tipoEvento);
 
-        // Insertar el evento usando el método de la clase DAO
+        // inserto el evento 
         try {
             edao.insertarEvento(evento);
             JOptionPane.showMessageDialog(this, "Evento creado con éxito!", "Evento Creado", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al crear el evento: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -275,7 +273,7 @@ public class ventCrearEvento extends javax.swing.JFrame {
 
     private void jmAyuda2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyuda2ActionPerformed
         // TODO add your handling code here:
-    controlarJavaHelp.mostrarAyuda();
+        controlarJavaHelp.mostrarAyuda();
     }//GEN-LAST:event_jmAyuda2ActionPerformed
 
     /**

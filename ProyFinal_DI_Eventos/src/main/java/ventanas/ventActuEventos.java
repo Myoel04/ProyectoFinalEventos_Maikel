@@ -27,12 +27,12 @@ public class ventActuEventos extends javax.swing.JFrame {
     private final int idEvento; // ID del evento a actualizar
 
     public ventActuEventos(ventEventos ventEventos, int idEvento, String titulo, String descripcion, String ubicacion, Date fecha, String tipoEvento) {
-      
+
         this.ventEventos = ventEventos;
         this.idEvento = idEvento;
         initComponents();
         controlarJavaHelp.inicializarAyuda();
-       
+
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();
         setResizable(false);
@@ -44,15 +44,15 @@ public class ventActuEventos extends javax.swing.JFrame {
         dcFecha.setDate(fecha);
         tCapacidad.setText(""); // Capacidad no se muestra inicialmente; se deja al usuario
         cbTipoEvento.setSelectedItem(tipoEvento != null ? tipoEvento : "Deportivo");
-        
-            getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
+
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
         getRootPane().getActionMap().put("javahelp", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controlarJavaHelp.mostrarAyuda();
             }
         });
-        
+
     }
 
     /**
@@ -217,7 +217,7 @@ public class ventActuEventos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //maximo de capacdad del evento
     private void tCapacidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tCapacidadActionPerformed
         // TODO add your handling code here:
 
@@ -227,7 +227,7 @@ public class ventActuEventos extends javax.swing.JFrame {
             if (capacidad < 0) {
                 JOptionPane.showMessageDialog(null, "Introduce un número positivo.", "Error", JOptionPane.ERROR_MESSAGE);
             } else if (capacidad > 10000) {
-                JOptionPane.showMessageDialog(null, "La capacidad máxima no puede exceder de 1000.", "Límite excedido", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "La capacidad máxima no puede exceder de 10000.", "Límite excedido", JOptionPane.WARNING_MESSAGE);
             } else {
                 System.out.println("Capacidad establecida a " + capacidad);
             }
@@ -236,9 +236,9 @@ public class ventActuEventos extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_tCapacidadActionPerformed
-
+    //boton para guardar los cambios
     private void bGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarCambiosActionPerformed
-        // Recoger los datos del formulario
+        // recojo los datos del formulario
         String titulo = tTituloEvento.getText().trim();
         String descripcion = taDescripcion.getText().trim();
         String ubicacion = tUbicacion.getText().trim();
@@ -246,7 +246,6 @@ public class ventActuEventos extends javax.swing.JFrame {
         String capacidadStr = tCapacidad.getText().trim();
         String tipoEvento = (String) cbTipoEvento.getSelectedItem();
 
-        // Validaciones básicas
         if (titulo.isEmpty() || descripcion.isEmpty() || ubicacion.isEmpty() || fecha == null || capacidadStr.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
             return;
@@ -264,7 +263,7 @@ public class ventActuEventos extends javax.swing.JFrame {
             return;
         }
 
-        // Crear el objeto evento
+        // creo el objeto evento
         Evento evento = new Evento();
         evento.setIdEvento(idEvento);
         evento.setTituloEvento(titulo);
@@ -274,12 +273,12 @@ public class ventActuEventos extends javax.swing.JFrame {
         evento.setCapacidadMax(capacidad);
         evento.setTipoEvento(tipoEvento);
 
-        // Llamar al método DAO para actualizar el evento
+        //  DAO para actualizar el evento
         try {
             edao.actualizarEvento(evento);
             JOptionPane.showMessageDialog(this, "Evento actualizado con éxito.", "Evento Actualizado", JOptionPane.INFORMATION_MESSAGE);
-            ventEventos.filtrarEventos(); // Refrescar la tabla en ventEventos
-            this.dispose(); // Cerrar la ventana
+            ventEventos.filtrarEventos(); // refresco la tabla en ventEventos
+            this.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al actualizar el evento: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -288,7 +287,7 @@ public class ventActuEventos extends javax.swing.JFrame {
 
     private void jmAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyudaActionPerformed
         // TODO add your handling code here:
-       controlarJavaHelp.mostrarAyuda();
+        controlarJavaHelp.mostrarAyuda();
 
     }//GEN-LAST:event_jmAyudaActionPerformed
 

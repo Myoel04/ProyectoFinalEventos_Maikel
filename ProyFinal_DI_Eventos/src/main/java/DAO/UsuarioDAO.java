@@ -11,6 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import modelo.Usuario;
 
@@ -250,7 +253,7 @@ public List<Usuario> obtenerUsuariosParaTabla(JTable tUsuarios) {
     }
 
     // Método para contar el total de usuarios con los filtros aplicados
-    public int contarUsuarios(String nombre, String rol) throws SQLException {
+    public int contarUsuarios(String nombre, String rol)   {
         StringBuilder query = new StringBuilder("SELECT COUNT(*) FROM usuario WHERE 1=1");
 
         if (nombre != null && !nombre.isEmpty()) {
@@ -275,7 +278,10 @@ public List<Usuario> obtenerUsuariosParaTabla(JTable tUsuarios) {
                 return rs.getInt(1);
             }
             return 0;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error con la BBDD: " + ex.getMessage(), "Error de base de datos", JOptionPane.ERROR_MESSAGE);
         }
+        return 0;
     }
     
 }

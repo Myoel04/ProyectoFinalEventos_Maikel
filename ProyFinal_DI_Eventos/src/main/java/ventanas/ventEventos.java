@@ -46,7 +46,7 @@ public class ventEventos extends javax.swing.JFrame {
         setTitle("Gestión de Eventos");
         bAnterior.setEnabled(false);
         bSiguiente.setEnabled(false);
-        eventosCargados = new ArrayList<>(); // Inicialización inicial
+        eventosCargados = new ArrayList<>();
         filtrarEventos(); // carga inicial con paginación
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();
@@ -370,21 +370,21 @@ public class ventEventos extends javax.swing.JFrame {
 
         int filaSeleccionada = tEventos.getSelectedRow();
         if (filaSeleccionada != -1) {
-            Object valor = tEventos.getModel().getValueAt(filaSeleccionada, 0); // Columna 0 es idEvento
+            Object valor = tEventos.getModel().getValueAt(filaSeleccionada, 0);
             try {
                 int idEvento = (Integer) valor;
 
-                // Crea y muestra el diálogo personalizado
+                //mostrar dialogo persaonaliazdo
                 dialogoEliminarEvento dialog = new dialogoEliminarEvento(this, true);
                 dialog.setVisible(true);
 
-                // Verifica si se presionó el botón "Si" en el diálogo personalizado
+                // verificar la confirmacion para eliminar o no 
                 if (dialog.isDeletionConfirmed()) {
                     edao.eliminarEvento(idEvento);
                     filtrarEventos();
                 }
             } catch (ClassCastException e) {
-                JOptionPane.showMessageDialog(this, "El ID del evento no es un número válido.");
+                JOptionPane.showMessageDialog(this, "ID del evento no es un número válido.");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Por favor seleccione un evento para eliminar.");
@@ -419,12 +419,12 @@ public class ventEventos extends javax.swing.JFrame {
             return;
         }
 
-        int idEvento = (int) tEventos.getValueAt(filaSeleccionada, 0); // Columna 0 es idEvento
-        String titulo = (String) tEventos.getValueAt(filaSeleccionada, 1); // Columna 1 es Nombre
-        String descripcion = (String) tEventos.getValueAt(filaSeleccionada, 2); // Columna 2 es Descripción
-        String tipoEvento = (String) tEventos.getValueAt(filaSeleccionada, 3); // Columna 3 es Tipo Evento
-        String ubicacion = (String) tEventos.getValueAt(filaSeleccionada, 4); // Columna 4 es Ubicación
-        String fechaStr = (String) tEventos.getValueAt(filaSeleccionada, 5); // Columna 5 es Fecha
+        int idEvento = (int) tEventos.getValueAt(filaSeleccionada, 0);
+        String titulo = (String) tEventos.getValueAt(filaSeleccionada, 1);
+        String descripcion = (String) tEventos.getValueAt(filaSeleccionada, 2);
+        String tipoEvento = (String) tEventos.getValueAt(filaSeleccionada, 3);
+        String ubicacion = (String) tEventos.getValueAt(filaSeleccionada, 4);
+        String fechaStr = (String) tEventos.getValueAt(filaSeleccionada, 5);
         Date fecha = null;
         try {
             if (fechaStr != null && !fechaStr.isEmpty()) {
@@ -473,16 +473,16 @@ public class ventEventos extends javax.swing.JFrame {
 
             List<Evento> eventos = edao.buscarEventosPaginados(titulo, fechaStr, tipoEvento, paginaActual, tamanoPagina);
 
-            // Guardar los eventos cargados para la actualización
+            // guardar eventos cargados
             eventosCargados = new ArrayList<>(eventos);
 
             DefaultTableModel tableModel = (DefaultTableModel) tEventos.getModel();
             tableModel.setRowCount(0);
-
+//recoge datos de eventos
             for (Evento evento : eventos) {
                 String fechaFormateada = (evento.getFecha() != null) ? sdf.format(evento.getFecha()) : "";
                 tableModel.addRow(new Object[]{
-                    evento.getIdEvento(), // Añadir idEvento como primera columna
+                    evento.getIdEvento(),
                     evento.getTituloEvento(),
                     evento.getDescripcion(),
                     evento.getTipoEvento(),

@@ -229,6 +229,7 @@ public class ventInformes extends javax.swing.JFrame {
         });
         
     }//GEN-LAST:event_jmAyudaActionPerformed
+//para sacar el primer reporte
 
     private void bInforme1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInforme1ActionPerformed
         // TODO add your handling code here:
@@ -249,19 +250,19 @@ public class ventInformes extends javax.swing.JFrame {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String timestamp = formatter.format(new Date());
 
-        // Compilar y cargar el reporte
+        // Compilar y cargar el reporte si no esta compilado ya 
         File file = new File(reportCompilado);
         if (!file.exists()) {
             JasperCompileManager.compileReportToFile(reportSource, reportCompilado);
         }
         JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(reportCompilado);
 
-        // Establecer la conexión a SQLite
+        // a conexión a SQLite
         try (Connection conexion = DriverManager.getConnection("jdbc:sqlite:src/basedatos/eventos.db")) {
             JasperPrint miInforme = JasperFillManager.fillReport(reporte, params, conexion);
 
-            // Mostrar vista previa con JasperViewer
-            JasperViewer.viewReport(miInforme, false); // false para no cerrar al salir
+            //  vista previa con JasperViewer
+            JasperViewer.viewReport(miInforme, false); 
 
             // Exportar PDF si está seleccionado
             if (chPDF.isSelected()) {
@@ -282,7 +283,7 @@ public class ventInformes extends javax.swing.JFrame {
     }
         
     }//GEN-LAST:event_bInforme1ActionPerformed
-
+//para sacar el primer reporte
     private void bInforme2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInforme2ActionPerformed
         // TODO add your handling code here:
         
@@ -298,7 +299,7 @@ public class ventInformes extends javax.swing.JFrame {
         Map<String, Object> params = new HashMap<>();
         params.put("titulo", "Usuarios por cada evento - Gestión de eventos");
 
-        // Poner la hora en el archivo
+        // Poner  hora en el archivo
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String timestamp = formatter.format(new Date());
 
@@ -309,12 +310,12 @@ public class ventInformes extends javax.swing.JFrame {
         }
         JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(reportCompilado);
 
-        // Establecer la conexión a SQLite
+        //  la conexión a SQLite
         try (Connection conexion = DriverManager.getConnection("jdbc:sqlite:src/basedatos/eventos.db")) {
             JasperPrint miInforme = JasperFillManager.fillReport(reporte, params, conexion);
 
-            // Mostrar vista previa con JasperViewer
-            JasperViewer.viewReport(miInforme, false); // false para no cerrar al salir
+            //  vista previa con JasperViewer
+            JasperViewer.viewReport(miInforme, false); 
 
             // Exportar PDF si está seleccionado
             if (chPDF.isSelected()) {
@@ -334,7 +335,7 @@ public class ventInformes extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Error al generar el informe: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_bInforme2ActionPerformed
-
+//para sacar el tercer reporte
     private void bInforme3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInforme3ActionPerformed
         // TODO add your handling code here:
         
@@ -388,7 +389,7 @@ public class ventInformes extends javax.swing.JFrame {
     }
         
     }//GEN-LAST:event_bInforme3ActionPerformed
-
+//para sacar el cuarto reporte 
     private void bInforme4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInforme4ActionPerformed
         // TODO add your handling code here:
         

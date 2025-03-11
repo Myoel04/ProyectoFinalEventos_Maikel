@@ -116,13 +116,13 @@ public class dialogoEliminarUsuario extends javax.swing.JDialog {
 
     private void temporizador1CapturarFinCuentaAtras(ComponentePropio.botonEvento evt) {//GEN-FIRST:event_temporizador1CapturarFinCuentaAtras
         // TODO add your handling code here:
-        confEliminar = false; // Asegura que no se confirmó la eliminación
+        confEliminar = false;
         dispose();
     }//GEN-LAST:event_temporizador1CapturarFinCuentaAtras
 
     private void temporizador1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_temporizador1ActionPerformed
         // TODO add your handling code here:
-        confEliminar = false; // Asegura que no se confirmó la eliminación
+        confEliminar = false;
         dispose();
     }//GEN-LAST:event_temporizador1ActionPerformed
 

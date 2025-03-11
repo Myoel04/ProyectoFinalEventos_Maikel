@@ -35,12 +35,12 @@ public class ventAsociar extends javax.swing.JFrame {
      * Creates new form ventAsociar
      */
     public ventAsociar(ventAdministracion ventAdmin) {
-        this.ventAdmin = ventAdmin; // Guardamos la referencia para actualizar la tabla
+        this.ventAdmin = ventAdmin; // gurdo la referencia para actualizar la tabla
         initComponents();
         controlarJavaHelp.inicializarAyuda();
         cargarUsuarios();
         cargarEventos();
-          getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "javahelp");
         getRootPane().getActionMap().put("javahelp", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,11 +52,12 @@ public class ventAsociar extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
     }
+//metodo para cargar los usuarios
 
     private void cargarUsuarios() {
         try {
             int pagina = 1;
-            int tamanoPagina = 50; // Ajusta a un número mayor si necesitas más registros
+            int tamanoPagina = 50;
             List<Usuario> usuarios = udao.buscarUsuariosPaginados(null, null, pagina, tamanoPagina);
             DefaultTableModel model = (DefaultTableModel) tUsuarios.getModel();
             model.setRowCount(0);
@@ -72,9 +73,9 @@ public class ventAsociar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al cargar usuarios: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+//metodo para cargar los eventos
 
-   private void cargarEventos() {
-    try {
+    private void cargarEventos() {
         int pagina = 1;
         int tamanoPagina = 50;
         List<Evento> eventos = edao.buscarEventosPaginados(null, null, "Todos", pagina, tamanoPagina);
@@ -88,13 +89,10 @@ public class ventAsociar extends javax.swing.JFrame {
                 evento.getTituloEvento(),
                 evento.getTipoEvento(),
                 fechaStr,
-                asistentes + " / " + evento.getCapacidadMax() // Ejemplo: "10 / 50"
+                asistentes + " / " + evento.getCapacidadMax()
             });
         }
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(this, "Error al cargar eventos: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -279,6 +277,7 @@ public class ventAsociar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //metodo dentro para asociar una persona con el evento
     private void bAsociarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAsociarActionPerformed
         // TODO add your handling code here:
         int filaUsuario = tUsuarios.getSelectedRow();
@@ -292,32 +291,24 @@ public class ventAsociar extends javax.swing.JFrame {
         int idUsuario = (int) tUsuarios.getValueAt(filaUsuario, 0);
         int idEvento = (int) tEventos.getValueAt(filaEvento, 0);
 
-        try {
-            // Obtener el evento seleccionado
-            Evento evento = edao.obtenerEvento(idEvento); // Usamos el método existente
-            if (evento == null) {
-                JOptionPane.showMessageDialog(this, "Evento no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            // Contar asistentes actuales
-            int asistentesActuales = edao.contarAsistentesActuales(idEvento);
-            if (asistentesActuales >= evento.getCapacidadMax()) {
-                JOptionPane.showMessageDialog(this, "El evento ha alcanzado su capacidad máxima (" + evento.getCapacidadMax() + " personas). No se puede asociar más usuarios.", "Capacidad Máxima", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-
-            // Asumimos un rol por defecto "Usuario"
-            euDao.asociarUsuarioEvento(idUsuario, idEvento, "Usuario");
-
-            JOptionPane.showMessageDialog(this, "Usuario y evento asociados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
-            // Actualizar la tabla en ventAdministracion
-            if (ventAdmin != null) {
-                ventAdmin.cargarEventosUsuarios();
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error al asociar usuario y evento: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        // obtengo el evento seleccionado
+        Evento evento = edao.obtenerEvento(idEvento);
+        if (evento == null) {
+            JOptionPane.showMessageDialog(this, "Evento no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Contar usuarios actuales
+        int asistentesActuales = edao.contarAsistentesActuales(idEvento);
+        if (asistentesActuales >= evento.getCapacidadMax()) {
+            JOptionPane.showMessageDialog(this, "El evento ha alcanzado su capacidad máxima (" + evento.getCapacidadMax() + " personas). No se puede asociar más usuarios.", "Capacidad Máxima", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        // rol por defento en usuari
+        euDao.asociarUsuarioEvento(idUsuario, idEvento, "Usuario");
+        JOptionPane.showMessageDialog(this, "Usuario y evento asociados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        // actualizo la tabla en ventAdministracion
+        if (ventAdmin != null) {
+            ventAdmin.cargarEventosUsuarios();
         }
 
     }//GEN-LAST:event_bAsociarActionPerformed

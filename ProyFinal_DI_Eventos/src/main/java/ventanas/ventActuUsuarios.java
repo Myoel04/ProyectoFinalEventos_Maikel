@@ -187,45 +187,45 @@ public class ventActuUsuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarCambiosActionPerformed
-        // Recoger los datos del formulario
+        //  datos del formulario
         String nombre = tNombre.getText().trim();
         String email = tEmail.getText().trim();
         String contrasena = new String(tContrasena.getPassword()).trim();
         String rol = cbRol.getSelectedItem().toString();
 
-        // Validaciones básicas
+      
         if (nombre.isEmpty() || email.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, completa nombre y email.", "Campos Incompletos", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        // Validación de email (mejorado con una expresión regular simple)
+        // Validación de email 
         if (!email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
             JOptionPane.showMessageDialog(this, "Por favor, introduce un email válido.", "Email Inválido", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Verificar si el email ya está registrado (excluyendo el usuario actual)
+        // verificoemail ya está registrado
         Usuario usuarioActual = udao.obtenerUsuario(idUsuario);
         if (!email.equalsIgnoreCase(usuarioActual.getEmailUsuario()) && m.existeEmail(email)) {
             JOptionPane.showMessageDialog(this, "Este email ya está registrado.", "Email Duplicado", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Crear el objeto usuario
+        //creo usuario
         Usuario usuario = new Usuario();
         usuario.setIdUsuario(idUsuario);
         usuario.setNombreUsuario(nombre);
         usuario.setEmailUsuario(email);
-        usuario.setContrasena(contrasena.isEmpty() ? null : contrasena); // Solo actualizar contraseña si se proporciona
+        usuario.setContrasena(contrasena.isEmpty() ? null : contrasena); //si se introduce se cambia la contra
         usuario.setRol(rol);
 
-        // Llamar al método DAO para actualizar el usuario
+        // DAO para actualizar el usuario
         try {
             udao.actualizarUsuario(usuario);
             JOptionPane.showMessageDialog(this, "Usuario actualizado con éxito.", "Usuario Actualizado", JOptionPane.INFORMATION_MESSAGE);
-            vu.filtrarUsuarios(); // Refrescar la tabla en ventUsuarios
-            this.dispose(); // Cerrar la ventana
+            vu.filtrarUsuarios(); 
+            this.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al actualizar el usuario: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

@@ -23,9 +23,7 @@ public class ventCrearUsuario extends javax.swing.JFrame {
 
     metodos m = new metodos();
 
-    /**
-     * Creates new form ventCrearUsuario
-     */
+  
     public ventCrearUsuario() {
         initComponents();
         controlarJavaHelp.inicializarAyuda();
@@ -141,9 +139,9 @@ public class ventCrearUsuario extends javax.swing.JFrame {
                 .addGroup(pFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lRol)
                     .addComponent(cbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(bGuardarUsuario)
-                .addGap(44, 44, 44))
+                .addGap(32, 32, 32))
         );
 
         mAyuda.setText("Ayuda");
@@ -181,7 +179,7 @@ public class ventCrearUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bGuardarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarUsuarioActionPerformed
-        // Recoger los datos del formulario
+        // recojo datos
         String nombre = tNombre.getText().trim();
         String email = tEmail.getText().trim();
         String contrasena = new String(tContrasena.getPassword());
@@ -189,11 +187,11 @@ public class ventCrearUsuario extends javax.swing.JFrame {
 
         // Validaciones básicas
         if (nombre.isEmpty() || email.isEmpty() || contrasena.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.", "Campos Incompletos", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.", "Campos incompleto", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        // Validación de email (opcional, mejorable con expresiones regulares)
+        // Validación de email 
         if (!email.contains("@") || !email.contains(".")) {
             JOptionPane.showMessageDialog(this, "Por favor, introduce un email válido.", "Email Inválido", JOptionPane.ERROR_MESSAGE);
             return;
@@ -209,10 +207,10 @@ public class ventCrearUsuario extends javax.swing.JFrame {
         Usuario usuario = new Usuario();
         usuario.setNombreUsuario(nombre);
         usuario.setEmailUsuario(email);
-        usuario.setContrasena(contrasena);  // En una aplicación real, considera hashear la contraseña
+        usuario.setContrasena(contrasena); 
         usuario.setRol(rol);
 
-        // Llamar al método DAO para insertar el usuario
+        //metodo dao praa insertar
         try {
             UsuarioDAO usuarioDao = new UsuarioDAO();
             usuarioDao.insertarUsuario(usuario);

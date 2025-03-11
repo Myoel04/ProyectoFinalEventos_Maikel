@@ -7,8 +7,6 @@ package ventanas;
 import DAO.UsuarioDAO;
 import controlador.controlarJavaHelp;
 import controlador.metodos;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 
@@ -167,6 +165,7 @@ public class ventRegistroUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //metoodo en el boton para guardar el nuevo usuario
     private void bGuardarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarUsuarioActionPerformed
         // Recoger los datos del formulario
         String nombre = tNombre.getText().trim();
@@ -174,19 +173,18 @@ public class ventRegistroUsuario extends javax.swing.JFrame {
         String contrasena = new String(tContrasena.getPassword());
         String rol = cbRol.getSelectedItem().toString();
 
-        // Validaciones básicas
         if (nombre.isEmpty() || email.isEmpty() || contrasena.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.", "Campos Incompletos", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        // Validación de email (opcional, mejorable con expresiones regulares)
+        // Validación de email 
         if (!email.contains("@") || !email.contains(".")) {
             JOptionPane.showMessageDialog(this, "Por favor, introduce un email válido.", "Email Inválido", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Verificar si el email ya está registrado
+        // verifico si el email ya está registrado
         if (m.existeEmail(email)) {
             JOptionPane.showMessageDialog(this, "Este email ya está registrado.", "Email Duplicado", JOptionPane.ERROR_MESSAGE);
             return;
@@ -196,10 +194,10 @@ public class ventRegistroUsuario extends javax.swing.JFrame {
         Usuario usuario = new Usuario();
         usuario.setNombreUsuario(nombre);
         usuario.setEmailUsuario(email);
-        usuario.setContrasena(contrasena);  // En una aplicación real, considera hashear la contraseña
+        usuario.setContrasena(contrasena);
         usuario.setRol(rol);
 
-        // Llamar al método DAO para insertar el usuario
+        // DAO para insertar el usuario
         try {
             UsuarioDAO usuarioDao = new UsuarioDAO();
             usuarioDao.insertarUsuario(usuario);
@@ -212,9 +210,9 @@ public class ventRegistroUsuario extends javax.swing.JFrame {
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
         // TODO add your handling code here:
-        
+
         dispose();
-        
+
     }//GEN-LAST:event_bCancelarActionPerformed
 
     /**
