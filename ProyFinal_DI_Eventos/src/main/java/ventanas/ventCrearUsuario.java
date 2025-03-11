@@ -26,6 +26,7 @@ public class ventCrearUsuario extends javax.swing.JFrame {
   
     public ventCrearUsuario() {
         initComponents();
+        setTitle("Crear Usuario");
         controlarJavaHelp.inicializarAyuda();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();

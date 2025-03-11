@@ -37,6 +37,7 @@ public class ventAsociar extends javax.swing.JFrame {
     public ventAsociar(ventAdministracion ventAdmin) {
         this.ventAdmin = ventAdmin; // gurdo la referencia para actualizar la tabla
         initComponents();
+        setTitle("Asociar Persona y Evento");
         controlarJavaHelp.inicializarAyuda();
         cargarUsuarios();
         cargarEventos();

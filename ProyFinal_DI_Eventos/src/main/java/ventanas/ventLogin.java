@@ -25,6 +25,7 @@ public class ventLogin extends javax.swing.JFrame {
      */
     public ventLogin() {
         initComponents();
+        setTitle("Login");
         pack();
         setResizable(false);
         setLocationRelativeTo(null);

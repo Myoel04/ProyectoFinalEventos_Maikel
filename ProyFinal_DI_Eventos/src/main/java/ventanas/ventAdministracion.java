@@ -41,6 +41,7 @@ public class ventAdministracion extends javax.swing.JFrame {
      */
     public ventAdministracion() {
         initComponents();
+        setTitle("Administración");
         bAnterior.setEnabled(false);
         bSiguiente.setEnabled(false);
         pack();
