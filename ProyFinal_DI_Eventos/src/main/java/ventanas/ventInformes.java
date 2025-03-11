@@ -242,9 +242,8 @@ public class ventInformes extends javax.swing.JFrame {
 
     try {
         // Rutas relativas al directorio de trabajo del .exe
-        String reportSource = "reportes/reporteEventosTipo.jrxml";
-        String reportCompilado = "reportes/reporteEventosTipo.jasper";
-        String reportesDir = "reportes";
+        String reportSource = "reporteEventosTipo.jrxml";
+        String reportCompilado = "reporteEventosTipo.jasper";
         String dbRuta = "eventos.db"; 
 
         Map<String, Object> params = new HashMap<>();
@@ -269,14 +268,14 @@ public class ventInformes extends javax.swing.JFrame {
 
             // Exportar PDF si está seleccionado
             if (chPDF.isSelected()) {
-                String reportDestinoPDF = reportesDir + "/pdf_" + timestamp + ".pdf";
+                String reportDestinoPDF =  "pdf_" + timestamp + ".pdf";
                 JasperExportManager.exportReportToPdfFile(miInforme, reportDestinoPDF);
                 JOptionPane.showMessageDialog(this, "Reporte exportado a PDF en: " + reportDestinoPDF, "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
 
             // Exportar HTML si está seleccionado
             if (chHTML.isSelected()) {
-                String reportDestinoHTML = reportesDir + "/html_" + timestamp + ".html";
+                String reportDestinoHTML =  "html_" + timestamp + ".html";
                 JasperExportManager.exportReportToHtmlFile(miInforme, reportDestinoHTML);
                 JOptionPane.showMessageDialog(this, "Reporte exportado a HTML en: " + reportDestinoHTML, "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -297,9 +296,8 @@ public class ventInformes extends javax.swing.JFrame {
 
     try {
         // Rutas relativas al directorio de trabajo del .exe
-        String reportSource = "reportes/reporteUsuarioEvento.jrxml";
-        String reportCompilado = "reportes/reporteUsuarioEvento.jasper";
-        String reportesDir = "reportes"; // Carpeta donde estarán los reportes
+        String reportSource = "reporteUsuarioEvento.jrxml";
+        String reportCompilado = "reporteUsuarioEvento.jasper";
         String dbRuta = "eventos.db"; // Base de datos en el mismo directorio
 
         Map<String, Object> params = new HashMap<>();
@@ -324,14 +322,14 @@ public class ventInformes extends javax.swing.JFrame {
 
             // Exportar PDF si está seleccionado
             if (chPDF.isSelected()) {
-                String reportDestinoPDF = reportesDir + "/pdf_" + timestamp + ".pdf";
+                String reportDestinoPDF =  "pdf_" + timestamp + ".pdf";
                 JasperExportManager.exportReportToPdfFile(miInforme, reportDestinoPDF);
                 JOptionPane.showMessageDialog(this, "Reporte exportado a PDF en: " + reportDestinoPDF, "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
 
             // Exportar HTML si está seleccionado
             if (chHTML.isSelected()) {
-                String reportDestinoHTML = reportesDir + "/html_" + timestamp + ".html";
+                String reportDestinoHTML =  "html_" + timestamp + ".html";
                 JasperExportManager.exportReportToHtmlFile(miInforme, reportDestinoHTML);
                 JOptionPane.showMessageDialog(this, "Reporte exportado a HTML en: " + reportDestinoHTML, "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -352,9 +350,8 @@ public class ventInformes extends javax.swing.JFrame {
 
     try {
         // Rutas relativas al directorio de trabajo del .exe
-        String reportSource = "reportes/reporteUsuarios.jrxml";
-        String reportCompilado = "reportes/reporteUsuarios.jasper";
-        String reportesDir = "reportes"; // Carpeta donde estarán los reportes
+        String reportSource = "reporteUsuarios.jrxml";
+        String reportCompilado = "reporteUsuarios.jasper";
         String dbRuta = "eventos.db"; // Base de datos en el mismo directorio
 
         Map<String, Object> params = new HashMap<>();
@@ -379,14 +376,14 @@ public class ventInformes extends javax.swing.JFrame {
 
             // Exportar PDF si está seleccionado
             if (chPDF.isSelected()) {
-                String reportDestinoPDF = reportesDir + "/pdf_" + timestamp + ".pdf";
+                String reportDestinoPDF =  "pdf_" + timestamp + ".pdf";
                 JasperExportManager.exportReportToPdfFile(miInforme, reportDestinoPDF);
                 JOptionPane.showMessageDialog(this, "Reporte exportado a PDF en: " + reportDestinoPDF, "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
 
             // Exportar HTML si está seleccionado
             if (chHTML.isSelected()) {
-                String reportDestinoHTML = reportesDir + "/html_" + timestamp + ".html";
+                String reportDestinoHTML =  "html_" + timestamp + ".html";
                 JasperExportManager.exportReportToHtmlFile(miInforme, reportDestinoHTML);
                 JOptionPane.showMessageDialog(this, "Reporte exportado a HTML en: " + reportDestinoHTML, "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -410,9 +407,8 @@ public class ventInformes extends javax.swing.JFrame {
 
     try {
         // Rutas relativas al directorio de trabajo del .exe
-        String reportSource = "reportes/reporteEventos.jrxml";
-        String reportCompilado = "reportes/reporteEventos.jasper";
-        String reportesDir = "reportes"; // Carpeta donde estarán los reportes
+        String reportSource = "reporteEventos.jrxml";
+        String reportCompilado = "reporteEventos.jasper";
         String dbRuta = "eventos.db"; // Base de datos en el mismo directorio
 
         Map<String, Object> params = new HashMap<>();
@@ -437,14 +433,14 @@ public class ventInformes extends javax.swing.JFrame {
 
             // Exportar PDF si está seleccionado
             if (chPDF.isSelected()) {
-                String reportDestinoPDF = reportesDir + "/pdf_" + timestamp + ".pdf";
+                String reportDestinoPDF ="pdf_" + timestamp + ".pdf";
                 JasperExportManager.exportReportToPdfFile(miInforme, reportDestinoPDF);
                 JOptionPane.showMessageDialog(this, "Reporte exportado a PDF en: " + reportDestinoPDF, "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
 
             // Exportar HTML si está seleccionado
             if (chHTML.isSelected()) {
-                String reportDestinoHTML = reportesDir + "/html_" + timestamp + ".html";
+                String reportDestinoHTML =  "html_" + timestamp + ".html";
                 JasperExportManager.exportReportToHtmlFile(miInforme, reportDestinoHTML);
                 JOptionPane.showMessageDialog(this, "Reporte exportado a HTML en: " + reportDestinoHTML, "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
